@@ -8,8 +8,5 @@ namespace CharityApplication
 {
     class collin
     {
-
-        ierhoigehroi
-            eeee
     }
 }
