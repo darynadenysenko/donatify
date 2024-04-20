@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CharityApplication
+{
+    public class User
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+
+        public void UpdateUser()
+        {
+
+        }
+        public void DeleteUser()
+        {
+
+        }
+        public void Donate()
+        {
+
+        }
+
+
+
+    }
+}
