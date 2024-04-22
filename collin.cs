@@ -10,6 +10,6 @@ namespace CharityApplication
 {
     class collin
     {
-        Console.Write("hello)
+        
     }
 }
