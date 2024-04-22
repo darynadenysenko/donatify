@@ -7,19 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <PasswordBox Background="AliceBlue" Margin="255,280,255,110"/>
-
-        <Button Content="Log in" Margin="332,353,332,47" Click="Button_Click"/>
-       
-        <Label Content="Password" Margin="370,287,370,117"/>
+        <!--Logo-->
+        <Image Source =".\Screenshot 2024-04-22 173611.png" Margin="299,31,299,344"/>
+        <!--Log in label-->
+        <Label Content="Log In" Margin="379,158,370,250"/>
+        <!--Enter email-->
         <TextBox Background="AliceBlue" TextWrapping="Wrap" Margin="255,226,255,164"/>
         <Label Content="Email" Margin="381,233,381,171"/>
-        <Image Source =".\Screenshot 2024-04-22 173611.png" Margin="299,31,299,344"/>
-        <Label Content="Log In" Margin="379,158,370,250"/>
+        <!--Enter password-->
+        <PasswordBox Background="AliceBlue" Margin="255,280,255,110"/>
+        <Label Content="Password" Margin="370,287,370,117"/>
+        <!--Log in button-->
+        <Button Content="Log in" Margin="332,353,332,47" Click="Button_Click"/>
+        <!--Sign up-->
         <Label Content="Don't have an account yet?" Margin="272,398,371,10"/>
         <Button Content="Sign up" Background="Transparent" BorderBrush="Transparent" Margin="428,398,308,10" Click="Button_Click"/>
-
-
 
     </Grid>
 </Window>

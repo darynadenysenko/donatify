@@ -18,3 +18,24 @@ C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Charity app\obj\Debug\net6.0-win
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Charity app\obj\Debug\net6.0-windows\CharityApplication.pdb
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Charity app\obj\Debug\net6.0-windows\CharityApplication.genruntimeconfig.cache
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Charity app\obj\Debug\net6.0-windows\ref\CharityApplication.dll
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\bin\Debug\net6.0-windows\CharityApplication.exe
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\bin\Debug\net6.0-windows\CharityApplication.deps.json
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\bin\Debug\net6.0-windows\CharityApplication.runtimeconfig.json
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\bin\Debug\net6.0-windows\CharityApplication.dll
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\bin\Debug\net6.0-windows\CharityApplication.pdb
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication_MarkupCompile.cache
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication_MarkupCompile.lref
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.g.resources
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.AssemblyInfoInputs.cache
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.AssemblyInfo.cs
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.csproj.CoreCompileInputs.cache
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.sourcelink.json
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.dll
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\refint\CharityApplication.dll
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.pdb
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\CharityApplication.genruntimeconfig.cache
+C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\obj\Debug\net6.0-windows\ref\CharityApplication.dll
