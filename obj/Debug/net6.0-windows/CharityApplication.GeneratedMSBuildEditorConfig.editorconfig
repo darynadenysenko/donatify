@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CharityApplication
-build_property.ProjectDir = C:\Users\darin\Source\Repos\donatify\
+build_property.ProjectDir = C:\Users\marta\OneDrive - Thomas More\Inspirational and Project Lab\donatify\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
