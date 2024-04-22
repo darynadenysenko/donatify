@@ -9,7 +9,7 @@ namespace CharityApplication
     public class Donator : User
     {
         public string LastName { get; set; }
-        public Dictionary<Event, Amount> DonationHistory { get; set; }
+        //public Dictionary<Event, Amount> DonationHistory { get; set; }
         public void Donate(Event @event, decimal amount)
         {
             // Add donation to event

@@ -1,5 +1,5 @@
 ﻿CharityApplication
-1.0.0.0
+
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Charity app\App.xaml
 11407045341
 
-12-1225081542
+10-2075457570
 194183970531
 MainWindow.xaml;
 
-True
+False
 
