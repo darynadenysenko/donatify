@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CharityApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f66b3e1ab350907dfd932470dffde96ab4a7bdf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CharityApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CharityApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
