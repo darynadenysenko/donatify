@@ -47,7 +47,6 @@ C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\bin\Debug\net6.0-window
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\CharityApplication_MarkupCompile.cache
-C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\CharityApplication_MarkupCompile.lref
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\CharityApplication.g.resources
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\CharityApplication.GeneratedMSBuildEditorConfig.editorconfig
