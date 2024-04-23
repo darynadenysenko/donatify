@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Charity app\\CharityApplication.csproj",
+      "projectUniqueName": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Donatify\\CharityApplication.csproj",
       "projectName": "CharityApplication",
-      "projectPath": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Charity app\\CharityApplication.csproj",
+      "projectPath": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Donatify\\CharityApplication.csproj",
       "packagesPath": "C:\\Users\\darin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Charity app\\obj\\",
+      "outputPath": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Donatify\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\darin\\AppData\\Roaming\\NuGet\\NuGet.Config",
