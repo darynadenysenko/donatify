@@ -23,7 +23,7 @@ namespace CharityApplication
         public MainWindow()
         {
             InitializeComponent();
-            Console.WriteLine("hello github");
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
