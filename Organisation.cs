@@ -15,7 +15,7 @@ namespace CharityApplication
         public string Phone { get; set; }
         public string Mission { get; set; }
         public Types Type { get; set; }
-        public  decimal Balance { get; set; }
+       // public  decimal Balance { get; set; }
         public List<Event> Events { get; set; }
 
 
