@@ -10,17 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CharityApplication
 {
-    public partial class SignUpChoose : Window
+    /// <summary>
+    /// Interaction logic for Page.xaml
+    /// </summary>
+    public partial class SignUpChoose : Page
     {
         public SignUpChoose()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
-
+       
         private void DonatorChoice_Click(object sender, RoutedEventArgs e)
         {
             SignUpUser signUpUser = new SignUpUser();
@@ -33,4 +37,3 @@ namespace CharityApplication
         }
     }
 }
-

@@ -26,11 +26,13 @@ namespace CharityApplication
             
         }
 
+      
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
-            SignUpChoose signUpWindow = new SignUpChoose();
-            signUpWindow.ShowDialog(); 
+            // Navigate to SignUpChoose page
+            mainFrame.Navigate(new Uri("SignUpChoose.xaml", UriKind.Relative));
         }
+
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
            

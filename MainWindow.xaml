@@ -51,6 +51,7 @@
 
         <!-- Sign up button -->
         <Button Content="Sign up" HorizontalAlignment="Center"  FontFamily="Font/#Julius Sans One" FontSize="12" Height="20" Width="55" Margin="180,0,0,0" Grid.Row="6" Background="#303030" BorderBrush="Transparent" Foreground ="White" Click="SignUpButton_Click" RenderTransformOrigin="0.491,0.525"/>
+        <Frame x:Name="mainFrame" Grid.RowSpan="8"/>
     </Grid>
 </Window>
 
