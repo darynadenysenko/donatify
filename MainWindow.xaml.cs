@@ -26,11 +26,15 @@ namespace CharityApplication
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SignUpChoose signUpWindow = new SignUpChoose();
+            signUpWindow.ShowDialog(); 
         }
-
+        private void LogInButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 

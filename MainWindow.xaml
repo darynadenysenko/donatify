@@ -4,45 +4,48 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            
             <RowDefinition Height="Auto"/>
-            <!-- Logo -->
+            
+            <RowDefinition Height="150"/>
+            
+            <RowDefinition Height="80"/>
+            
+            <RowDefinition Height="50"/>
+           
+            <RowDefinition Height="40"/>
+           
             <RowDefinition Height="Auto"/>
-            <!-- Log In label -->
-            <RowDefinition Height="Auto"/>
-            <!-- Email -->
-            <RowDefinition Height="Auto"/>
-            <!-- Password -->
-            <RowDefinition Height="Auto"/>
-            <!-- Log in button -->
-            <RowDefinition Height="Auto"/>
-            <!-- Sign up label -->
+           
+            <RowDefinition Height="*"/>
+            
             
         </Grid.RowDefinitions>
 
         <!-- Logo -->
-        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Width="150" Margin="0,50,0,50"/>
+        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Width="200" Margin="0,0,0,0" Grid.Row="1"/>
 
         <!-- Log In label -->
-        <Label Content="Log In" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <Label Content="Log In" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
 
         <!-- Email -->
-        <TextBox Background="AliceBlue" Margin="100,0,100,0" VerticalAlignment="Center" Grid.Row="2"/>
+        <TextBox Background="AliceBlue" Margin="288,0,289,0" VerticalAlignment="Center" Grid.Row="3"/>
 
-        <Label Content="Email" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+        <Label Content="Email" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"/>
 
         <!-- Password -->
-        <PasswordBox Background="AliceBlue" Margin="100,0,100,0" VerticalAlignment="Center" Grid.Row="3"/>
+        <PasswordBox Background="AliceBlue" Margin="288,0,289,0" VerticalAlignment="Center" Grid.Row="4"/>
 
-        <Label Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"/>
+        <Label Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4"/>
 
         <!-- Log in button -->
-        <Button Content="Log in" HorizontalAlignment="Center" Margin="0,20,0,0" Grid.Row="4" Click="Button_Click"/>
+        <Button Content="Log in" HorizontalAlignment="Center" Margin="0,20,0,0" Grid.Row="5" Click= "LogInButton_Click" />
 
         <!-- Sign up label -->
-        <Label Content="Don't have an account yet?" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Grid.Row="5"/>
+        <Label Content="Don't have an account yet?" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Grid.Row="6"/>
 
         <!-- Sign up button -->
-        <Button Content="Sign up" HorizontalAlignment="Center" Margin="120,0,0,0" Grid.Row="5" Background="Transparent" BorderBrush="Transparent" Click="Button_Click" RenderTransformOrigin="0.491,0.525"/>
+        <Button Content="Sign up" HorizontalAlignment="Center" Margin="120,0,0,0" Grid.Row="6" Background="Transparent" BorderBrush="Transparent" Click="SignUpButton_Click" RenderTransformOrigin="0.491,0.525"/>
     </Grid>
 </Window>
 
