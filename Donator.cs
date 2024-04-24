@@ -12,7 +12,8 @@ namespace CharityApplication
         //public Dictionary<Event, Amount> DonationHistory { get; set; }
         public void Donate(Event @event, decimal amount)
         {
-            // Add donation to event
+            // Add donation to event88
+
             //@event.ReceiveDonation(this, amount);
 
             // Update total donation amount
