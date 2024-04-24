@@ -65,3 +65,5 @@ C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-window
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\CharityApplication_MarkupCompile.lref
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\SignUpOrganisation.baml
 C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\SignUpUser.baml
+C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\obj\Debug\net6.0-windows\CharityApplication_Content.g.cs
+C:\Users\darin\OneDrive\Desktop\Inspiration Lab\Donatify\bin\Debug\net6.0-windows\Font\JuliusSansOne-Regular.ttf

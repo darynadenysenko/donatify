@@ -8,7 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Font\JuliusSansOne-Regular.ttf" />
     <None Remove="Screenshot 2024-04-22 173611.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Font\JuliusSansOne-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
