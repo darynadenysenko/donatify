@@ -31,6 +31,7 @@
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Height="70" Width="300" Margin="0,0,0,0" Grid.Row="0"/>
 
         <!-- Log In label -->
+       
         <TextBlock Text ="Log In" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
 
         <!-- Email -->

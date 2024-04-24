@@ -28,6 +28,7 @@ namespace CharityApplication
             //this.Loaded += Window_Loaded; // check the database
 
         }
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var data = new CharityApplication.Data();
