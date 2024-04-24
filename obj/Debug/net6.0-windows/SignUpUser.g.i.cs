@@ -53,7 +53,7 @@ namespace CharityApplication {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CharityApplication;V1.0.0.0;component/signupuser.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CharityApplication;component/signupuser.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\SignUpUser.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
