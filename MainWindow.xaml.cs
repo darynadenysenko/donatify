@@ -18,6 +18,7 @@ namespace CharityApplication
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// collin was here
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -38,6 +39,11 @@ namespace CharityApplication
            
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
 
         }
