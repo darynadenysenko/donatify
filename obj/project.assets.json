@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\darin\\.nuget\\packages\\": {}
+    "C:\\Users\\marta\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Donatify\\CharityApplication.csproj",
+      "projectUniqueName": "C:\\Users\\marta\\OneDrive - Thomas More\\Inspirational and Project Lab\\donatify\\CharityApplication.csproj",
       "projectName": "CharityApplication",
-      "projectPath": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Donatify\\CharityApplication.csproj",
-      "packagesPath": "C:\\Users\\darin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\darin\\OneDrive\\Desktop\\Inspiration Lab\\Donatify\\obj\\",
+      "projectPath": "C:\\Users\\marta\\OneDrive - Thomas More\\Inspirational and Project Lab\\donatify\\CharityApplication.csproj",
+      "packagesPath": "C:\\Users\\marta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\marta\\OneDrive - Thomas More\\Inspirational and Project Lab\\donatify\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\darin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\marta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -40,6 +40,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -64,7 +69,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
