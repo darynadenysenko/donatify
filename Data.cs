@@ -11,8 +11,28 @@ namespace CharityApplication
     {
         private string connectionString = "datasource=127.0.0.1; port=3306; username = root; password=; database=donatify;";
 
-       
 
+        //test if its connected
+        public bool TestConnection()
+        {
+            bool isConnected = false;
+            string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=donatify;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    isConnected = true; // Successfully connected
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Connection failed: " + ex.Message);
+                }
+            }
+
+            return isConnected;
+        }
         //opening a connection
         private int Insert(string query) 
         {
