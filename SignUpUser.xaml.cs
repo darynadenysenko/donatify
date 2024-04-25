@@ -17,7 +17,7 @@ namespace CharityApplication
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class SignUpUser : Window
+    public partial class SignUpUser : Page
     {
         public SignUpUser()
         {

@@ -15,25 +15,22 @@ using System.Windows.Shapes;
 
 namespace CharityApplication
 {
-    /// <summary>
-    /// Interaction logic for Page.xaml
-    /// </summary>
+   
     public partial class SignUpChoose : Page
     {
         public SignUpChoose()
         {
             InitializeComponent();
         }
-       
+
         private void DonatorChoice_Click(object sender, RoutedEventArgs e)
         {
-            SignUpUser signUpUser = new SignUpUser();
-            signUpUser.ShowDialog();
+            choiceFrame.Navigate(new Uri("SignUpUser.xaml", UriKind.Relative));
         }
+
         private void OrganisationChoice_Click(object sender, RoutedEventArgs e)
         {
-            SignUpOrganisation signUpOrg = new SignUpOrganisation();
-            signUpOrg.ShowDialog();
+            choiceFrame.Navigate(new Uri("SignUpOrganisation.xaml", UriKind.Relative));
         }
     }
 }
