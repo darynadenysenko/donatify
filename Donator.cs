@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace CharityApplication
 {
-    public class Donator : User
+    public class Donator 
     {
         public string LastName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
         //public Dictionary<Event, Amount> DonationHistory { get; set; }
         public void Donate(Event @event, decimal amount)
         {

@@ -21,10 +21,24 @@ namespace CharityApplication
     /// collin was here
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
-            
+            //this.Loaded += Window_Loaded; // check the database
+
+        }
+        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var data = new CharityApplication.Data();
+            bool isConnected = data.TestConnection();
+
+            if (!isConnected)
+            {
+                MessageBox.Show("Failed to connect to the database.");
+            }
+            else { MessageBox.Show("Connected to the database."); }
         }
 
       
