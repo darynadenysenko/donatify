@@ -8,7 +8,28 @@
         Title="SignUpOrganisation" Height="450" Width="800"
        Background="#D7D7D7">
     <Grid>
+        <Grid.RowDefinitions>
+
+
+            <RowDefinition Height="2*"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Height="70" Width="300" Margin="0,0,0,0" Grid.Row="0"/>
+        <TextBlock Text ="Log In" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+
 
 
     </Grid>

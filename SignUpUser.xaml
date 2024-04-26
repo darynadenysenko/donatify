@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Height="70" Width="300" Margin="0,0,0,0" Grid.Row="0"/>
-        <TextBlock Text ="Log In" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+        <TextBlock Text ="Sign Up" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
         <TextBlock Text ="Name" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,450,0" VerticalAlignment="Center" Grid.Row="3"/>
         <TextBlock Text ="Last Name"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,400,0" VerticalAlignment="Center" Grid.Row="4"/>
         <TextBlock Text ="Email"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,450,0" VerticalAlignment="Center" Grid.Row="5"/>
