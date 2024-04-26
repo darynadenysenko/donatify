@@ -34,9 +34,9 @@
         <TextBlock Text ="Password"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,400,0" VerticalAlignment="Center" Grid.Row="6"/>
 
         <TextBox HorizontalAlignment="Center"  Background="Transparent" BorderBrush="Transparent" FontFamily="Font/#Julius Sans One" FontSize="20" Margin="0,0,290,0" TextWrapping="Wrap" Text="Confirm Your Password" VerticalAlignment="Center"  Grid.Row="7" Width="216"/>
-        <Button Content="Sign Up" HorizontalAlignment="Center" VerticalAlignment="Center" Height ="30"  FontFamily="Font/#Julius Sans One" FontSize="13" Grid.Row="9" Click= "SignUpUserButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" Width="134" />
-        <TextBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="7" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
-        <TextBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="6" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
+        <Button Content="Create Account" HorizontalAlignment="Center" VerticalAlignment="Center" Height ="30"  FontFamily="Font/#Julius Sans One" FontSize="13" Grid.Row="9" Click= "SignUpUserButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" Width="134" />
+        <PasswordBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="7" Background="#B8B1AB" VerticalAlignment="Center" Width="300"/>
+        <PasswordBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="6" Background="#B8B1AB"  VerticalAlignment="Center" Width="300"/>
         <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
         <TextBox HorizontalAlignment="Center" Height="34" Margin="200,4,0,0" Grid.Row="4" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
         <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="3" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
