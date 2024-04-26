@@ -45,7 +45,7 @@
         <Label Content="Password" FontFamily="Font/#Julius Sans One" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"/>
 
         <!-- Log in button -->
-        <Button Content="Log in" HorizontalAlignment="Center" Height ="30" Width="80" FontFamily="Font/#Julius Sans One" FontSize="13" Margin="0,20,0,0" Grid.Row="4" Click= "LogInButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" />
+        <Button Content="Log in" HorizontalAlignment="Center" Height ="30" Width="80" FontFamily="Font/#Julius Sans One" FontSize="13" Margin="0,0,0,0" Grid.Row="4" Click= "LogInButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" />
 
         <!-- Sign up label -->
         <Label Content="Don't have an account yet?"  FontFamily="Font/#Julius Sans One" FontSize="12" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Grid.Row="6"/>

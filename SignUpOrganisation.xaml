@@ -8,6 +8,8 @@
         Title="SignUpOrganisation" Height="450" Width="800"
        Background="#D7D7D7">
     <Grid>
-        
+        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Height="70" Width="300" Margin="0,0,0,0" Grid.Row="0"/>
+
+
     </Grid>
 </Page>

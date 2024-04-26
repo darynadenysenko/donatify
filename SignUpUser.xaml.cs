@@ -23,5 +23,9 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+        private void SignUpUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
