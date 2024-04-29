@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Font\JuliusSansOne-Regular.ttf" />
     <None Remove="Screenshot 2024-04-22 173611.png" />
+    <None Remove="SearchSign.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
 
   <ItemGroup>
     <Resource Include="Screenshot 2024-04-22 173611.png" />
+    <Resource Include="SearchSign.png" />
   </ItemGroup>
 
 </Project>
