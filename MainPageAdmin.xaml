@@ -14,25 +14,18 @@
 
 
             <RowDefinition Height="2*"/>
-
-            <RowDefinition Height="*"/>
-
-            <RowDefinition Height="*"/>
-
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
 
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            
 
-            <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
 
-        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" Height="70" Width="300" Margin="10,20,0,0" Grid.Row="0"/>
-        <Button Content="List of Organizations" Click="ListOfOrganizations_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Width="200" Height="200" />
-        <Button Content="List of Users" Click="ListOfUsers_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="200" Height="200" />
-        <Button Content="List of Events" Click="ListOfEvents_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Width="200" Height="200" />
+        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="300" Margin="10,20,0,0" Grid.Row="0"/>
+        <Button Content="List of Organizations" Click="ListOfOrganizations_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Width="200" Height="200" />
+        <Button Content="List of Users" Click="ListOfUsers_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="200" Height="200" />
+        <Button Content="List of Events" Click="ListOfEvents_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Width="200" Height="200" />
 
         <Frame x:Name="mainAdminFrame" Grid.RowSpan="7"/>
     </Grid>
