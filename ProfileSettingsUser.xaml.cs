@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CharityApplication
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for ProfileSettingsUser.xaml
     /// </summary>
-    public partial class SignUpUser : Page
+    public partial class ProfileSettingsUser : Page
     {
-        public SignUpUser()
+        public ProfileSettingsUser()
         {
             InitializeComponent();
-        }
-        private void SignUpUserButton_Click(object sender, RoutedEventArgs e)
-        {
-            signUpUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
         }
     }
 }

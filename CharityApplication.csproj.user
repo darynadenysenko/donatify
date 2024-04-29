@@ -7,6 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="HomePageOrganisation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="HomePageUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfileOrganisation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfileSettingsUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfileUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SignUpChoose.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,7 +33,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="HomePageOrganisation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="HomePageUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfileOrganisation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfileSettingsUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfileUser.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SignUpChoose.xaml">

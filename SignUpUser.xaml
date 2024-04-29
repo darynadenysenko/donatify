@@ -11,42 +11,36 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+          
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+           
 
 
         </Grid.RowDefinitions>
 
-        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Height="70" Width="300" Margin="0,0,0,0" Grid.Row="0"/>
-        <TextBlock Text ="Sign Up" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
-        <TextBlock Text ="Name" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,450,0" VerticalAlignment="Center" Grid.Row="3"/>
-        <TextBlock Text ="Last Name"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,400,0" VerticalAlignment="Center" Grid.Row="4"/>
-        <TextBlock Text ="Email"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,450,0" VerticalAlignment="Center" Grid.Row="5"/>
-        <TextBlock Text ="Password"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,400,0" VerticalAlignment="Center" Grid.Row="6"/>
+        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Center" Height="150" Width="400" Margin="0,0,0,0" Grid.Row="0"/>
+        <TextBlock Text ="Sign Up" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <TextBlock Text ="Name" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,450,0" VerticalAlignment="Center" Grid.Row="2"/>
+        <TextBlock Text ="Last Name"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,400,0" VerticalAlignment="Center" Grid.Row="3"/>
+        <TextBlock Text ="Email"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,450,0" VerticalAlignment="Center" Grid.Row="4"/>
+        <TextBlock Text ="Password"  FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,400,0" VerticalAlignment="Center" Grid.Row="5"/>
 
-        <TextBox HorizontalAlignment="Center"  Background="Transparent" BorderBrush="Transparent" FontFamily="Font/#Julius Sans One" FontSize="20" Margin="0,0,290,0" TextWrapping="Wrap" Text="Confirm Your Password" VerticalAlignment="Center"  Grid.Row="7" Width="216"/>
-        <Button Content="Create Account" HorizontalAlignment="Center" VerticalAlignment="Center" Height ="30"  FontFamily="Font/#Julius Sans One" FontSize="13" Grid.Row="9" Click= "SignUpUserButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" Width="134" />
-        <PasswordBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="7" Background="#B8B1AB" VerticalAlignment="Center" Width="300"/>
-        <PasswordBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="6" Background="#B8B1AB"  VerticalAlignment="Center" Width="300"/>
-        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
-        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,4,0,0" Grid.Row="4" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
-        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="3" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
+        <TextBox HorizontalAlignment="Center"  Background="Transparent" BorderBrush="Transparent" FontFamily="Font/#Julius Sans One" FontSize="20" Margin="0,0,290,0" TextWrapping="Wrap" Text="Confirm Your Password" VerticalAlignment="Center"  Grid.Row="6" Width="216"/>
+        <Button Content="Create Account" HorizontalAlignment="Center" VerticalAlignment="Center" Height ="50"  FontFamily="Font/#Julius Sans One" FontSize="16" Grid.Row="7" Click= "SignUpUserButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" Width="200" />
+        <PasswordBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="2" Background="#B8B1AB" VerticalAlignment="Center" Width="300"/>
+        <PasswordBox HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="3" Background="#B8B1AB"  VerticalAlignment="Center" Width="300"/>
+        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="4" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
+        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,4,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
+        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="6" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="300"/>
 
-
-
-
-
-
-
+        <Frame x:Name="signUpUserFrame" Grid.RowSpan="10"/>
 
 
     </Grid>

@@ -23,5 +23,9 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+        private void CreateAccountOrganisationButton_Click(object sender, RoutedEventArgs e)
+        {
+            signUpOrganisationFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
+        }
     }
 }
