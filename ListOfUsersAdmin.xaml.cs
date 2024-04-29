@@ -24,5 +24,10 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+        private void ProfileUserAdmin(object sender, RoutedEventArgs e)
+        {
+
+            ListOfUsersFrame.Navigate(new Uri("ProfileUser.xaml", UriKind.Relative));
+        }
     }
 }
