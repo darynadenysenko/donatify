@@ -50,7 +50,7 @@ namespace CharityApplication
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
