@@ -24,5 +24,9 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+        private void ProfileSettingsOrg_Click(object sender, RoutedEventArgs e)
+        {
+          /*signUpUserFrame.Navigate(new Uri("SignUpChoose.xaml", UriKind.Relative));*/
+        }
     }
 }

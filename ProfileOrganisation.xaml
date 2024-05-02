@@ -6,9 +6,37 @@
       xmlns:local="clr-namespace:CharityApplication"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfileOrganisation">
+      Title="ProfileOrganisation"
+       Background="#D7D7D7">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+
+        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
+        <Label Content="Name" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Left" Height="36" Margin="20,0,0,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Width="101"/>
+        <Label Content="0,00€" Background="White" FontFamily="Font/#Julius Sans One" HorizontalContentAlignment="Center" FontSize="24" HorizontalAlignment="Stretch" Height="36" Margin="20,0,250,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" />
+        <Label Content="Email" Background="White" FontFamily="Font/#Julius Sans One" HorizontalContentAlignment="Center" FontSize="24" HorizontalAlignment="Stretch" Height="36" Margin="20,0,40,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" />
+        <Label Content="Phone Number" Background="White" FontFamily="Font/#Julius Sans One" HorizontalContentAlignment="Center" FontSize="24" HorizontalAlignment="Stretch" Height="36" Margin="20,0,40,0" Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" />
+
+        <Button Content="Profile Settings"  Foreground ="White" Background="#303030" FontFamily="Font/#Julius Sans One" FontSize="13" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="30" Margin="0,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="200" Click="ProfileSettingsOrg_Click"/>
+        <Button Content="Type" Background="#B8B1AB" FontFamily="Font/#Julius Sans One" FontSize="24" Grid.Column="2" HorizontalAlignment="Stretch" Margin="20,10,20,10" Grid.Row="2" VerticalAlignment="Stretch" />
+        <Button Content="Mission" Background="#B8B1AB" FontFamily="Font/#Julius Sans One" FontSize="24" Grid.Column="2" HorizontalAlignment="Stretch" Margin="20,10,20,10" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Stretch" />
+
+        <Frame x:Name="HomeUserFrame"  Grid.ColumnSpan="2" Grid.RowSpan="7"/>
+
     </Grid>
 </Page>

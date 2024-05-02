@@ -24,5 +24,12 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+        private void ProfileOrgButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            HomeOrgFrame.Navigate(new Uri("ProfileOrganisation.xaml", UriKind.Relative));
+
+        }
+
     }
 }

@@ -27,5 +27,9 @@ namespace CharityApplication
         {
             signUpUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
         }
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            signUpUserFrame.Navigate(new Uri("SignUpChoose.xaml", UriKind.Relative));
+        }
     }
 }

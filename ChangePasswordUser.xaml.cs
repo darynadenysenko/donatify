@@ -15,27 +15,19 @@ using System.Windows.Shapes;
 
 namespace CharityApplication
 {
-   
-    public partial class SignUpChoose : Page
+    /// <summary>
+    /// Interaction logic for ChangePasswordUser.xaml
+    /// </summary>
+    public partial class ChangePasswordUser : Page
     {
-        public SignUpChoose()
+        public ChangePasswordUser()
         {
             InitializeComponent();
         }
-
-        private void DonatorChoice_Click(object sender, RoutedEventArgs e)
-        {
-            choiceFrame.Navigate(new Uri("SignUpUser.xaml", UriKind.Relative));
-        }
-
-        private void OrganisationChoice_Click(object sender, RoutedEventArgs e)
-        {
-            choiceFrame.Navigate(new Uri("SignUpOrganisation.xaml", UriKind.Relative));
-        }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            choiceFrame.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
-        }
+            ChangePasswordFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
 
+        }
     }
 }

@@ -7,6 +7,15 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="ChangePasswordUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ChangePersonalInfoUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DeleteAccount.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="HomePageOrganisation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,14 +46,23 @@
     <Compile Update="SignUpChoose.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SignUpUser.xaml.cs">
+    <Compile Update="SignUpOrganisation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SignUpOrganisation.xaml.cs">
+    <Compile Update="SignUpUser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="ChangePasswordUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChangePersonalInfoUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DeleteAccount.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="HomePageOrganisation.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -78,10 +96,10 @@
     <Page Update="SignUpChoose.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SignUpUser.xaml">
+    <Page Update="SignUpOrganisation.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SignUpOrganisation.xaml">
+    <Page Update="SignUpUser.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

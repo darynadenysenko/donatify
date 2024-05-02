@@ -24,5 +24,17 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+        private void ProfileSettingsUser_Click(object sender, RoutedEventArgs e)
+        {
+
+            HomeUserFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
+
+        }
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+
+            HomeUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+
+        }
     }
 }

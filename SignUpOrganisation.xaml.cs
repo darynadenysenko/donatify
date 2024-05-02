@@ -10,12 +10,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CharityApplication
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for SignUpOrganisation.xaml
     /// </summary>
     public partial class SignUpOrganisation : Page
     {
@@ -23,9 +24,10 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
-        private void CreateAccountOrganisationButton_Click(object sender, RoutedEventArgs e)
+        private void SignUpOrgButton_Click(object sender, RoutedEventArgs e)
         {
-            signUpOrganisationFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
+            signUpOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
         }
+        
     }
 }

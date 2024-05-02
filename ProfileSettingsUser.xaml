@@ -20,14 +20,16 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
-           
-            
-
 
 
         </Grid.RowDefinitions>
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
-        <TextBlock Text ="Sign Up" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <TextBlock Text ="Profile Settings" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <Button Content="Personal Information"  FontFamily="Font/#Julius Sans One" FontSize="22" HorizontalContentAlignment="Left" Padding="20" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,10,20,10" Grid.Row="2" BorderBrush="Transparent" VerticalAlignment="Stretch" Click="PersonalInfoChange_Click"/>
+        <Button Content="Password"  Click="PasswordChangeButton_Click" FontFamily="Font/#Julius Sans One" FontSize="22" HorizontalContentAlignment="Left" Padding="20" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,10,20,10" Grid.Row="3" BorderBrush="Transparent" VerticalAlignment="Stretch"/>
+        <Button Content="Delete Account" Click="DeleteAccountButton_Click"  FontFamily="Font/#Julius Sans One" FontSize="22" HorizontalContentAlignment="Left" Padding="20" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,10,20,10" Grid.Row="4" BorderBrush="Transparent" VerticalAlignment="Stretch"/>
+        <Frame x:Name="ProfileSettingsFrame" Grid.RowSpan="5"/>
+        <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Grid.Column="1" Width="35" Click="GoBack_Click"/>
 
 
     </Grid>
