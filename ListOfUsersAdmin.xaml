@@ -31,6 +31,6 @@
         <Button Content="" Click="ProfileUserAdmin" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="3" VerticalAlignment="Stretch" />
         <Button Content="" Click="ProfileUserAdmin" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="4" VerticalAlignment="Stretch" />
         <Button Content="" Click="ProfileUserAdmin" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="5" VerticalAlignment="Stretch" />
-        <Frame x:Name="ListOfUsersFrame"/>
+        <Frame x:Name="ListOfUsersFrame" Grid.RowSpan="5"/>
     </Grid>
 </Page>
