@@ -35,12 +35,11 @@
         <TextBlock Text ="Log In" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
 
         <!-- Email -->
-        <TextBox Background="#B8B1AB" Margin="288,0,289,0" VerticalAlignment="Center" Grid.Row="2" Height="26" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox Text="Email" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Font/#Julius Sans One" FontSize="14" Background="#B8B1AB" Margin="200,0,200,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="40" Grid.Row="2" />
 
-        <Label Content="Email"  FontFamily="Font/#Julius Sans One" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2" Margin="0,11,0,0"/>
 
         <!-- Password -->
-        <PasswordBox Background="#B8B1AB" Width="220" Height="30" Margin="288,0,289,0" VerticalAlignment="Center" Grid.Row="3"/>
+        <PasswordBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="200,0,200,0" VerticalAlignment="Center" Height="40" Grid.Row="3"/>
 
         <Label Content="Password" FontFamily="Font/#Julius Sans One" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"/>
 

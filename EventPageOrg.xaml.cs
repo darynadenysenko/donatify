@@ -16,21 +16,28 @@ using System.Windows.Shapes;
 namespace CharityApplication
 {
     /// <summary>
-    /// Interaction logic for ProfileOrganisation.xaml
+    /// Interaction logic for EventPageOrg.xaml
     /// </summary>
-    public partial class ProfileOrganisation : Page
+    public partial class EventPageOrg : Page
     {
-        public ProfileOrganisation()
+        public EventPageOrg()
         {
             InitializeComponent();
         }
-        private void ProfileSettingsOrg_Click(object sender, RoutedEventArgs e)
+        private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
-          HomeOrgFrame.Navigate(new Uri("ProfileSettingsOrganisation.xaml", UriKind.Relative));
+            EventsOrgFrame.Navigate(new Uri("AddEvent.xaml", UriKind.Relative));
+
+        }
+        private void EventSettings_Click(object sender, RoutedEventArgs e)
+        {
+            EventsOrgFrame.Navigate(new Uri("EventSettings.xaml", UriKind.Relative));
+
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            HomeOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
+            EventsOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
+
         }
     }
 }

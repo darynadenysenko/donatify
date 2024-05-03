@@ -7,6 +7,18 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AddEvent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ChangeEventInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ChangeOrgInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ChangePasswordOrg.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ChangePasswordUser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -14,6 +26,24 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="DeleteAccount.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DeleteAccountOrganisation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DeleteEvent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DonateForEvent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EventPageOrg.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EventPageUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EventSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="HomePageOrganisation.xaml.cs">
@@ -37,6 +67,9 @@
     <Compile Update="ProfileOrganisation.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProfileSettingsOrganisation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ProfileSettingsUser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -54,6 +87,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AddEvent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChangeEventInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChangeOrgInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChangePasswordOrg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ChangePasswordUser.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -61,6 +106,24 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DeleteAccount.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DeleteAccountOrganisation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DeleteEvent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DonateForEvent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EventPageOrg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EventPageUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EventSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="HomePageOrganisation.xaml">
@@ -85,6 +148,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ProfileOrganisation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfileSettingsOrganisation.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ProfileSettingsUser.xaml">

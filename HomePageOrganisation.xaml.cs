@@ -30,6 +30,12 @@ namespace CharityApplication
             HomeOrgFrame.Navigate(new Uri("ProfileOrganisation.xaml", UriKind.Relative));
 
         }
+        private void EventsOrg_Click(object sender, RoutedEventArgs e)
+        {
+
+            HomeOrgFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
+
+        }
 
     }
 }

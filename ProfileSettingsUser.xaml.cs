@@ -27,23 +27,23 @@ namespace CharityApplication
 
         private void PersonalInfoChange_Click(object sender, RoutedEventArgs e)
         {
-            ProfileSettingsFrame.Navigate(new Uri("ChangePersonalInfoUser.xaml", UriKind.Relative));
+            ProfileSettingsUserFrame.Navigate(new Uri("ChangePersonalInfoUser.xaml", UriKind.Relative));
         }
 
         private void PasswordChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            ProfileSettingsFrame.Navigate(new Uri("ChangePasswordUser.xaml", UriKind.Relative));
+            ProfileSettingsUserFrame.Navigate(new Uri("ChangePasswordUser.xaml", UriKind.Relative));
 
         }
 
         private void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            ProfileSettingsFrame.Navigate(new Uri("DeleteAccount.xaml", UriKind.Relative));
+            ProfileSettingsUserFrame.Navigate(new Uri("DeleteAccount.xaml", UriKind.Relative));
 
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            ProfileSettingsFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+            ProfileSettingsUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
 
         }
     }

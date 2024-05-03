@@ -16,26 +16,17 @@ using System.Windows.Shapes;
 namespace CharityApplication
 {
     /// <summary>
-    /// Interaction logic for HomePageUser.xaml
+    /// Interaction logic for ChangeEventInfo.xaml
     /// </summary>
-    public partial class HomePageUser : Page
+    public partial class ChangeEventInfo : Page
     {
-        public HomePageUser()
+        public ChangeEventInfo()
         {
             InitializeComponent();
         }
-        private void ProfileUserButton_Click(object sender, RoutedEventArgs e)
+        private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-
-            HomeUserFrame.Navigate(new Uri("ProfileUser.xaml", UriKind.Relative));
-
-        }
-
-      
-
-        private void EventsUser_Click(object sender, RoutedEventArgs e)
-        {
-            HomeUserFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
+            changeEventFrame.Navigate(new Uri("EventSettings.xaml", UriKind.Relative));
 
         }
     }

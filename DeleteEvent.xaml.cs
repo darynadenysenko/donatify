@@ -16,26 +16,17 @@ using System.Windows.Shapes;
 namespace CharityApplication
 {
     /// <summary>
-    /// Interaction logic for HomePageUser.xaml
+    /// Interaction logic for DeleteEvent.xaml
     /// </summary>
-    public partial class HomePageUser : Page
+    public partial class DeleteEvent : Page
     {
-        public HomePageUser()
+        public DeleteEvent()
         {
             InitializeComponent();
         }
-        private void ProfileUserButton_Click(object sender, RoutedEventArgs e)
+        private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-
-            HomeUserFrame.Navigate(new Uri("ProfileUser.xaml", UriKind.Relative));
-
-        }
-
-      
-
-        private void EventsUser_Click(object sender, RoutedEventArgs e)
-        {
-            HomeUserFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
+            DeleteEventFrame.Navigate(new Uri("EventSettings.xaml", UriKind.Relative));
 
         }
     }

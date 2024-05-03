@@ -1,0 +1,45 @@
+﻿<Page x:Class="CharityApplication.ChangeOrgInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CharityApplication"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChangeOrgInfo"
+      Background="#D7D7D7">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="2*"/>
+
+
+        </Grid.RowDefinitions>
+        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
+        <TextBlock Text ="Company Information" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <TextBlock Text ="Name" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,550,0" VerticalAlignment="Center" Grid.Row="2"/>
+        <TextBlock Text ="Email" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,550,0" VerticalAlignment="Center" Grid.Row="3"/>
+        <TextBlock Text ="Phone Number" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,450,0" VerticalAlignment="Center" Grid.Row="4"/>
+        <TextBlock Text ="Mission" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,530,0" VerticalAlignment="Center" Grid.Row="5"/>
+
+        <Button Content="Submit" HorizontalAlignment="Center" Height="31" Grid.Row="6" VerticalAlignment="Center" Width="181" FontFamily="Font/#Julius Sans One" FontSize="16" Foreground ="White" Background="#303030" BorderBrush="Transparent"/>
+        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="2" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="3" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="4" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+        <TextBox HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+
+        <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
+
+        <Frame x:Name="ChangeInfoOrgFrame" Grid.RowSpan="7" />
+
+    </Grid>
+</Page>

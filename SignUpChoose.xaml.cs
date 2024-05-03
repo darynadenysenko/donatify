@@ -32,10 +32,7 @@ namespace CharityApplication
         {
             choiceFrame.Navigate(new Uri("SignUpOrganisation.xaml", UriKind.Relative));
         }
-        private void GoBack_Click(object sender, RoutedEventArgs e)
-        {
-            choiceFrame.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
-        }
+       
 
     }
 }
