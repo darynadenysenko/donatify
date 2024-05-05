@@ -28,9 +28,9 @@
         <TextBox HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="2" TextWrapping="Wrap" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
         
         <Image Source="./SearchSign.png" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,130,0"/>
-        <Button Content="" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="3" VerticalAlignment="Stretch" />
-        <Button Content="" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="4" VerticalAlignment="Stretch" />
-        <Button Content="" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="5" VerticalAlignment="Stretch" />
-        <Frame x:Name="ListOfEventsFrame" Grid.RowSpan="5"/>
+        <Button Content="" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="3" VerticalAlignment="Stretch"  Click="EventInfoClick"/>
+        <Button Content="" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="4" VerticalAlignment="Stretch" Click="EventInfoClick"/>
+        <Button Content="" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="20,0,20,10" Grid.Row="5" VerticalAlignment="Stretch"  Click="EventInfoClick"/>
+        <Frame x:Name="ListOfEventsFrame" Grid.RowSpan="6"/>
     </Grid>
 </Page>

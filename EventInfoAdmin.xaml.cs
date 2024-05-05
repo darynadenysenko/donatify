@@ -16,17 +16,17 @@ using System.Windows.Shapes;
 namespace CharityApplication
 {
     /// <summary>
-    /// Interaction logic for ListOfEventsAdmin.xaml
+    /// Interaction logic for EventInfoAdmin.xaml
     /// </summary>
-    public partial class ListOfEventsAdmin : Page
+    public partial class EventInfoAdmin : Page
     {
-        public ListOfEventsAdmin()
+        public EventInfoAdmin()
         {
             InitializeComponent();
         }
-        private void EventInfoClick(object sender, RoutedEventArgs e)
+        private void ProfileSettingsAdmin_Click(object sender, RoutedEventArgs e)
         {
-            ListOfEventsFrame.Navigate(new Uri("EventInfoAdmin.xaml", UriKind.Relative));
+            EventInfoAdminFrame.Navigate(new Uri("EventSettings.xaml", UriKind.Relative));
 
         }
     }
