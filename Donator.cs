@@ -10,19 +10,20 @@ namespace CharityApplication
     public class Donator 
     {
         public string LastName { get; set; }
-        public int DonatorID { get; set; }
+        public int UserID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public Donator(string name, string lastName, string email, string password)
         {
+            //UserID = userid;
             Name = name;
             LastName = lastName;
             Email = email;
             Password = password;
         }
 
-        
+
 
 
         //public Dictionary<Event, Amount> DonationHistory { get; set; }

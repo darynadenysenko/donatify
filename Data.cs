@@ -84,6 +84,95 @@ namespace CharityApplication
 
             return success;
         }
+        public Organisation GetOrganizationByEmail(string email)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                
+                MySqlCommand command = new MySqlCommand("SELECT * FROM Organization WHERE Email = @Email", connection);
+                command.Parameters.AddWithValue("@Email", email);
 
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        Types type = (Types)Enum.Parse(
+                        typeof(Types), reader.GetString("Type"));
+                        return new Organisation
+                        {
+                            OrganizationID = reader.GetInt32("OrganizationID"),
+                            Name = reader.GetString("Name"),
+                            Phone = reader.GetString("Phone"),
+                            Email = reader.GetString("Email"),
+                            Password = reader.GetString("Password"),
+                            Mission = reader.GetString("Mission"),
+                            Type = type
+                        };
+                    }
+                    return null; // No organization with this email
+                }
+            }
+
+        }
+        public Donator GetDonatorByEmail(string email)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                
+                MySqlCommand command = new MySqlCommand("SELECT * FROM Donator WHERE Email = @Email", connection);
+                command.Parameters.AddWithValue("@Email", email);
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Donator
+                        {
+                            //UserID = reader.GetInt32("UserID"),
+                            LastName = reader.GetString("LastName"),
+                            Name = reader.GetString("Name"),
+                            Email = reader.GetString("Email"),
+                            Password = reader.GetString("Password")
+                        };
+                    }
+                    return null; // No user with this email
+                }
+            }
+        }
+        public Admin GetAdminByEmail(string email)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT AdminID, Email, Password FROM Admin WHERE Email = @Email", connection);
+                command.Parameters.AddWithValue("@Email", email);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Admin
+                            {
+                                AdminID = reader.GetInt32("AdminID"),
+                                Email = reader.GetString("Email"),
+                                Password = reader.GetString("Password")
+                            };
+                        }
+                        else
+                        {
+                            return null; // No matching admin
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to retrieve admin: " + ex.Message);
+                    return null;
+                }
+            }
+        }
     }
 }
