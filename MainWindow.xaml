@@ -35,13 +35,15 @@
         <TextBlock Text ="Log In" TextDecorations="Underline" FontFamily="Font/#Julius Sans One" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
 
         <!-- Email -->
-        <TextBox Text="Email" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Font/#Julius Sans One" FontSize="14" Background="#B8B1AB" Margin="200,0,200,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="40" Grid.Row="2" />
+        <TextBox x:Name="UsernameTextBox"  GotFocus="UsernameTextBox_GotFocus" LostFocus="UsernameTextBox_LostFocus" Text="Email" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Font/#Julius Sans One" FontSize="14" Background="#B8B1AB" Margin="200,0,200,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="40" Grid.Row="2" />
 
 
         <!-- Password -->
-        <PasswordBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="200,0,200,0" VerticalAlignment="Center" Height="40" Grid.Row="3"/>
+        <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged" 
+                 GotFocus="PasswordBox_GotFocus" 
+                 LostFocus="PasswordBox_LostFocus" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="200,0,200,0" VerticalAlignment="Center" Height="40" Grid.Row="3"/>
 
-        <Label Content="Password" FontFamily="Font/#Julius Sans One" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"/>
+        <Label x:Name="PasswordPlaceholder" Content="Password" FontFamily="Font/#Julius Sans One" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Background="Transparent"/>
 
         <!-- Log in button -->
         <Button Content="Log in" HorizontalAlignment="Center" Height ="30" Width="80" FontFamily="Font/#Julius Sans One" FontSize="13" Margin="0,0,0,0" Grid.Row="4" Click= "LogInButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" />

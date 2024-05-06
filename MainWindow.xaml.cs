@@ -50,16 +50,51 @@ namespace CharityApplication
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
+            string username = UsernameTextBox.Text;
+            string password = PasswordBox.Password;
+            
             mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        
+        private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-
+            // If the default text is present, clear it
+            if (UsernameTextBox.Text == "Email")
+            {
+                UsernameTextBox.Text = "";
+            }
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        private void UsernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            // If there's no text after losing focus, set the placeholder
+            if (string.IsNullOrWhiteSpace(UsernameTextBox.Text))
+            {
+                UsernameTextBox.Text = "Email";
+            }
+        }
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            // Hide the placeholder when there's text in the PasswordBox
+            if (PasswordBox.Password.Length > 0)
+            {
+                PasswordPlaceholder.Visibility = Visibility.Collapsed;
+            }
+        }
 
+        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            // Hide the placeholder when PasswordBox is focused
+            PasswordPlaceholder.Visibility = Visibility.Collapsed;
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Show the placeholder if the PasswordBox is empty after losing focus
+            if (PasswordBox.Password.Length == 0)
+            {
+                PasswordPlaceholder.Visibility = Visibility.Visible;
+            }
         }
     }
 }
