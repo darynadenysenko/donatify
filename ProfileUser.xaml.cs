@@ -39,5 +39,6 @@ namespace CharityApplication
             //    NavigationService.GoBack();
             //}
         }
+        
     }
 }
