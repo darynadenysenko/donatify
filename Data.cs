@@ -55,103 +55,34 @@ namespace CharityApplication
 
             return -1; //closing the connection
         }
-        //Login check for admin
-        public Admin GetAdminByEmail(string email)
+
+        //////////////////////////////
+
+        public bool InsertDonator(Donator donator)
         {
+            bool success = false;
+
+            string query = $"INSERT INTO donator(Name, LastName, Email, Password) " +
+                           $"VALUES ('{donator.Name}', '{donator.LastName}', '{donator.Email}', '{donator.Password}');";
+
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand("SELECT AdminID, Email, Password FROM Admin WHERE Email = @Email", connection);
-                command.Parameters.AddWithValue("@Email", email);
+                MySqlCommand commandDatabase = new MySqlCommand(query, connection);
 
                 try
                 {
                     connection.Open();
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return new Admin
-                            {
-                                AdminID = reader.GetInt32("AdminID"),
-                                Email = reader.GetString("Email"),
-                                Password = reader.GetString("Password")
-                            };
-                        }
-                        else
-                        {
-                            return null; // No matching admin
-                        }
-                    }
+                    int rowsAffected = commandDatabase.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Failed to retrieve admin: " + ex.Message);
-                    return null;
+                    Console.WriteLine(ex.Message);
                 }
             }
-        }
-        //Login check for user
-        public Donator GetDonatorByEmail(string email)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                MySqlCommand command = new MySqlCommand("SELECT * FROM Donator WHERE Email = @Email", connection);
-                command.Parameters.AddWithValue("@Email", email);
 
-                connection.Open();
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        return new Donator
-                        {
-                            DonatorID = reader.GetInt32("UserID"),
-                            LastName = reader.GetString("LastName"),
-                            Name = reader.GetString("Name"),
-                            Email = reader.GetString("Email"),
-                            Password = reader.GetString("Password")
-                        };
-                    }
-                    return null; // No user with this email
-                }
-            }
-        }
-        //Login check for organization
-        public Organisation GetOrganizationByEmail(string email)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                MySqlCommand command = new MySqlCommand("SELECT * FROM Organization WHERE Email = @Email", connection);
-                command.Parameters.AddWithValue("@Email", email);
-
-                connection.Open();
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        Types type = (Types)Enum.Parse(
-                        typeof(Types), reader.GetString("Type"));
-                        return new Organisation
-                        {
-                            OrganizationID = reader.GetInt32("OrganizationID"),
-                            Name = reader.GetString("Name"),
-                            Phone = reader.GetString("Phone"),
-                            Email = reader.GetString("Email"),
-                            Password = reader.GetString("Password"),
-                            Mission = reader.GetString("Mission"),
-                            Type = type
-                        };
-                    }
-                    return null; // No organization with this email
-                }
-            }
-        }
-
-        public int InsertDonator(Donator donator)
-        {
-            string query = $"INSERT INTO donator(UserID,Name,LastName,Email,Password) " +
-                $"VALUES ( NULL,'{donator.Name}','{donator.LastName}', '{donator.Email}', '{donator.Password}');";
-            return this.Insert(query);
+            return success;
         }
 
     }
