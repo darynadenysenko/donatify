@@ -55,24 +55,28 @@ namespace CharityApplication
             string password = PasswordBox.Password;
 
             Admin admin = data.GetAdminByEmail(email);
-            if (admin == null)  // No admin found with this email
+            Donator donator = data.GetDonatorByEmail(email);
+            Organisation organisation = data.GetOrganizationByEmail(email);
+            
+            if (admin != null && admin.Password == password)  // Check if the entered password matches the stored password
             {
-                ResultTextBlock.Text = "Email not found. Please try again.";
+                //MessageBox.Show("Login successful!");
+                
+                mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
             }
-            else
+            else if(donator != null && donator.Password == password)
             {
-                if (admin.Password == password)  // Check if the entered password matches the stored password
-                {
-                    //MessageBox.Show("Login successful!");
-                    // Redirect to the admin page or perform other appropriate action
-                    // Example: Open a new window for the admin dashboard
-                    mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
-                }
-                else  // Passwords do not match
-                {
-                    ResultTextBlock.Text = "Invalid password. Please try again.";
-                }
+                mainFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
             }
+            else if (organisation != null && organisation.Password == password)
+            {
+                mainFrame.Navigate(new Uri("HomePageOrg.xaml", UriKind.Relative));
+            }
+            else  // Passwords do not match
+            {
+                ResultTextBlock.Text = "Invalid password. Please try again.";
+            }
+            
         }
 
         //mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));

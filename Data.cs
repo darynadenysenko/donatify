@@ -91,11 +91,11 @@ namespace CharityApplication
             }
         }
         //Login check for user
-        public Donator GetUserByEmail(string email)
+        public Donator GetDonatorByEmail(string email)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand("SELECT DonatorID, Name, LastName, Email, Password FROM Donator WHERE Email = @Email", connection);
+                MySqlCommand command = new MySqlCommand("SELECT UserID, Name, LastName, Email, Password FROM Donator WHERE Email = @Email", connection);
                 command.Parameters.AddWithValue("@Email", email);
 
                 connection.Open();
@@ -105,7 +105,7 @@ namespace CharityApplication
                     {
                         return new Donator
                         {
-                            DonatorID = reader.GetInt32("DonatorID"),
+                            DonatorID = reader.GetInt32("UserID"),
                             LastName = reader.GetString("LastName"),
                             Name = reader.GetString("Name"),
                             Email = reader.GetString("Email"),
@@ -121,7 +121,7 @@ namespace CharityApplication
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand("SELECT OrganizationID, Email, Password FROM Organization WHERE Email = @Email", connection);
+                MySqlCommand command = new MySqlCommand("SELECT * FROM Organization WHERE Email = @Email", connection);
                 command.Parameters.AddWithValue("@Email", email);
 
                 connection.Open();
@@ -129,11 +129,17 @@ namespace CharityApplication
                 {
                     if (reader.Read())
                     {
+                        Types type = (Types)Enum.Parse(
+                        typeof(Types), reader.GetString("Type"));
                         return new Organisation
                         {
                             OrganizationID = reader.GetInt32("OrganizationID"),
+                            Name = reader.GetString("Name"),
+                            Phone = reader.GetString("Phone"),
                             Email = reader.GetString("Email"),
-                            Password = reader.GetString("Password")
+                            Password = reader.GetString("Password"),
+                            Mission = reader.GetString("Mission"),
+                            Type = type
                         };
                     }
                     return null; // No organization with this email
