@@ -14,9 +14,9 @@ namespace CharityApplication
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public Donator(string name, string lastName, string email, string password)
+        public Donator(int userid, string name, string lastName, string email, string password)
         {
-            //UserID = userid;
+            UserID = userid;
             Name = name;
             LastName = lastName;
             Email = email;
