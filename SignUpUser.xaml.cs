@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace CharityApplication
 {
@@ -40,8 +41,14 @@ namespace CharityApplication
             }
 
             // Passwords match, continue with registration process
-            Donator newDonator = new Donator(firstName, lastName, email, password);
-           
+            Donator newDonator = new Donator
+            {
+                Name = firstName,
+                LastName = lastName,
+                Email = email,
+                Password = password // You may want to hash the password before storing it in the database
+            };
+
 
             // Insert the new Donator into the database
             Data dataAccess = new Data();
