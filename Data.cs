@@ -55,6 +55,7 @@ namespace CharityApplication
 
             return -1; //closing the connection
         }
+        //Login check for admin
         public Admin GetAdminByEmail(string email)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -86,6 +87,56 @@ namespace CharityApplication
                 {
                     Console.WriteLine("Failed to retrieve admin: " + ex.Message);
                     return null;
+                }
+            }
+        }
+        //Login check for user
+        public Donator GetUserByEmail(string email)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT DonatorID, Name, LastName, Email, Password FROM Donator WHERE Email = @Email", connection);
+                command.Parameters.AddWithValue("@Email", email);
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Donator
+                        {
+                            DonatorID = reader.GetInt32("DonatorID"),
+                            LastName = reader.GetString("LastName"),
+                            Name = reader.GetString("Name"),
+                            Email = reader.GetString("Email"),
+                            Password = reader.GetString("Password")
+                        };
+                    }
+                    return null; // No user with this email
+                }
+            }
+        }
+        //Login check for organization
+        public Organisation GetOrganizationByEmail(string email)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT OrganizationID, Email, Password FROM Organization WHERE Email = @Email", connection);
+                command.Parameters.AddWithValue("@Email", email);
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Organisation
+                        {
+                            OrganizationID = reader.GetInt32("OrganizationID"),
+                            Email = reader.GetString("Email"),
+                            Password = reader.GetString("Password")
+                        };
+                    }
+                    return null; // No organization with this email
                 }
             }
         }
