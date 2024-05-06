@@ -33,7 +33,17 @@ namespace CharityApplication
         {
             eventSettingsFrame.Navigate(new Uri("DeleteEvent.xaml", UriKind.Relative));
         }
-
+        //private void GoBack_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (NavigationService.CanGoBack)
+        //    {
+        //        NavigationService.GoBack();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("No previous page found!");
+        //    }
+        //}
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             eventSettingsFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));

@@ -37,6 +37,9 @@
     <Compile Update="DonateForEvent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="EventInfoAdmin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="EventPageOrg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -115,6 +118,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DonateForEvent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EventInfoAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EventPageOrg.xaml">

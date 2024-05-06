@@ -1,0 +1,33 @@
+﻿<Page x:Class="CharityApplication.EventInfoAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CharityApplication"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EventInfoAdmin"
+      Background="#D7D7D7">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            
+
+        </Grid.RowDefinitions>
+
+
+        <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
+        <TextBlock Text ="Name" FontFamily="Font/#Julius Sans One" FontSize="36"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+        <TextBlock Text ="Start date - End date" FontFamily="Font/#Julius Sans One" FontSize="24"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+        <Label Content="Description" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#B8B1AB" BorderBrush="Transparent" HorizontalAlignment="Stretch" FontFamily="Font/#Julius Sans One" FontSize="25"  Margin="70,0,70,0" Grid.Row="3"/>
+        <Button Content="Settings" FontFamily="Font/#Julius Sans One" FontSize="18" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="30" Margin="0,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="200" Click="ProfileSettingsAdmin_Click"/>
+        <Frame x:Name="EventInfoAdminFrame" Grid.RowSpan="6"/>
+    </Grid>
+</Page>

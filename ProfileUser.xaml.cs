@@ -34,7 +34,10 @@ namespace CharityApplication
         {
 
             HomeUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
-
+            //if (NavigationService.CanGoBack)
+            //{
+            //    NavigationService.GoBack();
+            //}
         }
     }
 }
