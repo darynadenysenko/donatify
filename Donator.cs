@@ -9,14 +9,21 @@ namespace CharityApplication
 {
     public class Donator 
     {
-        public string LastName { get; set; }
         public int UserID { get; set; }
+        public string LastName { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public Donator(int userid, string name, string lastName, string email, string password)
         {
             UserID = userid;
+            Name = name;
+            LastName = lastName;
+            Email = email;
+            Password = password;
+        }
+        public Donator(string name, string lastName, string email, string password)
+        {
             Name = name;
             LastName = lastName;
             Email = email;

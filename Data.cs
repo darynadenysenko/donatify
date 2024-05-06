@@ -128,14 +128,14 @@ namespace CharityApplication
                 {
                     if (reader.Read())
                     {
-                        return new Donator
-                        {
-                            //UserID = reader.GetInt32("UserID"),
-                            LastName = reader.GetString("LastName"),
-                            Name = reader.GetString("Name"),
-                            Email = reader.GetString("Email"),
-                            Password = reader.GetString("Password")
-                        };
+                        return new Donator(
+                        
+                            reader.GetInt32("UserID"),
+                            reader.GetString("LastName"),
+                            reader.GetString("Name"),
+                            reader.GetString("Email"),
+                            reader.GetString("Password")
+                        );
                     }
                     return null; // No user with this email
                 }
