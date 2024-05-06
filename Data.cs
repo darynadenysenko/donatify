@@ -95,7 +95,7 @@ namespace CharityApplication
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand("SELECT UserID, Name, LastName, Email, Password FROM Donator WHERE Email = @Email", connection);
+                MySqlCommand command = new MySqlCommand("SELECT * FROM Donator WHERE Email = @Email", connection);
                 command.Parameters.AddWithValue("@Email", email);
 
                 connection.Open();
@@ -147,11 +147,12 @@ namespace CharityApplication
             }
         }
 
-        //public int InsertDonator(Donator donator)
-        //{
-        //    string query = $"INSERT INTO donator(UserID,Name,LastName,Email,Password) " +
-        //        $"VALUES ( NULL,'{donator.Name}','{donator.LastName}', '{donator.Email}', '{donator.Password}');";
-        //}
+        public int InsertDonator(Donator donator)
+        {
+            string query = $"INSERT INTO donator(UserID,Name,LastName,Email,Password) " +
+                $"VALUES ( NULL,'{donator.Name}','{donator.LastName}', '{donator.Email}', '{donator.Password}');";
+            return this.Insert(query);
+        }
 
     }
 }
