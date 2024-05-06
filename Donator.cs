@@ -16,14 +16,7 @@ namespace CharityApplication
         public string Password { get; set; }
         private Data data = new Data();
 
-        public Donator(string name, string lastName, string email, string password) 
-        {
-            LastName = lastName;
-            Name = name;
-            DonatorID = data.InsertDonator(this);
-            Email = email;
-            Password = password;
-        }
+        
 
 
         //public Dictionary<Event, Amount> DonationHistory { get; set; }
