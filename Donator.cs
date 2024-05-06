@@ -3,16 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace CharityApplication
 {
     public class Donator 
     {
         public string LastName { get; set; }
-        public int Id { get; set; }
+        public int DonatorID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        private Data data = new Data();
+
+        public Donator(string name, string lastName, string email, string password) 
+        {
+            LastName = lastName;
+            Name = name;
+            DonatorID = data.InsertDonator(this);
+            Email = email;
+            Password = password;
+        }
+
+
         //public Dictionary<Event, Amount> DonationHistory { get; set; }
         public void Donate(Event @event, decimal amount)
         {

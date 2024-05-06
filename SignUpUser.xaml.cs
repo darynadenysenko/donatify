@@ -25,8 +25,40 @@ namespace CharityApplication
         }
         private void SignUpUserButton_Click(object sender, RoutedEventArgs e)
         {
-            signUpUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+            
+            string firstName = NameTextBox.Text;
+            string lastName = LastNameTextBox.Text;
+            string email = EmailTextBox.Text;
+            string password = PasswordBox.Password;
+            string confirmPassword = ConfirmPasswordBox.Password;
+
+            // Check if password and confirm password match
+            if (password != confirmPassword)
+            {
+                MessageBox.Show("Password and confirm password do not match. Please try again.");
+                return; // Stop registration process
+            }
+
+            // Passwords match, continue with registration process
+            Donator newDonator = new Donator(firstName, lastName, email, password);
+           
+
+            // Insert the new Donator into the database
+            Data dataAccess = new Data();
+            int insertedDonatorId = dataAccess.InsertDonator(newDonator);
+
+            if (insertedDonatorId != -1)
+            {
+                MessageBox.Show("Registration successful! ");
+                signUpUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Registration failed. Please try again.");
+            }
         }
+
+    
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             signUpUserFrame.Navigate(new Uri("SignUpChoose.xaml", UriKind.Relative));
