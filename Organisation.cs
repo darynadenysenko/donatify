@@ -8,7 +8,7 @@ namespace CharityApplication
 {
     public class Organisation
     {
-        public int Id { get; set; }
+        public int OrganizationID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CharityApplication
 {
-    internal class Admin
+    public class Admin
     {
-        public int Id { get; set; }
+        public int AdminID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
     }
