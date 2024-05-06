@@ -152,5 +152,5 @@ namespace CharityApplication
             string query = $"INSERT INTO donator(UserID,Name,LastName,Email,Password) " +
                 $"VALUES ( NULL,'{donator.Name}','{donator.LastName}', '{donator.Email}', '{donator.Password}');";
         }
-    
+    }
 }
