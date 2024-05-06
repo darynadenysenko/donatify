@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -21,12 +22,12 @@ namespace CharityApplication
     /// collin was here
     public partial class MainWindow : Window
     {
-        
+        private Data data;
         public MainWindow()
         {
             InitializeComponent();
             //this.Loaded += Window_Loaded; // check the database
-
+            data = new Data();
         }
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -50,11 +51,32 @@ namespace CharityApplication
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
-            string username = UsernameTextBox.Text;
+            string email = UsernameTextBox.Text;
             string password = PasswordBox.Password;
-            
-            mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
+
+            Admin admin = data.GetAdminByEmail(email);
+            if (admin == null)  // No admin found with this email
+            {
+                ResultTextBlock.Text = "Email not found. Please try again.";
+            }
+            else
+            {
+                if (admin.Password == password)  // Check if the entered password matches the stored password
+                {
+                    //MessageBox.Show("Login successful!");
+                    // Redirect to the admin page or perform other appropriate action
+                    // Example: Open a new window for the admin dashboard
+                    mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
+                }
+                else  // Passwords do not match
+                {
+                    ResultTextBlock.Text = "Invalid password. Please try again.";
+                }
+            }
         }
+
+        //mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
+    
         
         private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {

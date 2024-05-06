@@ -47,7 +47,7 @@
 
         <!-- Log in button -->
         <Button Content="Log in" HorizontalAlignment="Center" Height ="30" Width="80" FontFamily="Font/#Julius Sans One" FontSize="13" Margin="0,0,0,0" Grid.Row="4" Click= "LogInButton_Click" Foreground ="White" Background="#303030" BorderBrush="Transparent" />
-
+        <TextBlock x:Name="ResultTextBlock" Margin="0,10,0,0" Foreground="Red" />
         <!-- Sign up label -->
         <Label Content="Don't have an account yet?"  FontFamily="Font/#Julius Sans One" FontSize="12" HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Grid.Row="6"/>
 

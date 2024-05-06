@@ -34,11 +34,11 @@ namespace CharityApplication
             return isConnected;
         }
         //opening a connection
-        private int Insert(string query) 
+        private int Insert(string query)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
             MySqlCommand commandDatabase = new MySqlCommand(query, connection);
-            
+
 
             try
             {
@@ -54,6 +54,40 @@ namespace CharityApplication
             }
 
             return -1; //closing the connection
+        }
+        public Admin GetAdminByEmail(string email)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT AdminID, Email, Password FROM Admin WHERE Email = @Email", connection);
+                command.Parameters.AddWithValue("@Email", email);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Admin
+                            {
+                                AdminID = reader.GetInt32("AdminID"),
+                                Email = reader.GetString("Email"),
+                                Password = reader.GetString("Password")
+                            };
+                        }
+                        else
+                        {
+                            return null; // No matching admin
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to retrieve admin: " + ex.Message);
+                    return null;
+                }
+            }
         }
     }
 }
