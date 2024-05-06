@@ -56,7 +56,11 @@ namespace CharityApplication
 
             Admin admin = data.GetAdminByEmail(email);
             Donator donator = data.GetDonatorByEmail(email);
-            
+
+            Data dataAccess = new Data();
+            Donator loggedInDonator = dataAccess.GetDonatorByEmail(email);
+
+
             Organisation organisation = data.GetOrganizationByEmail(email);
             
             if (admin != null && admin.Password == password)  // Check if the entered password matches the stored password
@@ -67,7 +71,7 @@ namespace CharityApplication
             }
             else if(donator != null && donator.Password == password)
             {
-                
+                UserSession.Instance.SetCurrentUser(loggedInDonator);
                 mainFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
             }
             else if (organisation != null && organisation.Password == password)
