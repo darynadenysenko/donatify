@@ -33,6 +33,6 @@
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="300" Margin="10,20,0,0" Grid.Row="0" Grid.Column="0"/>
         
 
-        <Frame x:Name="mainAdminFrame" Grid.RowSpan="7"/>
+        <Frame x:Name="mainAdminFrame" Grid.RowSpan="3"/>
     </Grid>
 </Page>
