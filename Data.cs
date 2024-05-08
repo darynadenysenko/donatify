@@ -56,7 +56,87 @@ namespace CharityApplication
             return -1; //closing the connection
         }
 
-        //////////////////////////////
+        public bool InsertOrganisation(Organisation organisation)
+        {
+            bool success = false;
+
+            try
+            {
+                // First, retrieve the TypeID based on the selected type name
+                int typeId = GetTypeIdByName(organisation.Type.ToString());
+
+                if (typeId == -1)
+                {
+                    Console.WriteLine("Error: Type not found.");
+                    return false;
+                }
+
+                // Construct the SQL query for inserting the organisation data
+                string query = $"INSERT INTO organization (Name, Email, Password, Phone, Mission, TypeID) " +
+                               $"VALUES ('{organisation.Name}', '{organisation.Email}', '{organisation.Password}', '{organisation.Phone}', '{organisation.Mission}', {typeId});";
+
+                // Create a MySqlConnection object and MySqlCommand object
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    // Open the database connection
+                    connection.Open();
+
+                    // Execute the SQL query
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Check if any rows were affected (indicating successful insertion)
+                    success = rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions (e.g., database connection error)
+                Console.WriteLine("Error inserting organisation: " + ex.Message);
+            }
+
+            return success;
+        }
+
+
+
+
+
+        private int GetTypeIdByName(string typeName)
+        {
+            int typeId = -1;
+
+            // Construct the SQL query to retrieve the TypeID based on the type name
+            string query = $"SELECT TypeID FROM type WHERE Name = '{typeName}';";
+
+            // Create a MySqlConnection object and MySqlCommand object
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlCommand command = new MySqlCommand(query, connection))
+            {
+                try
+                {
+                    // Open the database connection
+                    connection.Open();
+
+                    // Execute the SQL query and read the result
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Retrieve the TypeID from the result
+                            typeId = reader.GetInt32("TypeID");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions (e.g., database connection error)
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return typeId;
+        }
 
         public bool InsertDonator(Donator donator)
         {

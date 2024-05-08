@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -46,7 +47,13 @@ namespace CharityApplication
 
             if (success)
             {
-                MessageBox.Show("Registration successful! ");
+                // Registration successful
+                MessageBox.Show("Registration successful!");
+
+                // Set the current user
+                UserSession.Instance.SetCurrentUser(newDonator);
+
+                // Navigate to the user's profile page
                 signUpUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
             }
             else
