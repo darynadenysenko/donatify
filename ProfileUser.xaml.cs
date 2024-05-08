@@ -23,6 +23,17 @@ namespace CharityApplication
         public ProfileUser()
         {
             InitializeComponent();
+            var currentUser = UserSession.Instance.CurrentUser;
+
+            if (currentUser != null)
+            {
+                userName.Text = $"{currentUser.Name} {currentUser.LastName}";
+                userEmail.Text= currentUser.Email;
+            }
+            else
+            {
+                userName.Text = "No user logged in";
+            }
         }
         private void ProfileSettingsUser_Click(object sender, RoutedEventArgs e)
         {
@@ -39,22 +50,6 @@ namespace CharityApplication
             //    NavigationService.GoBack();
             //}
         }
-        private void UpdateUserLabel()
-        {
-            Donator currentUser = UserSession.Instance.CurrentUser;
-
-            if (currentUser != null)
-            {
-                userNameLabel.Content = $"{currentUser.Name} {currentUser.LastName}";
-            }
-            else
-            {
-                userNameLabel.Content = "No user logged in";
-            }
-        }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            UpdateUserLabel(); // Update the label with the current user's info
-        }
+        
     }
 }
