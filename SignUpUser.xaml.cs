@@ -47,13 +47,12 @@ namespace CharityApplication
 
             if (success)
             {
-                // Registration successful
+                
                 MessageBox.Show("Registration successful!");
 
-                // Set the current user
+                
                 UserSession.Instance.SetCurrentUser(newDonator);
 
-                // Navigate to the user's profile page
                 signUpUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
             }
             else

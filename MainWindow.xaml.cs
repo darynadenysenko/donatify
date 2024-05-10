@@ -60,9 +60,9 @@ namespace CharityApplication
             
             Organisation organisation = data.GetOrganizationByEmail(email);
             
-            if (admin != null && admin.Password == password)  // Check if the entered password matches the stored password
+            if (admin != null && admin.Password == password)  
             {
-                //MessageBox.Show("Login successful!");
+                
                 
                 mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
             }
@@ -73,7 +73,8 @@ namespace CharityApplication
             }
             else if (organisation != null && organisation.Password == password)
             {
-                mainFrame.Navigate(new Uri("HomePageOrg.xaml", UriKind.Relative));
+                OrganisationSession.Instance.SetCurrentOrganisation(organisation);
+                mainFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
             }
             else  // Passwords do not match
             {

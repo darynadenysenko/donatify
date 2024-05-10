@@ -6,41 +6,42 @@ using System.Threading.Tasks;
 
 namespace CharityApplication
 {
-    public class UserSession
+    public class OrganisationSession
     {
         // Singleton instance
-        private static UserSession instance;
+        private static OrganisationSession instance;
 
         // Property to hold the current user
-        public Donator CurrentUser { get; private set; }
+        public Organisation CurrentOrganisation { get; private set; }
 
         // Private constructor to prevent direct instantiation
-        private UserSession() { }
+        private OrganisationSession() { }
 
         // Public method to get the singleton instance
-        public static UserSession Instance
+        public static OrganisationSession Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new UserSession();
+                    instance = new OrganisationSession();
                 }
                 return instance;
             }
         }
 
-        // Method to set the current user
-        public void SetCurrentUser(Donator donator)
-        {
-            CurrentUser = donator;
-        }
         
-
-        // Method to clear the current user (e.g., on logout)
-        public void ClearCurrentUser()
+        public void SetCurrentOrganisation(Organisation organisation)
         {
-            CurrentUser = null;
+            CurrentOrganisation = organisation;
+        }
+
+
+        
+        public void ClearCurrentOrganisation()
+        {
+            CurrentOrganisation = null;
         }
     }
 }
+

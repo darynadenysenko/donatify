@@ -62,36 +62,28 @@ namespace CharityApplication
 
             try
             {
-                // First, retrieve the TypeID based on the selected type name
+                
                 int typeId = GetTypeIdByName(organisation.Type.ToString());
 
-                if (typeId == -1)
-                {
-                    Console.WriteLine("Error: Type not found.");
-                    return false;
-                }
-
-                // Construct the SQL query for inserting the organisation data
+               
+                
                 string query = $"INSERT INTO organization (Name, Email, Password, Phone, Mission, TypeID) " +
                                $"VALUES ('{organisation.Name}', '{organisation.Email}', '{organisation.Password}', '{organisation.Phone}', '{organisation.Mission}', {typeId});";
 
-                // Create a MySqlConnection object and MySqlCommand object
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    // Open the database connection
+                    
                     connection.Open();
 
-                    // Execute the SQL query
+                    
                     int rowsAffected = command.ExecuteNonQuery();
 
-                    // Check if any rows were affected (indicating successful insertion)
                     success = rowsAffected > 0;
                 }
             }
             catch (Exception ex)
             {
-                // Handle any exceptions (e.g., database connection error)
                 Console.WriteLine("Error inserting organisation: " + ex.Message);
             }
 
@@ -104,38 +96,69 @@ namespace CharityApplication
 
         private int GetTypeIdByName(string typeName)
         {
-            int typeId = -1;
-
-            // Construct the SQL query to retrieve the TypeID based on the type name
-            string query = $"SELECT TypeID FROM type WHERE Name = '{typeName}';";
-
-            // Create a MySqlConnection object and MySqlCommand object
             using (MySqlConnection connection = new MySqlConnection(connectionString))
-            using (MySqlCommand command = new MySqlCommand(query, connection))
             {
-                try
-                {
-                    // Open the database connection
-                    connection.Open();
 
-                    // Execute the SQL query and read the result
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            // Retrieve the TypeID from the result
-                            typeId = reader.GetInt32("TypeID");
-                        }
-                    }
-                }
-                catch (Exception ex)
+                MySqlCommand command = new MySqlCommand("SELECT TypeID FROM types WHERE Name = @Type", connection);
+                command.Parameters.AddWithValue("@Type", typeName);
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    // Handle any exceptions (e.g., database connection error)
-                    Console.WriteLine(ex.Message);
+                    if (reader.Read())
+                    {
+                        return reader.GetInt32(0);
+                    }
+                    return -1; 
                 }
             }
+        }
+        private string GetTypeNameById(int typeID)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT Name FROM types WHERE TypeID = @TypeID", connection);
+                command.Parameters.AddWithValue("@TypeID", typeID);
 
-            return typeId;
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader.GetString(0); // Index 0 refers to the first (and only) column in the result set
+                    }
+                    return null; // If no matching type ID found
+                }
+            }
+        }
+
+        public bool UpdateUserInfo(Donator donator)
+        {
+            bool success = false;
+            string query = $"UPDATE users SET Name = '{donator.Name}', LastName = '{donator.LastName}', Email = '{donator.Email}' WHERE UserID = {donator.UserID}";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    try
+                    {
+                            connection.Open();
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            success = rowsAffected > 0;
+                    }
+                    catch (Exception ex) 
+                     {
+                    Console.WriteLine(ex.Message);
+                     }
+
+
+            }
+            
+
+            return success;
         }
 
         public bool InsertDonator(Donator donator)
@@ -168,7 +191,6 @@ namespace CharityApplication
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                
                 MySqlCommand command = new MySqlCommand("SELECT * FROM Organization WHERE Email = @Email", connection);
                 command.Parameters.AddWithValue("@Email", email);
 
@@ -177,11 +199,15 @@ namespace CharityApplication
                 {
                     if (reader.Read())
                     {
-                        Types type = (Types)Enum.Parse(
-                        typeof(Types), reader.GetString("Type"));
+                        int orgID = reader.GetInt32("OrgID");
+                        string typeName = GetTypeNameById(reader.GetInt32("TypeID")); // Assuming TypeID is stored in the Organization table
+
+                        // Parse the type name to the corresponding enum value
+                        Types type = (Types)Enum.Parse(typeof(Types), typeName);
+
                         return new Organisation
                         {
-                            OrganizationID = reader.GetInt32("OrganizationID"),
+                            OrganizationID = orgID,
                             Name = reader.GetString("Name"),
                             Phone = reader.GetString("Phone"),
                             Email = reader.GetString("Email"),
@@ -193,8 +219,8 @@ namespace CharityApplication
                     return null; // No organization with this email
                 }
             }
-
         }
+
         public Donator GetDonatorByEmail(string email)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))

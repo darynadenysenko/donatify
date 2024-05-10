@@ -24,6 +24,26 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentUser = UserSession.Instance.CurrentUser;
+            currentUser.Name = NameTextBox.Text;
+            currentUser.LastName = LastNameTextBox.Text;
+            currentUser.Email = EmailTextBox.Text;
+
+            Data dataAccess = new Data();
+            bool success = dataAccess.UpdateUserInfo(currentUser);
+
+            if (success)
+            {
+                MessageBox.Show("User information updated successfully!");
+                ChangeInfoUserFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Failed to update user information. Please try again.");
+            }
+        }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             ChangeInfoUserFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
