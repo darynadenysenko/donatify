@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using Microsoft.Extensions.Logging;
 
 namespace CharityApplication
 {
@@ -184,6 +186,126 @@ namespace CharityApplication
                     return null; // If no matching type ID found
                 }
             }
+        }
+        public bool UpdateEventInfo(Event currentEvent)
+        {
+            bool success = false;
+            string query = $"UPDATE event SET Name = '{currentEvent.Name}', Description = '{currentEvent.Description}', StartDate = '{currentEvent.StartDate}', EndDate = '{currentEvent.EndDate}' WHERE EventID = {currentEvent.EventId}";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+
+            }
+
+
+            return success;
+        }
+        public List<Event> GetAllEvents()
+        {
+            List<Event> events = new List<Event>();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Define the SQL query
+                    string query = "SELECT * FROM event";
+
+                    // Create a command object
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and read the results
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Read each row and create an Event object
+                            while (reader.Read())
+                            {
+                                Event ev = new Event
+                                {
+                                    
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                                    Description=reader.GetString(reader.GetOrdinal("Description"))
+                                };
+
+                                events.Add(ev);
+                            }
+                        }
+                    }
+                }
+            
+
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return new List<Event>(); // Return an empty list in case of an error
+            }
+            return events;
+        }
+        public List<Event> GetOrgEvents(Organisation organisation)
+        {
+            List<Event> events = new List<Event>();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Define the SQL query
+                    string query = $"SELECT * FROM event WHERE OrgID = {organisation.OrganizationID}";
+
+                    // Create a command object
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and read the results
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Read each row and create an Event object
+                            while (reader.Read())
+                            {
+                                Event ev = new Event
+                                {
+
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                                    Description = reader.GetString(reader.GetOrdinal("Description"))
+                                };
+
+                                events.Add(ev);
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return new List<Event>(); // Return an empty list in case of an error
+            }
+            return events;
         }
 
         public bool UpdateUserInfo(Donator donator)
@@ -404,6 +526,42 @@ namespace CharityApplication
                                 AdminID = reader.GetInt32("AdminID"),
                                 Email = reader.GetString("Email"),
                                 Password = reader.GetString("Password")
+                            };
+                        }
+                        else
+                        {
+                            return null; // No matching admin
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to retrieve admin: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+        public Event GetEventById(int eventid)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT * WHERE EvnetId = @EventId", connection);
+                command.Parameters.AddWithValue("@Email", eventid);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Event
+                            {
+                                EventId = reader.GetInt32("EventID"),
+                                Name = reader.GetString("Name"),
+                                Description = reader.GetString("Description"),
+                                StartDate= reader.GetDateTime("StartDate"),
+                                EndDate=reader.GetDateTime("EndDate")
+
                             };
                         }
                         else
