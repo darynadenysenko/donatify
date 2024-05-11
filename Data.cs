@@ -160,6 +160,34 @@ namespace CharityApplication
 
             return success;
         }
+        public bool UpdateOrganisationInfo(Organisation organisation)
+        {
+            bool success = false;
+            string query = $"UPDATE organization SET Name = '{organisation.Name}', Email = '{organisation.Email}', Phone = '{organisation.Phone}', Mission = '{organisation.Mission}' WHERE OrgID = {organisation.OrganizationID}";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+
+            }
+
+
+            return success;
+        }
 
         public bool InsertDonator(Donator donator)
         {
@@ -187,6 +215,63 @@ namespace CharityApplication
 
             return success;
         }
+        public bool UpdateUserPassword(int userId, string newPassword)
+        {
+            bool success = false;
+
+            string query = "UPDATE donator SET Password = @Password WHERE UserID = @UserID";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@Password", newPassword);
+                command.Parameters.AddWithValue("@UserID", userId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return success;
+        }
+        public bool UpdateOrganisationPassword(int OrgId, string newPassword)
+        {
+            bool success = false;
+
+            string query = "UPDATE organization SET Password = @Password WHERE OrgID = @OrgID";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@Password", newPassword);
+                command.Parameters.AddWithValue("@OrgID", OrgId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return success;
+        }
+
         public Organisation GetOrganizationByEmail(string email)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))

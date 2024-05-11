@@ -24,6 +24,27 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
+            currentOrganisation.Name = Name.Text;
+            currentOrganisation.Email = Email.Text;
+            currentOrganisation.Phone = Phone.Text;
+            currentOrganisation.Mission = Mission.Text;
+            Data dataAccess = new Data();
+            bool success = dataAccess.UpdateOrganisationInfo(currentOrganisation);
+
+            if (success)
+            {
+                MessageBox.Show("Organization information updated successfully!");
+                ChangeInfoOrgFrame.Navigate(new Uri("ProfileSettingsOrganisation.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Failed to update organization information. Please try again.");
+            }
+        }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             ChangeInfoOrgFrame.Navigate(new Uri("ProfileSettingsOrganisation.xaml", UriKind.Relative));
