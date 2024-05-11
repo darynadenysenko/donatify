@@ -46,6 +46,8 @@ namespace CharityApplication
                 label.VerticalAlignment = VerticalAlignment.Stretch;
                 label.HorizontalContentAlignment = HorizontalAlignment.Center;
                 label.VerticalContentAlignment = VerticalAlignment.Bottom;
+                label.Height = 100;
+
 
                 Button button = new Button();
                 button.Content = "Settings";
@@ -57,7 +59,11 @@ namespace CharityApplication
                 button.Width = 137;
                 button.BorderBrush = Brushes.Transparent;
 
+                
+                label.Content = evt.Name +"\n"+ evt.Description +"\n";
                 label.Content = button;
+                
+
                 eventsStackPanel.Children.Add(label);
             }
         }

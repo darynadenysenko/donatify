@@ -271,7 +271,7 @@ namespace CharityApplication
                     connection.Open();
 
                     // Define the SQL query
-                    string query = $"SELECT * FROM event WHERE OrgID = {organisation.OrganizationID}";
+                    string query = $"SELECT * FROM event WHERE OrganizerID = {organisation.OrganizationID}";
 
                     // Create a command object
                     using (MySqlCommand command = new MySqlCommand(query, connection))
