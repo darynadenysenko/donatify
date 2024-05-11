@@ -135,7 +135,7 @@ namespace CharityApplication
         public bool UpdateUserInfo(Donator donator)
         {
             bool success = false;
-            string query = $"UPDATE users SET Name = '{donator.Name}', LastName = '{donator.LastName}', Email = '{donator.Email}' WHERE UserID = {donator.UserID}";
+            string query = $"UPDATE donator SET Name = '{donator.Name}', LastName = '{donator.LastName}', Email = '{donator.Email}' WHERE UserID = {donator.UserID}";
 
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
