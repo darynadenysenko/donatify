@@ -25,6 +25,40 @@ namespace CharityApplication
             InitializeComponent();
         }
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            string password = Password.Password;
+            int userId = UserSession.Instance.CurrentUser.UserID;
+            string currentPassword = UserSession.Instance.CurrentUser.Password;
+
+            if (password == currentPassword)
+            {
+                Data dataAccess = new Data();
+                bool success = dataAccess.DeleteUserAccount(userId); 
+
+                if (success)
+                {
+                    MessageBox.Show("Account deleted successfully!");
+                   
+
+                    
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Window.GetWindow(this).Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete account. Please try again.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Incorrect password. Please try again.");
+            }
+
+
+        }
+
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             DeleteAccountFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));

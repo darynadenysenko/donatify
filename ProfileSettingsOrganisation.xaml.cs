@@ -41,7 +41,7 @@ namespace CharityApplication
         }
         private void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            ProfileSettingsOrgFrame.Navigate(new Uri("DeleteAccount.xaml", UriKind.Relative));
+            ProfileSettingsOrgFrame.Navigate(new Uri("DeleteAccountOrganisation.xaml", UriKind.Relative));
 
         }
     }

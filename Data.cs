@@ -92,6 +92,60 @@ namespace CharityApplication
 
 
 
+        public bool DeleteUserAccount(int userId)
+        {
+            bool success = false;
+
+            string query = "DELETE FROM donator WHERE UserID = @UserID";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@UserID", userId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return success;
+        }
+        public bool DeleteOrganisationAccount(int orgId)
+        {
+            bool success = false;
+
+            string query = "DELETE FROM organization WHERE OrgID = @OrganizationID";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@OrganizationID", orgId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return success;
+        }
 
 
         private int GetTypeIdByName(string typeName)
