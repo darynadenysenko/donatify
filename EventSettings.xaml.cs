@@ -21,9 +21,14 @@ namespace CharityApplication
     /// </summary>
     public partial class EventSettings : Page
     {
+        
         private int selectedEventId;
 
-      
+        public int SelectedEventId
+        {
+            get { return selectedEventId; }
+        }
+
 
         public EventSettings()
         {

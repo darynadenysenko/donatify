@@ -22,13 +22,22 @@ namespace CharityApplication
     /// </summary>
     public partial class ChangeEventInfo : Page
     {
-        private readonly int eventId;
+        private int selectedEventId;
+
 
         public ChangeEventInfo(int eventId)
         {
             InitializeComponent();
-            this.eventId = eventId;
-            // Now you can use the eventId in this page
+         
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Set the SelectedEventId property here, for example, if you have access to the data or navigation parameter
+            // For demonstration, let's directly set it to a value passed from the EventPageOrg
+            if (NavigationService.Content is EventPageOrg eventPageOrg)
+            {
+                selectedEventId = eventPageOrg.SelectedEventId;
+            }
         }
         private DateTime selectedStartDate = DateTime.MinValue;
         private DateTime selectedEndDate = DateTime.MaxValue;
@@ -65,7 +74,7 @@ namespace CharityApplication
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             Data dataAccess = new Data();
-            var currentEvent = dataAccess.GetEventById(eventId);
+            var currentEvent = dataAccess.GetEventById(selectedEventId);
 
             currentEvent.Name = Name.Text;
             currentEvent.Description=Description.Text;
