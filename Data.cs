@@ -149,8 +149,44 @@ namespace CharityApplication
             return success;
         }
 
+        public List<Donator> FetchDonatorsFromDatabase()
+        {
+            List<Donator> donators = new List<Donator>();
 
-        private int GetTypeIdByName(string typeName)
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM donator";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = Convert.ToInt32(reader["UserID"]);
+                                string name = reader["Name"].ToString();
+                                Donator donator = new Donator(name, id);
+                               
+                                donators.Add(donator);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error fetching donators: " + ex.Message);
+                    }
+                }
+            }
+
+            return donators;
+        }
+    
+
+
+    private int GetTypeIdByName(string typeName)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {

@@ -29,7 +29,11 @@ namespace CharityApplication
             Email = email;
             Password = password;
         }
-
+        public Donator(string name, int id)
+        {
+            Name = name;
+            UserID = id;
+        }
 
 
 
