@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace CharityApplication
     /// </summary>
     public partial class EventSettings : Page
     {
+        //private readonly int eventId;
         public EventSettings()
         {
             InitializeComponent();
+            //this.eventId = eventId;
         }
         private void EventSettings_Click(object sender, RoutedEventArgs e)
         {
@@ -33,17 +36,7 @@ namespace CharityApplication
         {
             eventSettingsFrame.Navigate(new Uri("DeleteEvent.xaml", UriKind.Relative));
         }
-        //private void GoBack_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (NavigationService.CanGoBack)
-        //    {
-        //        NavigationService.GoBack();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("No previous page found!");
-        //    }
-        //}
+       
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             eventSettingsFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));

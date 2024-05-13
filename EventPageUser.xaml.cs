@@ -25,7 +25,7 @@ namespace CharityApplication
             InitializeComponent();
         }
 
-        private void Donate_Click(object sender, RoutedEventArgs e)
+        private void Donate_Click(object sender, RoutedEventArgs e, int eventId)
         {
             EventsUserFrame.Navigate(new Uri("DonateForEvent.xaml", UriKind.Relative));
 
@@ -35,6 +35,47 @@ namespace CharityApplication
         {
             EventsUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
 
+        }
+        private void LoadEvents()
+        {
+           
+            Data dataAccess = new Data();
+            List<Event> events = dataAccess.GetAllEvents();
+
+
+
+            // Create a Label with a Button for each event and add it to the StackPanel
+            foreach (var evt in events)
+            {
+                Label label = new Label();
+                label.Background = Brushes.White;
+                label.HorizontalAlignment = HorizontalAlignment.Stretch;
+                label.Margin = new Thickness(10, 0, 10, 0);
+                label.VerticalAlignment = VerticalAlignment.Stretch;
+                label.HorizontalContentAlignment = HorizontalAlignment.Center;
+                label.VerticalContentAlignment = VerticalAlignment.Bottom;
+                label.Width = 300;
+                label.Height = 100;
+                label.Content = evt.Name + "\n" + evt.Description + "\n";
+
+
+                Button button = new Button();
+                button.Content = "Donate";
+                button.Click += (sender, e) => Donate_Click(sender, e, evt.EventId); // Pass the event to the click event handler
+                button.Background = Brushes.White;
+                button.FontFamily = new FontFamily("Font/#Julius Sans One");
+                button.FontSize = 18;
+                button.Height = 33;
+                button.Width = 137;
+                button.BorderBrush = Brushes.Transparent;
+
+
+                //label.Content = evt.Name +"\n"+ evt.Description +"\n";
+                label.Content = button;
+
+
+                eventsStackPanel.Children.Add(label);
+            }
         }
     }
 }

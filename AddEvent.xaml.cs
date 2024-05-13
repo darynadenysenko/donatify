@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,35 +24,56 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
-
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
-        {
-            int orgId = OrganisationSession.Instance.CurrentOrganisation.OrganizationID;
-            string eventName = EventName.Text;
-            string eventDescription = Description.Text;
-            int targetAmount = int.Parse(TargetAmount.Text);
-            DateTime startDate = StartDatePicker.SelectedDate ?? DateTime.MinValue; ;
-            DateTime endDate = EndDatePicker.SelectedDate ?? DateTime.MinValue;
-
-            Event newEvent = new Event(eventName, eventDescription, targetAmount, orgId, startDate, endDate);
-            Data dataAccess = new Data();
-            bool success = dataAccess.AddEvent(newEvent);
-
-                if (success)
-                {
-                    MessageBox.Show("Event added successfully!");
-                    // Optionally, navigate to a different page or perform other actions
-                }
-                else
-                {
-                    MessageBox.Show("Failed to add event. Please try again.");
-                }
-            
-
-        }
+        private DateTime selectedStartDate = DateTime.MinValue;
+        private DateTime selectedEndDate = DateTime.MaxValue;
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             AddEventFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
         }
+        private void StartDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is DatePicker startDatePicker)
+            {
+                selectedStartDate = startDatePicker.SelectedDate ?? DateTime.MinValue;
+
+            }
+        }
+
+        private void EndDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is DatePicker endDatePicker)
+            {
+                selectedEndDate = endDatePicker.SelectedDate ?? DateTime.MinValue;
+
+            }
+        }
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Data dataAccess = new Data();
+            var newEvent = new Event();
+            var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
+
+
+            newEvent.Name = Name.Text;
+            newEvent.Description = Description.Text;
+            newEvent.StartDate = selectedStartDate;
+            newEvent.EndDate = selectedEndDate;
+            newEvent.OrgId=currentOrganisation.OrganizationID;
+
+
+
+            bool success = dataAccess.AddEvent(newEvent);
+
+            if (success)
+            {
+                MessageBox.Show("Event added successfully!");
+                AddEventFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Failed to add event. Please try again.");
+            }
+        }
+
     }
 }

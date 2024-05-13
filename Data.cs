@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+using System.Threading;
+using Microsoft.Extensions.Logging;
 
 namespace CharityApplication
 {
@@ -147,41 +148,6 @@ namespace CharityApplication
 
             return success;
         }
-        public bool AddEvent(Event newEvent)
-        {
-            bool success = false;
-            string query = "INSERT INTO Event (Name, Description, TargetAmount, OrganizerID, StartDate, EndDate) " +
-                           "VALUES (@Name, @Description, @TargetAmount, @OrganizerID, @StartDate, @EndDate)";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                MySqlCommand command = new MySqlCommand(query, connection);
-
-                command.Parameters.AddWithValue("@Name", newEvent.Name);
-                command.Parameters.AddWithValue("@Description", newEvent.Description);
-                command.Parameters.AddWithValue("@TargetAmount", newEvent.TargetAmount);
-                command.Parameters.AddWithValue("@OrganizerID", newEvent.OrganizerID);
-                command.Parameters.AddWithValue("@StartDate", newEvent.StartDate);
-                command.Parameters.AddWithValue("@EndDate", newEvent.EndDate);
-                try
-                {
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    success = rowsAffected > 0;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
-            return success;
-        }
-           
-        
-    
-
 
 
         private int GetTypeIdByName(string typeName)
@@ -220,6 +186,126 @@ namespace CharityApplication
                     return null; // If no matching type ID found
                 }
             }
+        }
+        public bool UpdateEventInfo(Event currentEvent)
+        {
+            bool success = false;
+            string query = $"UPDATE event SET Name = '{currentEvent.Name}', Description = '{currentEvent.Description}', StartDate = '{currentEvent.StartDate}', EndDate = '{currentEvent.EndDate}' WHERE EventID = {currentEvent.EventId}";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+
+            }
+
+
+            return success;
+        }
+        public List<Event> GetAllEvents()
+        {
+            List<Event> events = new List<Event>();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Define the SQL query
+                    string query = "SELECT * FROM event";
+
+                    // Create a command object
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and read the results
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Read each row and create an Event object
+                            while (reader.Read())
+                            {
+                                Event ev = new Event
+                                {
+                                    
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                                    Description=reader.GetString(reader.GetOrdinal("Description"))
+                                };
+
+                                events.Add(ev);
+                            }
+                        }
+                    }
+                }
+            
+
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return new List<Event>(); // Return an empty list in case of an error
+            }
+            return events;
+        }
+        public List<Event> GetOrgEvents(Organisation organisation)
+        {
+            List<Event> events = new List<Event>();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Define the SQL query
+                    string query = $"SELECT Name, StartDate, EndDate, Description FROM event WHERE OrganizerID = {organisation.OrganizationID}";
+
+                    // Create a command object
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and read the results
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Read each row and create an Event object
+                            while (reader.Read())
+                            {
+                                Event ev = new Event
+                                {
+
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                                    Description = reader.GetString(reader.GetOrdinal("Description"))
+                                };
+
+                                events.Add(ev);
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return new List<Event>(); // Return an empty list in case of an error
+            }
+            return events;
         }
 
         public bool UpdateUserInfo(Donator donator)
@@ -455,5 +541,75 @@ namespace CharityApplication
                 }
             }
         }
+        public Event GetEventById(int eventid)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT * WHERE EvnetID = @EventID", connection);
+                command.Parameters.AddWithValue("@EventID", eventid);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Event
+                            {
+                                EventId = reader.GetInt32("EventID"),
+                                Name = reader.GetString("Name"),
+                                Description = reader.GetString("Description"),
+                                StartDate= reader.GetDateTime("StartDate"),
+                                EndDate=reader.GetDateTime("EndDate")
+
+                            };
+                        }
+                        else
+                        {
+                            return null; // No matching 
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to retrieve event: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+        public bool AddEvent(Event newEvent)
+        {
+            bool success = false;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Event (Name, Description, OrganizerID, StartDate, EndDate) " +
+                               "VALUES (@Name, @Description, @OrganizerID, @StartDate, @EndDate)";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", newEvent.Name);
+                command.Parameters.AddWithValue("@Description", newEvent.Description);
+                //command.Parameters.AddWithValue("@TargetAmount", newEvent.TargetAmount);
+                //command.Parameters.AddWithValue("@CurrentAmountRaised", newEvent.CurrentAmountRaised);
+                command.Parameters.AddWithValue("@OrganizerID", newEvent.OrgId);
+                command.Parameters.AddWithValue("@StartDate", newEvent.StartDate);
+                command.Parameters.AddWithValue("@EndDate", newEvent.EndDate);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    // Handle exception
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                }
+            }
+
+            return success;
+        }
+
     }
 }
