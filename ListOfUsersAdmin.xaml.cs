@@ -15,26 +15,35 @@ using System.Windows.Shapes;
 
 namespace CharityApplication
 {
-    public partial class ListOfDonatorsAdmin : Page
+    public partial class ListOfUsersAdmin : Page
     {
         private List<Donator> donators;
-
-        public ListOfDonatorsAdmin(List<Donator> donators)
+        public ListOfUsersAdmin()
         {
             InitializeComponent();
             this.donators = donators;
             PopulateDonators();
         }
-
         private void PopulateDonators()
         {
+            Data dataAccess = new Data();
+            donators = dataAccess.FetchDonatorsFromDatabase();
             foreach (var donator in donators)
             {
                 Button button = new Button();
                 button.Content = donator.Name;
-                // Add event handler to navigate to donator profile or perform other actions
+                button.Click += (sender, e) => ShowUserProfile(donator);
                 donatorsStackPanel.Children.Add(button);
             }
         }
+        private void ShowUserProfile(Donator donator)
+        {
+            // Set the current user in the UserSession
+            UserSession.Instance.SetCurrentUser(donator);
+
+            // Navigate to the ProfileUser page
+            NavigationService.Navigate(new Uri("ProfileUser.xaml", UriKind.Relative));
+        }
+
     }
 }

@@ -166,8 +166,8 @@ namespace CharityApplication
                         {
                             while (reader.Read())
                             {
-                                int id = Convert.ToInt32(reader["id"]);
-                                string name = reader["name"].ToString();
+                                int id = Convert.ToInt32(reader["UserID"]);
+                                string name = reader["Name"].ToString();
                                 Donator donator = new Donator(name, id);
                                
                                 donators.Add(donator);
