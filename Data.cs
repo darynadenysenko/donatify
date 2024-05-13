@@ -581,7 +581,7 @@ namespace CharityApplication
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand("SELECT * WHERE EvnetID = @EventID", connection);
+                MySqlCommand command = new MySqlCommand("SELECT * WHERE EventID = @EventID", connection);
                 command.Parameters.AddWithValue("@EventID", eventid);
                 try
                 {
