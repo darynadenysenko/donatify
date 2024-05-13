@@ -15,19 +15,26 @@ using System.Windows.Shapes;
 
 namespace CharityApplication
 {
-    /// <summary>
-    /// Interaction logic for ListOfUsersAdmin.xaml
-    /// </summary>
-    public partial class ListOfUsersAdmin : Page
+    public partial class ListOfDonatorsAdmin : Page
     {
-        public ListOfUsersAdmin()
+        private List<Donator> donators;
+
+        public ListOfDonatorsAdmin(List<Donator> donators)
         {
             InitializeComponent();
+            this.donators = donators;
+            PopulateDonators();
         }
-        private void ProfileUserAdmin(object sender, RoutedEventArgs e)
-        {
 
-            ListOfUsersFrame.Navigate(new Uri("ProfileUser.xaml", UriKind.Relative));
+        private void PopulateDonators()
+        {
+            foreach (var donator in donators)
+            {
+                Button button = new Button();
+                button.Content = donator.Name;
+                // Add event handler to navigate to donator profile or perform other actions
+                donatorsStackPanel.Children.Add(button);
+            }
         }
     }
 }
