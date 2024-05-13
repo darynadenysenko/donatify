@@ -47,6 +47,7 @@ namespace CharityApplication
                 label.HorizontalContentAlignment = HorizontalAlignment.Center;
                 label.VerticalContentAlignment = VerticalAlignment.Bottom;
                 label.Height = 100;
+                label.Content = evt.Name+"\n"+evt.Description;
 
 
                 Button button = new Button();
@@ -72,7 +73,7 @@ namespace CharityApplication
         {
             EventsOrgFrame.Navigate(new Uri("AddEvent.xaml", UriKind.Relative));
 
-        }
+        }  
         private void EventSettings_Click(object sender, RoutedEventArgs e, int eventId)
         {
             selectedEventId = eventId;
