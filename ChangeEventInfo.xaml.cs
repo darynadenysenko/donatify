@@ -34,7 +34,7 @@ namespace CharityApplication
         {
             // Set the SelectedEventId property here, for example, if you have access to the data or navigation parameter
             // For demonstration, let's directly set it to a value passed from the EventPageOrg
-            if (NavigationService.Content is EventPageOrg eventPageOrg)
+            if (NavigationService.Content is ChangeEventInfo eventSettings)
             {
                 selectedEventId = eventPageOrg.SelectedEventId;
             }
