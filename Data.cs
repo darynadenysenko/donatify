@@ -271,7 +271,7 @@ namespace CharityApplication
                     connection.Open();
 
                     // Define the SQL query
-                    string query = $"SELECT * FROM event WHERE OrganizerID = {organisation.OrganizationID}";
+                    string query = $"SELECT Name, StartDate, EndDate, Description FROM event WHERE OrganizerID = {organisation.OrganizationID}";
 
                     // Create a command object
                     using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -545,8 +545,8 @@ namespace CharityApplication
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand("SELECT * WHERE EvnetId = @EventId", connection);
-                command.Parameters.AddWithValue("@Email", eventid);
+                MySqlCommand command = new MySqlCommand("SELECT * WHERE EvnetID = @EventID", connection);
+                command.Parameters.AddWithValue("@EventID", eventid);
                 try
                 {
                     connection.Open();
@@ -566,16 +566,50 @@ namespace CharityApplication
                         }
                         else
                         {
-                            return null; // No matching admin
+                            return null; // No matching 
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Failed to retrieve admin: " + ex.Message);
+                    Console.WriteLine("Failed to retrieve event: " + ex.Message);
                     return null;
                 }
             }
         }
+        public bool AddEvent(Event newEvent)
+        {
+            bool success = false;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Event (Name, Description, OrganizerID, StartDate, EndDate) " +
+                               "VALUES (@Name, @Description, @OrganizerID, @StartDate, @EndDate)";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", newEvent.Name);
+                command.Parameters.AddWithValue("@Description", newEvent.Description);
+                //command.Parameters.AddWithValue("@TargetAmount", newEvent.TargetAmount);
+                //command.Parameters.AddWithValue("@CurrentAmountRaised", newEvent.CurrentAmountRaised);
+                command.Parameters.AddWithValue("@OrganizerID", newEvent.OrgId);
+                command.Parameters.AddWithValue("@StartDate", newEvent.StartDate);
+                command.Parameters.AddWithValue("@EndDate", newEvent.EndDate);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    // Handle exception
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                }
+            }
+
+            return success;
+        }
+
     }
 }

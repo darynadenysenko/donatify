@@ -47,7 +47,7 @@ namespace CharityApplication
                 label.HorizontalContentAlignment = HorizontalAlignment.Center;
                 label.VerticalContentAlignment = VerticalAlignment.Bottom;
                 label.Height = 100;
-                label.Content = evt.Name+"\n"+evt.Description;
+                label.Content = evt.Name+"\n"+evt.Description + "\n";
 
 
                 Button button = new Button();
@@ -61,7 +61,7 @@ namespace CharityApplication
                 button.BorderBrush = Brushes.Transparent;
 
                 
-                label.Content = evt.Name +"\n"+ evt.Description +"\n";
+                //label.Content = evt.Name +"\n"+ evt.Description +"\n";
                 label.Content = button;
                 
 
