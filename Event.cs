@@ -13,10 +13,21 @@ namespace CharityApplication
         public string Description { get; set; }
         public decimal TargetAmount { get; set; }
         public decimal CurrentAmountRaised { get; set; }
-        public Organisation Organizer { get; set; }
+        public int OrganizerID { get; set; }
         public List<Donation> Donations { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public Event(string name, string description, decimal targetAmount, int organizerID, DateTime startDate, DateTime endDate)
+        {
+            Name = name;
+            Description = description;
+            TargetAmount = targetAmount;
+            OrganizerID = organizerID;
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
+
 
     }
 }

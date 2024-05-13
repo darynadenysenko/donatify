@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CharityApplication
 {
@@ -146,6 +147,41 @@ namespace CharityApplication
 
             return success;
         }
+        public bool AddEvent(Event newEvent)
+        {
+            bool success = false;
+            string query = "INSERT INTO Event (Name, Description, TargetAmount, OrganizerID, StartDate, EndDate) " +
+                           "VALUES (@Name, @Description, @TargetAmount, @OrganizerID, @StartDate, @EndDate)";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@Name", newEvent.Name);
+                command.Parameters.AddWithValue("@Description", newEvent.Description);
+                command.Parameters.AddWithValue("@TargetAmount", newEvent.TargetAmount);
+                command.Parameters.AddWithValue("@OrganizerID", newEvent.OrganizerID);
+                command.Parameters.AddWithValue("@StartDate", newEvent.StartDate);
+                command.Parameters.AddWithValue("@EndDate", newEvent.EndDate);
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return success;
+        }
+           
+        
+    
+
 
 
         private int GetTypeIdByName(string typeName)
