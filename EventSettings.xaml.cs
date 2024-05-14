@@ -22,32 +22,23 @@ namespace CharityApplication
     public partial class EventSettings : Page
     {
         
-        private int selectedEventId;
+        
+        private Event selectedEvent;
 
-        public int SelectedEventId
-        {
-            get { return selectedEventId; }
-        }
+      
 
 
-        public EventSettings()
+        public EventSettings(Event ev)
         {
             InitializeComponent();
-            
-        }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Set the SelectedEventId property here, for example, if you have access to the data or navigation parameter
-            // For demonstration, let's directly set it to a value passed from the EventPageOrg
-            if (NavigationService.Content is EventPageOrg eventPageOrg)
-            {
-                selectedEventId = eventPageOrg.SelectedEventId;
-            }
-        }
+            this.selectedEvent = ev;
 
+        }
+       
         private void EventSettings_Click(object sender, RoutedEventArgs e)
         {
-            eventSettingsFrame.Navigate(new Uri("ChangeEventInfo.xaml", UriKind.Relative));
+            ChangeEventInfo changeEventInfoPage = new ChangeEventInfo(selectedEvent);
+            NavigationService.Navigate(changeEventInfoPage);
 
         }
         private void DeleteEvent_Click(object sender, RoutedEventArgs e)

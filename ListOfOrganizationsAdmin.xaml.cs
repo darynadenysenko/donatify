@@ -20,14 +20,32 @@ namespace CharityApplication
     /// </summary>
     public partial class ListOfOrganizationsAdmin : Page
     {
+        private List<Organisation> organisations;
         public ListOfOrganizationsAdmin()
         {
             InitializeComponent();
+            this.organisations = organisations;
+            PopulateOrganisations();
         }
-        private void ProfileOrganization(object sender, RoutedEventArgs e)
+        private void PopulateOrganisations()
         {
+            Data dataAccess = new Data();
+            organisations = dataAccess.FetchOrganisationsFromDatabase();
+            foreach (var org in organisations)
+            {
+                Button button = new Button();
+                button.Content = org.Name;
+                button.Click += (sender, e) => ShowOrgProfile(org);
+                orgStackPanel.Children.Add(button);
+            }
+        }
+        private void ShowOrgProfile(Organisation organisation)
+        {
+            // Set the current user in the UserSession
+            OrganisationSession.Instance.SetCurrentOrganisation(organisation);
 
-            ListOfOrganizationsFrame.Navigate(new Uri("ProfileOrganisation.xaml", UriKind.Relative));
+            // Navigate to the ProfileUser page
+            NavigationService.Navigate(new Uri("ProfileOrganisation.xaml", UriKind.Relative));
         }
     }
     

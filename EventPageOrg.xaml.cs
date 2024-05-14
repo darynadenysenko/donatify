@@ -21,12 +21,12 @@ namespace CharityApplication
     /// </summary>
     public partial class EventPageOrg : Page
     {
-        private int selectedEventId;
+        //private int selectedEventId;
 
-        public int SelectedEventId
+       /* public int SelectedEventId
         {
             get { return selectedEventId; }
-        }
+        }*/
         public EventPageOrg()
         {
             InitializeComponent();
@@ -64,7 +64,7 @@ namespace CharityApplication
                 // Create and configure the Button
                 Button button = new Button();
                 button.Content = "Settings";
-                button.Click += (sender, e) => EventSettings_Click(sender, e, evt.EventId); // Pass the event to the click event handler
+                button.Click += (sender, e) => ShowEventInfo(evt); //EventSettings_Click(sender, e, evt); // Pass the event to the click event handler
                 button.Background = Brushes.White;
                 button.FontFamily = new FontFamily("Font/#Julius Sans One");
                 button.FontSize = 18;
@@ -80,16 +80,24 @@ namespace CharityApplication
                 eventsStackPanel.Children.Add(eventContainer);
             }
         }
-        
+        private void ShowEventInfo(Event ev)
+        {
+            // Navigate to EventInfoAdmin page and pass event details
+            EventSettings eventSettingsPage = new EventSettings(ev);
+            NavigationService.Navigate(eventSettingsPage);
+        }
+
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
             EventsOrgFrame.Navigate(new Uri("AddEvent.xaml", UriKind.Relative));
 
         }  
-        private void EventSettings_Click(object sender, RoutedEventArgs e, int eventId)
-        {
-            selectedEventId = eventId;
-            EventsOrgFrame.Navigate(new EventSettings());
+        private void EventSettings_Click(object sender, RoutedEventArgs e, Event selectedEvent/*int eventId*/)
+         {
+            EventSettings eventSettingsPage = new EventSettings(selectedEvent); // Pass the selected event object
+            NavigationService.Navigate(eventSettingsPage);
+            //   selectedEventId = eventId;
+            //    EventsOrgFrame.Navigate(new EventSettings(eventId));
 
 
         }

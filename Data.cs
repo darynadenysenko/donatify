@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
 
 namespace CharityApplication
 {
@@ -183,10 +184,96 @@ namespace CharityApplication
 
             return donators;
         }
-    
+        public List<Organisation> FetchOrganisationsFromDatabase()
+        {
+            List<Organisation> organisations = new List<Organisation>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM organization";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = Convert.ToInt32(reader["OrgID"]);
+                                string name = reader["Name"].ToString();
+                                string email = reader["Email"].ToString();
+                                string phone = reader["Phone"].ToString();
+                                string mission = reader["Mission"].ToString();
+
+                                Organisation organisation = new Organisation
+                                {
+                                    Name = name,
+                                    OrganizationID = id,
+                                    Email = email,
+                                    Phone = phone,
+                                    Mission = mission
+                                };
+
+                                organisations.Add(organisation);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error fetching donators: " + ex.Message);
+                    }
+                }
+            }
+
+            return organisations;
+        }
+
+        public List<Event> FetchEventsFromDatabase()
+        {
+            List<Event> events= new List<Event>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM event";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = Convert.ToInt32(reader["EventID"]);
+                                string name = reader["Name"].ToString();
+                                string description = reader["Description"].ToString();
+                                Event ev = new Event
+                                {
+                                    Name = name,
+                                    EventId = id,
+                                    Description = description
+                                };
+
+                                events.Add(ev);
+                            }
+                          }
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error fetching donators: " + ex.Message);
+                    }
+                }
+            }
+
+            return events;
+        }
 
 
-    private int GetTypeIdByName(string typeName)
+        private int GetTypeIdByName(string typeName)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -223,35 +310,37 @@ namespace CharityApplication
                 }
             }
         }
-        public bool UpdateEventInfo(Event currentEvent)
+       
+        public bool UpdateEvent(Event updatedEvent)
         {
             bool success = false;
-            string query = $"UPDATE event SET Name = '{currentEvent.Name}', Description = '{currentEvent.Description}', StartDate = '{currentEvent.StartDate}', EndDate = '{currentEvent.EndDate}' WHERE EventID = {currentEvent.EventId}";
-
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand(query, connection);
-
                 try
                 {
                     connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
+                    string query = "UPDATE event SET Name = @Name, Description = @Description, StartDate = @StartDate, EndDate = @EndDate WHERE EventID = @EventID";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Name", updatedEvent.Name);
+                    command.Parameters.AddWithValue("@Description", updatedEvent.Description);
+                    command.Parameters.AddWithValue("@StartDate", updatedEvent.StartDate);
+                    command.Parameters.AddWithValue("@EndDate", updatedEvent.EndDate);
+                    command.Parameters.AddWithValue("@EventID", updatedEvent.EventId);
 
-                    success = rowsAffected > 0;
+                    int rowsAffected = command.ExecuteNonQuery();
+                    success = rowsAffected > 0; // Check if any rows were affected
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Error updating event: " + ex.Message);
                 }
-
-
             }
-
 
             return success;
         }
-        public List<Event> GetAllEvents()
+    
+    public List<Event> GetAllEvents()
         {
             List<Event> events = new List<Event>();
             try
@@ -274,7 +363,7 @@ namespace CharityApplication
                             {
                                 Event ev = new Event
                                 {
-                                    
+                                    EventId = reader.GetInt32(reader.GetOrdinal("EventID")),
                                     Name = reader.GetString(reader.GetOrdinal("Name")),
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
@@ -307,7 +396,7 @@ namespace CharityApplication
                     connection.Open();
 
                     // Define the SQL query
-                    string query = $"SELECT Name, StartDate, EndDate, Description FROM event WHERE OrganizerID = {organisation.OrganizationID}";
+                    string query = $"SELECT EventID, Name, StartDate, EndDate, Description FROM event WHERE OrganizerID = {organisation.OrganizationID}";
 
                     // Create a command object
                     using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -320,7 +409,7 @@ namespace CharityApplication
                             {
                                 Event ev = new Event
                                 {
-
+                                    EventId = reader.GetInt32(reader.GetOrdinal("EventID")),
                                     Name = reader.GetString(reader.GetOrdinal("Name")),
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),

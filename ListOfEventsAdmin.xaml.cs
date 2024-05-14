@@ -20,14 +20,31 @@ namespace CharityApplication
     /// </summary>
     public partial class ListOfEventsAdmin : Page
     {
+        private List<Event> events;
         public ListOfEventsAdmin()
         {
             InitializeComponent();
+            this.events = events;
+            PopulateEvents();
         }
-        private void EventInfoClick(object sender, RoutedEventArgs e)
+        private void PopulateEvents()
         {
-            ListOfEventsFrame.Navigate(new Uri("EventInfoAdmin.xaml", UriKind.Relative));
-
+            Data dataAccess = new Data();
+            events = dataAccess.FetchEventsFromDatabase();
+            foreach (var ev in events)
+            {
+                Button button = new Button();
+                button.Content = ev.Name;
+                button.Click += (sender, e) => ShowEventInfo(ev);
+                eventsStackPanel.Children.Add(button);
+            }
         }
+        private void ShowEventInfo(Event ev)
+        {
+            // Navigate to EventInfoAdmin page and pass event details
+            EventInfoAdmin eventInfoPage = new EventInfoAdmin(ev);
+            NavigationService.Navigate(eventInfoPage);
+        }
+
     }
 }

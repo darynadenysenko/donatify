@@ -18,6 +18,8 @@ namespace CharityApplication
        // public  decimal Balance { get; set; }
         public List<Event> Events { get; set; }
 
+        
+
 
         public void CreateEvent(Event newEvent)
         {

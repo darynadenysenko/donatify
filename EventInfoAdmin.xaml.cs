@@ -20,14 +20,29 @@ namespace CharityApplication
     /// </summary>
     public partial class EventInfoAdmin : Page
     {
-        public EventInfoAdmin()
+        private Event selectedEvent;
+
+        public EventInfoAdmin(Event ev)
         {
             InitializeComponent();
+            this.selectedEvent = ev;
+            PopulateEventDetails();
         }
-        private void ProfileSettingsAdmin_Click(object sender, RoutedEventArgs e)
-        {
-            EventInfoAdminFrame.Navigate(new Uri("EventSettings.xaml", UriKind.Relative));
 
+        private void PopulateEventDetails()
+        {
+            // Populate the UI elements with event details
+            eventNameTextBlock.Text = selectedEvent.Name;
+            eventDatesTextBlock.Text = $"{selectedEvent.StartDate} - {selectedEvent.EndDate}";
+            eventDescriptionTextBlock.Content = selectedEvent.Description;
+            // Populate other details as needed
         }
+        private void SettingsEventAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to EventSettings page and pass the selected event
+            EventSettings eventSettingsPage = new EventSettings(selectedEvent);
+            NavigationService.Navigate(eventSettingsPage);
+        }
+
     }
 }
