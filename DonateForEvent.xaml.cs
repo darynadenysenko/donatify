@@ -20,12 +20,47 @@ namespace CharityApplication
     /// </summary>
     public partial class DonateForEvent : Page
     {
-        public DonateForEvent()
+        private Event selectedEvent;
+        public DonateForEvent(Event ev)
         {
             InitializeComponent();
+            this.selectedEvent = ev;
+            EventName.Content = ev.Name;
+        }
+        private void DonateButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Perform data validation
+            if (!decimal.TryParse(DonationAmount.Text, out decimal amount))
+            {
+                MessageBox.Show("Invalid donation amount. Please enter a valid number.");
+                return;
+            }
+
+            if (!int.TryParse(CardNumber.Text, out int cardNumber))
+            {
+                MessageBox.Show("Invalid card number. Please enter a valid integer.");
+                return;
+            }
+
+            // Proceed with donation
+            int eventId = selectedEvent.EventId;
+            Data dataAccess = new Data();
+            bool success = dataAccess.DonateToEvent(eventId, amount);
+
+            if (success)
+            {
+                MessageBox.Show("You donated successfully!");
+                NavigationService.GoBack();
+            }
+            else
+            {
+                MessageBox.Show("Failed to donate. Please try again.");
+                NavigationService?.GoBack();
+            }
         }
 
-        private void GoBack_Click(object sender, RoutedEventArgs e)
+       
+    private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
         }

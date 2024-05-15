@@ -23,6 +23,7 @@ namespace CharityApplication
         public EventPageUser()
         {
             InitializeComponent();
+            LoadEvents();
         }
 
         private void Donate_Click(object sender, RoutedEventArgs e, int eventId)
@@ -61,7 +62,7 @@ namespace CharityApplication
 
                 Button button = new Button();
                 button.Content = "Donate";
-                button.Click += (sender, e) => Donate_Click(sender, e, evt.EventId); // Pass the event to the click event handler
+                button.Click += (sender, e) => ShowDonatePage(evt); // Pass the event to the click event handler
                 button.Background = Brushes.White;
                 button.FontFamily = new FontFamily("Font/#Julius Sans One");
                 button.FontSize = 18;
@@ -76,6 +77,13 @@ namespace CharityApplication
 
                 eventsStackPanel.Children.Add(label);
             }
+            
+        }
+        private void ShowDonatePage(Event ev)
+        {
+            // Navigate to EventInfoAdmin page and pass event details
+            DonateForEvent donatePage = new DonateForEvent(ev);
+            NavigationService.Navigate(donatePage);
         }
     }
 }

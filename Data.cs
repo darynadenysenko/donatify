@@ -339,8 +339,41 @@ namespace CharityApplication
 
             return success;
         }
-    
-    public List<Event> GetAllEvents()
+        public bool DonateToEvent(int eventId, decimal donationAmount)
+        {
+            bool donationAdded = false;
+
+            // Open a connection to the database
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Retrieve the current amount raised for the event
+                string selectQuery = "SELECT CurrentAmountRaised FROM event WHERE EventID = @EventId";
+                MySqlCommand selectCommand = new MySqlCommand(selectQuery, connection);
+                selectCommand.Parameters.AddWithValue("@EventId", eventId);
+                decimal currentRaisedAmount = Convert.ToDecimal(selectCommand.ExecuteScalar());
+
+                // Add the donation amount to the current raised amount
+                decimal newRaisedAmount = currentRaisedAmount + donationAmount;
+
+                // Update the database with the new raised amount
+                string updateQuery = "UPDATE event SET CurrentAmountRaised = @RaisedAmount WHERE EventID = @EventId";
+                MySqlCommand updateCommand = new MySqlCommand(updateQuery, connection);
+                updateCommand.Parameters.AddWithValue("@RaisedAmount", newRaisedAmount);
+                updateCommand.Parameters.AddWithValue("@EventId", eventId);
+                int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                // Check if the donation was successfully added
+                donationAdded = rowsAffected > 0;
+            }
+
+            return donationAdded;
+        }
+
+
+
+        public List<Event> GetAllEvents()
         {
             List<Event> events = new List<Event>();
             try
