@@ -62,8 +62,8 @@ namespace CharityApplication
             
             if (admin != null && admin.Password == password)  
             {
-                
-                
+
+                AdminSession.Instance.SetCurrentAdmin(admin);
                 mainFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
             }
             else if(donator != null && donator.Password == password)

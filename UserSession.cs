@@ -8,16 +8,15 @@ namespace CharityApplication
 {
     public class UserSession
     {
-        // Singleton instance
+        
         private static UserSession instance;
 
         // Property to hold the current user
         public Donator CurrentUser { get; private set; }
-
-        // Private constructor to prevent direct instantiation
+       
         private UserSession() { }
 
-        // Public method to get the singleton instance
+        
         public static UserSession Instance
         {
             get

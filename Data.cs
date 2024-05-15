@@ -122,6 +122,33 @@ namespace CharityApplication
 
             return success;
         }
+        public bool DeleteEvent(int eventId)
+        {
+            bool success = false;
+
+            string query = "DELETE FROM event WHERE EventID = @EventID";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@EventID", eventId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    success = rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return success;
+        }
         public bool DeleteOrganisationAccount(int orgId)
         {
             bool success = false;
@@ -148,6 +175,20 @@ namespace CharityApplication
             }
 
             return success;
+        }
+        public string GetCurrentSessionType()
+        {
+            string sessionType = "";
+            if (AdminSession.Instance.CurrentAdmin != null)
+            {
+                sessionType = "Admin";
+            }
+            else if (OrganisationSession.Instance.CurrentOrganisation != null)
+            {
+                sessionType = "Organisation";
+            }
+            return sessionType;
+            
         }
 
         public List<Donator> FetchDonatorsFromDatabase()
@@ -369,6 +410,45 @@ namespace CharityApplication
             }
 
             return donationAdded;
+        }
+
+        public bool InsertDonation(decimal amount, int donatorID, int eventID, int receiverID, DateTime date)
+        {
+            try
+            {
+                // Create and open a connection
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // SQL query to insert donation data into the 'donation' table
+                    string query = "INSERT INTO donation (Amount, DonatorID, EventID, ReceiverID, Date) " +
+                                   "VALUES (@Amount, @DonatorID, @EventID, @ReceiverID, @Date)";
+
+                    // Create a MySqlCommand object
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Add parameters to the query to prevent SQL injection
+                        command.Parameters.AddWithValue("@Amount", amount);
+                        command.Parameters.AddWithValue("@DonatorID", donatorID);
+                        command.Parameters.AddWithValue("@EventID", eventID);
+                        command.Parameters.AddWithValue("@ReceiverID", receiverID);
+                        command.Parameters.AddWithValue("@Date", date);
+
+                        // Execute the query
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // If rows were affected, return true, otherwise false
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception appropriately
+                Console.WriteLine("Error storing donation data: " + ex.Message);
+                return false;
+            }
         }
 
 

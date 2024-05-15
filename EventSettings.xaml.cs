@@ -43,7 +43,8 @@ namespace CharityApplication
         }
         private void DeleteEvent_Click(object sender, RoutedEventArgs e)
         {
-            eventSettingsFrame.Navigate(new Uri("DeleteEvent.xaml", UriKind.Relative));
+            DeleteEvent deleteEvent = new DeleteEvent(selectedEvent);
+            NavigationService.Navigate(deleteEvent);
         }
        
         private void GoBack_Click(object sender, RoutedEventArgs e)
