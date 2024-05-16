@@ -27,7 +27,7 @@ namespace CharityApplication
         {
             InitializeComponent();
             
-            this.selectedEvent = ev;
+            selectedEvent = ev;
             EventName.Content = ev.Name;
         }
         private void DonateButton_Click(object sender, RoutedEventArgs e)

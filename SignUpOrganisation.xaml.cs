@@ -61,7 +61,8 @@ namespace CharityApplication
             if (success)
             {
                 MessageBox.Show("Registration successful! ");
-                OrganisationSession.Instance.SetCurrentOrganisation(newOrganisation);
+                Organisation currentOrganisation = dataAccess.GetOrganizationByEmail(email);
+                OrganisationSession.Instance.SetCurrentOrganisation(currentOrganisation);
                 signUpOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
             }
             else

@@ -10,9 +10,9 @@ namespace CharityApplication
     {
         public int Id { get; set; }
         public decimal Amount { get; set; }
-        public Donator Donator { get; set; }
+        public int DonatorId { get; set; }
         public Event Event { get; set; }
-        public  Organisation Receiver { get; set; }
+        public  int OrgId { get; set; }
         public  DateTime Date { get; set; }
 
     }

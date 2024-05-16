@@ -50,6 +50,11 @@ namespace CharityApplication
             //    NavigationService.GoBack();
             //}
         }
-        
+        private void DonationHistory_Click(object sender, RoutedEventArgs e)
+        {
+            HomeUserFrame.Navigate(new Uri("DonationHistory.xaml", UriKind.Relative));
+        }
+
+
     }
 }

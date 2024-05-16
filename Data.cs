@@ -414,10 +414,11 @@ namespace CharityApplication
 
         public bool InsertDonation(decimal amount, int donatorID, int eventID, int receiverID, DateTime date)
         {
-            try
-            {
-                // Create and open a connection
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+            //try
+            //{
+            bool donationSuccess = false;
+            // Create and open a connection
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
 
@@ -439,16 +440,17 @@ namespace CharityApplication
                         int rowsAffected = command.ExecuteNonQuery();
 
                         // If rows were affected, return true, otherwise false
-                        return rowsAffected > 0;
+                        donationSuccess = rowsAffected > 0;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Log or handle the exception appropriately
-                Console.WriteLine("Error storing donation data: " + ex.Message);
-                return false;
-            }
+            return donationSuccess;
+            //}
+            //catch (MySqlException ex)
+            //{
+            //    // Log or handle the exception appropriately
+            //    Console.WriteLine("Error storing donation data: " + ex.Message + ex.ErrorCode);
+            //    return false;
+            //}
         }
 
 
@@ -480,7 +482,8 @@ namespace CharityApplication
                                     Name = reader.GetString(reader.GetOrdinal("Name")),
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
-                                    Description=reader.GetString(reader.GetOrdinal("Description"))
+                                    Description=reader.GetString(reader.GetOrdinal("Description")),
+                                    OrgId=reader.GetInt32(reader.GetOrdinal("OrganizerID"))
                                 };
 
                                 events.Add(ev);
@@ -545,7 +548,51 @@ namespace CharityApplication
             }
             return events;
         }
+        public List<Donation> GetUserDonations(Donator donator)
+        {
+            List<Donation> donations = new List<Donation>();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
 
+                    // Define the SQL query
+                    string query = $"SELECT * FROM donation WHERE DonatorID = {donator.UserID}";
+
+                    // Create a command object
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and read the results
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Read each row and create an Event object
+                            while (reader.Read())
+                            {
+                                Donation donation = new Donation
+                                {
+                                    Amount = reader.GetInt32(reader.GetOrdinal("Amount")),
+                                    //DonatorId = reader.GetInt32(reader.GetOrdinal("DonatorID")),
+                                    Date = reader.GetDateTime(reader.GetOrdinal("Date")),
+                                    OrgId = reader.GetInt32(reader.GetOrdinal("ReceiverID")),
+                                };
+
+                                donations.Add(donation);
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return new List<Donation>(); // Return an empty list in case of an error
+            }
+            return donations;
+        }
         public bool UpdateUserInfo(Donator donator)
         {
             bool success = false;
@@ -779,12 +826,48 @@ namespace CharityApplication
                 }
             }
         }
-        public Event GetEventById(int eventid)
+        //public Event GetEventById(int eventid)
+        //{
+        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
+        //    {
+        //        MySqlCommand command = new MySqlCommand("SELECT * WHERE EventID = @EventID", connection);
+        //        command.Parameters.AddWithValue("@EventID", eventid);
+        //        try
+        //        {
+        //            connection.Open();
+        //            using (MySqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    return new Event
+        //                    {
+        //                        EventId = reader.GetInt32("EventID"),
+        //                        Name = reader.GetString("Name"),
+        //                        Description = reader.GetString("Description"),
+        //                        StartDate= reader.GetDateTime("StartDate"),
+        //                        EndDate=reader.GetDateTime("EndDate")
+
+        //                    };
+        //                }
+        //                else
+        //                {
+        //                    return null; // No matching 
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine("Failed to retrieve event: " + ex.Message);
+        //            return null;
+        //        }
+        //    }
+        //}
+        public Organisation GetOrgById(int orgid)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MySqlCommand command = new MySqlCommand("SELECT * WHERE EventID = @EventID", connection);
-                command.Parameters.AddWithValue("@EventID", eventid);
+                MySqlCommand command = new MySqlCommand("SELECT * FROM organization WHERE OrgID = @OrgID", connection);
+                command.Parameters.AddWithValue("@OrgID", orgid);
                 try
                 {
                     connection.Open();
@@ -792,13 +875,11 @@ namespace CharityApplication
                     {
                         if (reader.Read())
                         {
-                            return new Event
+                            return new Organisation
                             {
-                                EventId = reader.GetInt32("EventID"),
+                                OrganizationID = reader.GetInt32("OrgID"),
                                 Name = reader.GetString("Name"),
-                                Description = reader.GetString("Description"),
-                                StartDate= reader.GetDateTime("StartDate"),
-                                EndDate=reader.GetDateTime("EndDate")
+                                
 
                             };
                         }
@@ -810,7 +891,7 @@ namespace CharityApplication
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Failed to retrieve event: " + ex.Message);
+                    Console.WriteLine("Failed to retrieve organization: " + ex.Message);
                     return null;
                 }
             }

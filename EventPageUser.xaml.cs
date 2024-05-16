@@ -39,7 +39,8 @@ namespace CharityApplication
         }
         private void LoadEvents()
         {
-           
+
+            //var currentUser = UserSession.Instance.CurrentUser;
             Data dataAccess = new Data();
             List<Event> events = dataAccess.GetAllEvents();
 
@@ -48,18 +49,24 @@ namespace CharityApplication
             // Create a Label with a Button for each event and add it to the StackPanel
             foreach (var evt in events)
             {
-                Label label = new Label();
-                label.Background = Brushes.White;
-                label.HorizontalAlignment = HorizontalAlignment.Stretch;
-                label.Margin = new Thickness(10, 0, 10, 0);
-                label.VerticalAlignment = VerticalAlignment.Stretch;
-                label.HorizontalContentAlignment = HorizontalAlignment.Center;
-                label.VerticalContentAlignment = VerticalAlignment.Bottom;
-                label.Width = 300;
-                label.Height = 100;
-                label.Content = evt.Name + "\n" + evt.Description + "\n";
+                StackPanel eventContainer = new StackPanel();
+                eventContainer.Orientation = Orientation.Vertical;
+                eventContainer.HorizontalAlignment = HorizontalAlignment.Stretch;
+                eventContainer.VerticalAlignment = VerticalAlignment.Stretch;
 
+                // Create and configure the TextBlock
+                TextBlock textBlock = new TextBlock();
+                textBlock.Background = Brushes.White;
+                textBlock.Margin = new Thickness(10, 0, 10, 0);
+                textBlock.Height = 100;
+                textBlock.Text = evt.Name + "\n\n" + evt.StartDate + "-" + evt.EndDate + "\n\n" + evt.Description;
+                textBlock.TextWrapping = TextWrapping.Wrap;
+                textBlock.Width = 100; // Allow the TextBlock to stretch horizontally
+                textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
+                textBlock.Height = double.NaN; // Allow the TextBlock to stretch vertically
+                textBlock.VerticalAlignment = VerticalAlignment.Stretch;
 
+                // Create and configure the Button
                 Button button = new Button();
                 button.Content = "Donate";
                 button.Click += (sender, e) => ShowDonatePage(evt); // Pass the event to the click event handler
@@ -67,18 +74,19 @@ namespace CharityApplication
                 button.FontFamily = new FontFamily("Font/#Julius Sans One");
                 button.FontSize = 18;
                 button.Height = 33;
-                button.Width = 137;
+                button.Width = 100;
                 button.BorderBrush = Brushes.Transparent;
 
+                // Add the TextBlock and Button to the container
+                eventContainer.Children.Add(textBlock);
+                eventContainer.Children.Add(button);
 
-                //label.Content = evt.Name +"\n"+ evt.Description +"\n";
-                label.Content = button;
-
-
-                eventsStackPanel.Children.Add(label);
+                // Add the container (containing TextBlock and Button) to the eventsStackPanel
+                eventsStackPanel.Children.Add(eventContainer);
             }
-            
         }
+
+    
         private void ShowDonatePage(Event ev)
         {
             // Navigate to EventInfoAdmin page and pass event details
