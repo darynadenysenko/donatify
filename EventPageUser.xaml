@@ -19,30 +19,17 @@
             
 
         </Grid.RowDefinitions>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>-->
-
+        
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
-        <Label Content ="Events" Background="#B8B1AB" FontFamily="Font/#Julius Sans One" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,15" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <TextBox HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="2" Grid.Column="1" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
-        <Image Source="./SearchSign.png" Height="40" Width="40" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,130,0"/>
-        <!--<Label Background="White" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch"  HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" >
-            <Button Content="Donate" Click="Donate_Click" Foreground ="White" Background="#303030"  FontFamily="Font/#Julius Sans One" FontSize="18" Height="33" Width="137" BorderBrush="Transparent"/>
-        </Label>
-        <Label Background="White" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch"  HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" >
-            <Button Content="Donate" Click="Donate_Click" Foreground ="White" Background="#303030"  FontFamily="Font/#Julius Sans One" FontSize="18" Height="33" Width="137" BorderBrush="Transparent"/>
-        </Label>
-        <Label Background="White" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch"  HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" >
-            <Button Content="Donate" Click="Donate_Click" Foreground ="White" Background="#303030"  FontFamily="Font/#Julius Sans One" FontSize="18" Height="33" Width="137" BorderBrush="Transparent"/>
-        </Label>-->
-        <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Grid.Column="2" Width="35" Click="GoBack_Click"/>
+        <Label Content ="Events" Background="#B8B1AB" FontFamily="Font/#Julius Sans One" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,15" Grid.Row="1"/>
+        <TextBox x:Name="SearchTextBox" Text="Search" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" TextChanged="SearchTextBox_TextChanged"  HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="2" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
+        <Image Source="./SearchSign.png" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,130,0"/>
+       
+        <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
         <StackPanel x:Name="eventsStackPanel" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0">
             <!-- This StackPanel will contain the Labels with Buttons for each event -->
         </StackPanel>
-        <Frame x:Name="EventsUserFrame" Grid.RowSpan="4" Grid.ColumnSpan="3" />
+        <Frame x:Name="EventsUserFrame" Grid.RowSpan="4" />
 
     </Grid>
 </Page>
