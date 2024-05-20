@@ -24,22 +24,18 @@ namespace CharityApplication
         {
             InitializeComponent();
             LoadEvents();
-            Page_Loaded();
+            
+            
         }
-
         
+
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             EventsUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
 
         }
-        private void Page_Loaded()
-        {
-            SearchTextBox.GotFocus += SearchTextBox_GotFocus;
-            SearchTextBox.LostFocus += SearchTextBox_LostFocus;
-            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
-        }
+        
         private void LoadEvents()
         {
 
