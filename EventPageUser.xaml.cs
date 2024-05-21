@@ -48,7 +48,7 @@ namespace CharityApplication
             // Create a Label with a Button for each event and add it to the StackPanel
             foreach (var evt in events)
             {
-                if (evt.EndDate <= currentDate)
+                if (evt.EndDate >= currentDate)
                 {
                     StackPanel eventContainer = new StackPanel();
                     eventContainer.Orientation = Orientation.Vertical;
@@ -60,7 +60,7 @@ namespace CharityApplication
                     textBlock.Background = Brushes.White;
                     textBlock.Margin = new Thickness(10, 0, 10, 0);
                     textBlock.Height = 100;
-                    textBlock.Text = evt.Name + "\n\n" + evt.StartDate + "-" + evt.EndDate + "\n\n" + evt.Description + "\n\n" + evt.CurrentAmountRaised;
+                    textBlock.Text = evt.Name + "\n\n" + evt.StartDate + "-" + evt.EndDate + "\n\n" + evt.Description + "\n\n" + "Current amount raised: "+evt.CurrentAmountRaised;
                     textBlock.TextWrapping = TextWrapping.Wrap;
                     textBlock.Width = 100; // Allow the TextBlock to stretch horizontally
                     textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
