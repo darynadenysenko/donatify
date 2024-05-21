@@ -24,19 +24,18 @@ namespace CharityApplication
         {
             InitializeComponent();
             LoadEvents();
+            
+            
         }
+        
 
-        private void Donate_Click(object sender, RoutedEventArgs e, int eventId)
-        {
-            EventsUserFrame.Navigate(new Uri("DonateForEvent.xaml", UriKind.Relative));
-
-        }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             EventsUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
 
         }
+        
         private void LoadEvents()
         {
 
@@ -96,6 +95,54 @@ namespace CharityApplication
             // Navigate to EventInfoAdmin page and pass event details
             DonateForEvent donatePage = new DonateForEvent(ev);
             NavigationService.Navigate(donatePage);
+        }
+
+        private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            // If the default text is present, clear it
+            if (SearchTextBox.Text == "Search")
+            {
+                SearchTextBox.Text = "";
+            }
+        }
+
+        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // If there's no text after losing focus, set the placeholder
+            if (string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            {
+                SearchTextBox.Text = "Search";
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower(); // Convert the search text to lowercase for case-insensitive comparison
+
+            // Iterate through each child in the eventsStackPanel
+            foreach (UIElement child in eventsStackPanel.Children)
+            {
+                if (child is StackPanel eventContainer)
+                {
+                    // Find the TextBlock within the StackPanel
+                    TextBlock textBlock = eventContainer.Children.OfType<TextBlock>().FirstOrDefault();
+                    if (textBlock != null)
+                    {
+                        // Extract the event name from the TextBlock content (assuming the event name is the first line)
+                        string eventName = textBlock.Text.Split('\n')[0].ToLower();
+
+                        // If the event name contains the search text, make the StackPanel visible; otherwise, hide it
+                        if (eventName.Contains(searchText))
+                        {
+                            eventContainer.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            eventContainer.Visibility = Visibility.Collapsed;
+                        }
+                    }
+                }
+            }
         }
     }
 }
