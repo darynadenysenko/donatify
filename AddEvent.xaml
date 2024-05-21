@@ -34,8 +34,8 @@
         <TextBox x:Name="Description" FontFamily="Font/#Julius Sans One" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Height="100" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap" VerticalAlignment="Center" Width="250"/>
 
 
-        <DatePicker x:Name="startDatePicker" HorizontalAlignment="Center" Height="25" Background="#B8B1AB" Margin="200,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="250"/>
-        <DatePicker x:Name="endDatePicker" HorizontalAlignment="Center" Height="25" Background="#B8B1AB" Margin="200,0,0,0" Grid.Row="4"  VerticalAlignment="Center" Width="250"/>
+        <DatePicker x:Name="startDatePicker" SelectedDateChanged="StartDatePicker_SelectedDateChanged" HorizontalAlignment="Center" Height="25" Background="#B8B1AB" Margin="200,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="250"/>
+        <DatePicker x:Name="endDatePicker" SelectedDateChanged="EndDatePicker_SelectedDateChanged" HorizontalAlignment="Center" Height="25" Background="#B8B1AB" Margin="200,0,0,0" Grid.Row="4"  VerticalAlignment="Center" Width="250"/>
 
         <Button Click="SubmitButton_Click" Content="Submit" HorizontalAlignment="Center" Height="31" Grid.Row="6" VerticalAlignment="Center" Width="181" FontFamily="Font/#Julius Sans One" FontSize="16" Foreground ="White" Background="#303030" BorderBrush="Transparent"/>
 

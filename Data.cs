@@ -444,13 +444,7 @@ namespace CharityApplication
                     }
                 }
             return donationSuccess;
-            //}
-            //catch (MySqlException ex)
-            //{
-            //    // Log or handle the exception appropriately
-            //    Console.WriteLine("Error storing donation data: " + ex.Message + ex.ErrorCode);
-            //    return false;
-            //}
+            
         }
 
 
@@ -928,6 +922,28 @@ namespace CharityApplication
             }
 
             return success;
+        }
+        public bool DeleteEventsByOrganisationId(int orgId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "DELETE * FROM event WHERE OrganizerID = @OrgId";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrgId", orgId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception as needed
+                return false;
+            }
         }
 
     }

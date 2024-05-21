@@ -49,6 +49,11 @@ namespace CharityApplication
         }
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedStartDate == DateTime.MinValue || selectedEndDate == DateTime.MaxValue)
+            {
+                MessageBox.Show("Please select valid start and end dates.");
+                return;
+            }
             Data dataAccess = new Data();
             var newEvent = new Event();
             var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;

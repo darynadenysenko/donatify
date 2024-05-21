@@ -30,6 +30,8 @@ namespace CharityApplication
             string newPassword = NewPassword.Password;
             string confirmNewPassword = ConfirmPassword.Password;
 
+            var currentUser = UserSession.Instance.CurrentUser;
+
             int userId = UserSession.Instance.CurrentUser.UserID;
 
             string currentPassword = UserSession.Instance.CurrentUser.Password;
@@ -43,6 +45,7 @@ namespace CharityApplication
 
                     if (success)
                     {
+                        currentUser.Password = newPassword;
                         MessageBox.Show("Password changed successfully!");
                         ChangePasswordFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
                         

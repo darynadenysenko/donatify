@@ -30,6 +30,7 @@ namespace CharityApplication
             string newPassword = NewPassword.Password;
             string confirmNewPassword = ConfirmPassword.Password;
 
+            var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
             int OrgId = OrganisationSession.Instance.CurrentOrganisation.OrganizationID;
 
             string currentPassword = OrganisationSession.Instance.CurrentOrganisation.Password;
@@ -43,6 +44,7 @@ namespace CharityApplication
 
                     if (success)
                     {
+                        currentOrganisation.Password = newPassword;
                         MessageBox.Show("Password changed successfully!");
                         ChangePasswordOrgFrame.Navigate(new Uri("ProfileSettingsOrganisation.xaml", UriKind.Relative));
 

@@ -19,11 +19,7 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        
         
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <TextBlock Text ="Your Events" TextDecorations="Underline" Grid.ColumnSpan="3" FontFamily="Font/#Julius Sans One" FontSize="24"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
@@ -44,7 +40,7 @@
             <!-- This StackPanel will contain the Labels with Buttons for each event -->
         </StackPanel>
 
-        <Frame x:Name="EventsOrgFrame" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+        <Frame x:Name="EventsOrgFrame" Grid.RowSpan="4" />
 
     </Grid>
 </Page>
