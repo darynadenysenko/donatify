@@ -48,7 +48,7 @@ namespace CharityApplication
             // Create a Label with a Button for each event and add it to the StackPanel
             foreach (var evt in events)
             {
-                if (evt.EndDate <= currentDate)
+                if (evt.EndDate >= currentDate)
                 {
                     StackPanel eventContainer = new StackPanel();
                     eventContainer.Orientation = Orientation.Vertical;

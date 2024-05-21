@@ -441,28 +441,8 @@ namespace CharityApplication
                     int rowsAffected = command.ExecuteNonQuery();
 
                     // If rows were affected, return true, otherwise false
-                    if (rowsAffected > 0)
-                    {
-                        // SQL query to update the 'AmountRaised' field in the 'event' table
-                        string updateEventQuery = "UPDATE event SET CurrentAmountRaised = CurrentAmountRaised + @Amount WHERE EventID = @EventID";
-
-                        // Create a MySqlCommand object for updating the event's AmountRaised
-                        using (MySqlCommand updateCommand = new MySqlCommand(query, connection))
-                        {
-                            // Add parameters to the query to prevent SQL injection
-                            updateCommand.Parameters.AddWithValue("@Amount", amount);
-                            //updateCommand.Parameters.AddWithValue("@EventID", eventID);
-
-                            // Execute the query
-                            rowsAffected = updateCommand.ExecuteNonQuery();
-
-                            // If rows were affected, set donationSuccess to true
-                            if (rowsAffected > 0)
-                            {
-                                donationSuccess = true;
-                            }
-                        }
-                    }
+                    donationSuccess= rowsAffected > 0;
+                   
                 }
             }
             return donationSuccess;
