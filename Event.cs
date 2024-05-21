@@ -11,7 +11,7 @@ namespace CharityApplication
         public int EventId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal TargetAmount { get; set; }
+        
         public decimal CurrentAmountRaised { get; set; }
         public int OrgId { get; set; }
         public List<Donation> Donations { get; set; }

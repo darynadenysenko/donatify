@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace CharityApplication
 {
@@ -419,30 +420,51 @@ namespace CharityApplication
             bool donationSuccess = false;
             // Create and open a connection
             using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // SQL query to insert donation data into the 'donation' table
+                string query = "INSERT INTO donation (Amount, DonatorID, EventID, ReceiverID, Date) " +
+                               "VALUES (@Amount, @DonatorID, @EventID, @ReceiverID, @Date)";
+
+                // Create a MySqlCommand object
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    connection.Open();
+                    // Add parameters to the query to prevent SQL injection
+                    command.Parameters.AddWithValue("@Amount", amount);
+                    command.Parameters.AddWithValue("@DonatorID", donatorID);
+                    command.Parameters.AddWithValue("@EventID", eventID);
+                    command.Parameters.AddWithValue("@ReceiverID", receiverID);
+                    command.Parameters.AddWithValue("@Date", date);
 
-                    // SQL query to insert donation data into the 'donation' table
-                    string query = "INSERT INTO donation (Amount, DonatorID, EventID, ReceiverID, Date) " +
-                                   "VALUES (@Amount, @DonatorID, @EventID, @ReceiverID, @Date)";
+                    // Execute the query
+                    int rowsAffected = command.ExecuteNonQuery();
 
-                    // Create a MySqlCommand object
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    // If rows were affected, return true, otherwise false
+                    if (rowsAffected > 0)
                     {
-                        // Add parameters to the query to prevent SQL injection
-                        command.Parameters.AddWithValue("@Amount", amount);
-                        command.Parameters.AddWithValue("@DonatorID", donatorID);
-                        command.Parameters.AddWithValue("@EventID", eventID);
-                        command.Parameters.AddWithValue("@ReceiverID", receiverID);
-                        command.Parameters.AddWithValue("@Date", date);
+                        // SQL query to update the 'AmountRaised' field in the 'event' table
+                        string updateEventQuery = "UPDATE event SET CurrentAmountRaised = CurrentAmountRaised + @Amount WHERE EventID = @EventID";
 
-                        // Execute the query
-                        int rowsAffected = command.ExecuteNonQuery();
+                        // Create a MySqlCommand object for updating the event's AmountRaised
+                        using (MySqlCommand updateCommand = new MySqlCommand(query, connection))
+                        {
+                            // Add parameters to the query to prevent SQL injection
+                            updateCommand.Parameters.AddWithValue("@Amount", amount);
+                            //updateCommand.Parameters.AddWithValue("@EventID", eventID);
 
-                        // If rows were affected, return true, otherwise false
-                        donationSuccess = rowsAffected > 0;
+                            // Execute the query
+                            rowsAffected = updateCommand.ExecuteNonQuery();
+
+                            // If rows were affected, set donationSuccess to true
+                            if (rowsAffected > 0)
+                            {
+                                donationSuccess = true;
+                            }
+                        }
                     }
                 }
+            }
             return donationSuccess;
             
         }
@@ -477,7 +499,8 @@ namespace CharityApplication
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
                                     Description=reader.GetString(reader.GetOrdinal("Description")),
-                                    OrgId=reader.GetInt32(reader.GetOrdinal("OrganizerID"))
+                                    OrgId=reader.GetInt32(reader.GetOrdinal("OrganizerID")),
+                                    CurrentAmountRaised = reader.GetDecimal(reader.GetOrdinal("CurrentAmountRaised"))
                                 };
 
                                 events.Add(ev);
@@ -902,8 +925,8 @@ namespace CharityApplication
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", newEvent.Name);
                 command.Parameters.AddWithValue("@Description", newEvent.Description);
-                //command.Parameters.AddWithValue("@TargetAmount", newEvent.TargetAmount);
-                //command.Parameters.AddWithValue("@CurrentAmountRaised", newEvent.CurrentAmountRaised);
+                
+                command.Parameters.AddWithValue("@CurrentAmountRaised", 0);
                 command.Parameters.AddWithValue("@OrganizerID", newEvent.OrgId);
                 command.Parameters.AddWithValue("@StartDate", newEvent.StartDate);
                 command.Parameters.AddWithValue("@EndDate", newEvent.EndDate);

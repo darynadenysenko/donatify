@@ -22,7 +22,7 @@
         
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <Label Content ="Events" Background="#B8B1AB" FontFamily="Font/#Julius Sans One" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,15" Grid.Row="1"/>
-        <TextBox x:Name="SearchTextBox" Text="Search" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" TextChanged="SearchTextBox_TextChanged"  HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="2" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
+        <TextBox x:Name="SearchTextBox" Text="Search" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="2" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
         <Image Source="./SearchSign.png" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,130,0"/>
        
         <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
