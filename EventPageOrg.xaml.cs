@@ -53,20 +53,23 @@ namespace CharityApplication
                 TextBlock textBlock = new TextBlock();
                 textBlock.Background = Brushes.White;
                 textBlock.Margin = new Thickness(10, 0, 10, 0);
-                textBlock.Height = 100;
-                textBlock.Text = evt.Name + "\n\n" + evt.Description;
+                textBlock.Height = 200;
+                textBlock.Text = evt.Name + "\n\n" + DateOnly.FromDateTime(evt.StartDate) + " - " + DateOnly.FromDateTime(evt.EndDate) + "\n\n" + evt.Description;
                 textBlock.TextWrapping = TextWrapping.Wrap;
-                textBlock.Width = 100; // Allow the TextBlock to stretch horizontally
+                textBlock.Width = 200; // Allow the TextBlock to stretch horizontally
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
                 textBlock.Height = double.NaN; // Allow the TextBlock to stretch vertically
                 textBlock.VerticalAlignment = VerticalAlignment.Stretch;
+                textBlock.TextAlignment = TextAlignment.Center;
+                textBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
+                textBlock.FontSize = 18;
 
                 // Create and configure the Button
                 Button button = new Button();
                 button.Content = "Settings";
                 button.Click += (sender, e) => ShowEventInfo(evt); //EventSettings_Click(sender, e, evt); // Pass the event to the click event handler
                 button.Background = Brushes.White;
-                button.FontFamily = new FontFamily("Font/#Julius Sans One");
+                button.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
                 button.FontSize = 18;
                 button.Height = 33;
                 button.Width = 100;

@@ -30,8 +30,8 @@
         <TextBlock Text ="Description" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,230,0" VerticalAlignment="Center" Grid.Row="5"/>
 
 
-        <TextBox x:Name="Name" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="2" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="250"/>
-        <TextBox x:Name="Description" HorizontalAlignment="Center" Height="100" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap" VerticalAlignment="Center" Width="250"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Center" FontFamily="Font/#Julius Sans One" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="2" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="250"/>
+        <TextBox x:Name="Description" HorizontalAlignment="Center" FontFamily="Font/#Julius Sans One" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="100" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap" VerticalAlignment="Center" Width="250"/>
 
 
         <DatePicker x:Name="startDatePicker" HorizontalAlignment="Center" Height="25" Background="#B8B1AB" Margin="200,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="250"/>

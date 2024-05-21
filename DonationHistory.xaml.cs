@@ -63,8 +63,11 @@ namespace CharityApplication
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
                 textBlock.Height = double.NaN; // Allow the TextBlock to stretch vertically
                 textBlock.VerticalAlignment = VerticalAlignment.Stretch;
+                textBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
+                textBlock.TextAlignment = TextAlignment.Center;
 
-                
+
+
 
                 // Add the TextBlock and Button to the container
                 donationContainer.Children.Add(textBlock);

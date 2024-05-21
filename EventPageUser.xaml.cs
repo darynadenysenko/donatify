@@ -65,17 +65,21 @@ namespace CharityApplication
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
                 textBlock.Height = double.NaN; // Allow the TextBlock to stretch vertically
                 textBlock.VerticalAlignment = VerticalAlignment.Stretch;
+                textBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
+                textBlock.TextAlignment = TextAlignment.Center;
 
                 // Create and configure the Button
                 Button button = new Button();
                 button.Content = "Donate";
                 button.Click += (sender, e) => ShowDonatePage(evt); // Pass the event to the click event handler
                 button.Background = Brushes.White;
-                button.FontFamily = new FontFamily("Font/#Julius Sans One");
+                button.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
                 button.FontSize = 18;
                 button.Height = 33;
                 button.Width = 100;
                 button.BorderBrush = Brushes.Transparent;
+                button.HorizontalContentAlignment = HorizontalAlignment.Center;
+                button.VerticalContentAlignment = VerticalAlignment.Center;
 
                 // Add the TextBlock and Button to the container
                 eventContainer.Children.Add(textBlock);

@@ -32,10 +32,10 @@
         <TextBlock Text ="Mission" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center"  Margin="0,0,530,0" VerticalAlignment="Center" Grid.Row="5"/>
 
         <Button Content="Submit" Click="SubmitButton_Click" HorizontalAlignment="Center" Height="31" Grid.Row="6" VerticalAlignment="Center" Width="181" FontFamily="Font/#Julius Sans One" FontSize="16" Foreground ="White" Background="#303030" BorderBrush="Transparent"/>
-        <TextBox  x:Name="Name" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="2" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
-        <TextBox  x:Name="Email" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="3" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
-        <TextBox  x:Name="Phone" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="4" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
-        <TextBox  x:Name="Mission" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+        <TextBox  x:Name="Name" FontFamily="Font/#Julius Sans One" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="2" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+        <TextBox  x:Name="Email" FontFamily="Font/#Julius Sans One" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="3" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+        <TextBox  x:Name="Phone" FontFamily="Font/#Julius Sans One" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="4" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
+        <TextBox  x:Name="Mission" FontFamily="Font/#Julius Sans One" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Margin="200,0,0,0" Grid.Row="5" Background="#B8B1AB" TextWrapping="Wrap"  VerticalAlignment="Center" Width="350"/>
 
         <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
 

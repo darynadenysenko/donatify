@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <TextBlock Text ="Enter Password" TextWrapping="Wrap" FontFamily="Font/#Julius Sans One" FontSize="20" HorizontalAlignment="Center" Margin="0,0,300,0" VerticalAlignment="Center" Grid.Row="1" Width="135"/>
-        <PasswordBox x:Name="Password" HorizontalAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="1" Background="#B8B1AB"  VerticalAlignment="Center" Width="300"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="200,0,0,0" Grid.Row="1" Background="#B8B1AB"  VerticalAlignment="Center" Width="300"/>
         <Button Click="DeleteEvent_Click" Content="Delete Event" HorizontalAlignment="Center" VerticalAlignment="Center" Height ="50"  FontFamily="Font/#Julius Sans One" FontSize="16" Grid.Row="2"  Foreground ="White" Background="#303030" BorderBrush="Transparent" Width="200" />
         <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
         <Frame x:Name="DeleteEventFrame" Grid.RowSpan="3"/>
