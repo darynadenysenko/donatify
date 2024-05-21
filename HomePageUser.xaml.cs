@@ -23,6 +23,25 @@ namespace CharityApplication
         public HomePageUser()
         {
             InitializeComponent();
+            //this.organisations = organisations;
+            LoadOrgs();
+        }
+        private void LoadOrgs()
+        {
+            Data dataAccess = new Data();
+            List < Organisation > organisations = dataAccess.FetchOrganisationsFromDatabase();
+            foreach (var org in organisations)
+            {
+                Label label = new Label()
+                {
+                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B8B1AB")),
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    Margin = new Thickness(10, 0, 10, 0),
+                    Content=org.Name+"\n\n"+org.Mission
+                };
+                orgStackPanel.Children.Add(label);
+            }
         }
         private void ProfileUserButton_Click(object sender, RoutedEventArgs e)
         {
