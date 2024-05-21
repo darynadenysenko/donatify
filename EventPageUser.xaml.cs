@@ -115,26 +115,26 @@ namespace CharityApplication
             }
         }
 
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string searchText = SearchTextBox.Text.ToLower();
-            if(eventsStackPanel.Children.Count > 0)
-            {
-                foreach (UIElement child in eventsStackPanel.Children)
-                {
-                    if (child is StackPanel eventContainer)
-                    {
-                        TextBlock textBlock = eventContainer.Children.OfType<TextBlock>().FirstOrDefault();
-                        if (textBlock != null)
-                        {
-                            string eventName = textBlock.Text.Split('\n')[0].ToLower();
+        //private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    string searchText = SearchTextBox.Text.ToLower();
+        //    if(eventsStackPanel.Children.Count > 0)
+        //    {
+        //        foreach (UIElement child in eventsStackPanel.Children)
+        //        {
+        //            if (child is StackPanel eventContainer)
+        //            {
+        //                TextBlock textBlock = eventContainer.Children.OfType<TextBlock>().FirstOrDefault();
+        //                if (textBlock != null)
+        //                {
+        //                    string eventName = textBlock.Text.Split('\n')[0].ToLower();
 
-                            eventContainer.Visibility = eventName.Contains(searchText) ? Visibility.Visible : Visibility.Collapsed;
-                        }
-                    }
-                }
-            }
+        //                    eventContainer.Visibility = eventName.Contains(searchText) ? Visibility.Visible : Visibility.Collapsed;
+        //                }
+        //            }
+        //        }
+        //    }
             
-        }
+        //}
     }
 }
