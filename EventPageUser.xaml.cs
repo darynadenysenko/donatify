@@ -117,32 +117,24 @@ namespace CharityApplication
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string searchText = SearchTextBox.Text.ToLower(); // Convert the search text to lowercase for case-insensitive comparison
-
-            // Iterate through each child in the eventsStackPanel
-            foreach (UIElement child in eventsStackPanel.Children)
+            string searchText = SearchTextBox.Text.ToLower();
+            if(eventsStackPanel.Children.Count > 0)
             {
-                if (child is StackPanel eventContainer)
+                foreach (UIElement child in eventsStackPanel.Children)
                 {
-                    // Find the TextBlock within the StackPanel
-                    TextBlock textBlock = eventContainer.Children.OfType<TextBlock>().FirstOrDefault();
-                    if (textBlock != null)
+                    if (child is StackPanel eventContainer)
                     {
-                        // Extract the event name from the TextBlock content (assuming the event name is the first line)
-                        string eventName = textBlock.Text.Split('\n')[0].ToLower();
+                        TextBlock textBlock = eventContainer.Children.OfType<TextBlock>().FirstOrDefault();
+                        if (textBlock != null)
+                        {
+                            string eventName = textBlock.Text.Split('\n')[0].ToLower();
 
-                        // If the event name contains the search text, make the StackPanel visible; otherwise, hide it
-                        if (eventName.Contains(searchText))
-                        {
-                            eventContainer.Visibility = Visibility.Visible;
-                        }
-                        else
-                        {
-                            eventContainer.Visibility = Visibility.Collapsed;
+                            eventContainer.Visibility = eventName.Contains(searchText) ? Visibility.Visible : Visibility.Collapsed;
                         }
                     }
                 }
             }
+            
         }
     }
 }
