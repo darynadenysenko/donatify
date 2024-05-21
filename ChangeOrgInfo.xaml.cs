@@ -28,10 +28,25 @@ namespace CharityApplication
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
-            currentOrganisation.Name = Name.Text;
-            currentOrganisation.Email = Email.Text;
-            currentOrganisation.Phone = Phone.Text;
-            currentOrganisation.Mission = Mission.Text;
+            if (!string.IsNullOrWhiteSpace(Name.Text))
+            {
+                currentOrganisation.Name = Name.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Email.Text))
+            {
+                currentOrganisation.Email = Email.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Phone.Text))
+            {
+                currentOrganisation.Phone = Phone.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Mission.Text))
+            {
+                currentOrganisation.Mission = Mission.Text;
+            }
             Data dataAccess = new Data();
             bool success = dataAccess.UpdateOrganisationInfo(currentOrganisation);
 

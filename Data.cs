@@ -953,7 +953,7 @@ namespace CharityApplication
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "DELETE * FROM event WHERE OrganizerID = @OrgId";
+                    string query = "DELETE FROM event WHERE OrganizerID = @OrgId";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@OrgId", orgId);
