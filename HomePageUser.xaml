@@ -35,12 +35,12 @@
         <Button Content="Charity Events" Click="EventsUser_Click" Background="White" Grid.ColumnSpan="3" BorderBrush="Transparent" HorizontalAlignment="Stretch" FontFamily="Font/#Julius Sans One" FontSize="35"  Margin="0,10,0,15" Grid.Row="2"/>
 
         <!-- Fourth row content -->
-        
+        <StackPanel  x:Name="orgStackPanel" Grid.Row="3" Orientation="Vertical">
 
-            <Label Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" />
-        <Label Background="#B8B1AB" HorizontalAlignment="Stretch"  Margin="10,0,10,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch"  />
-        <Label Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Stretch" />
-        
+        </StackPanel>
+
+
+
         <!-- Frame for dynamic content -->
         <Frame x:Name="HomeUserFrame" Grid.RowSpan="6" Grid.ColumnSpan="3" />
     </Grid>
