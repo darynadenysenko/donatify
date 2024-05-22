@@ -23,23 +23,23 @@ namespace CharityApplication
     {
         //private int selectedEventId;
 
-       /* public int SelectedEventId
-        {
-            get { return selectedEventId; }
-        }*/
+        /* public int SelectedEventId
+         {
+             get { return selectedEventId; }
+         }*/
         public EventPageOrg()
         {
             InitializeComponent();
             LoadEvents();
         }
-        
+
         private void LoadEvents()
         {
             var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
             Data dataAccess = new Data();
             List<Event> events = dataAccess.GetOrgEvents(currentOrganisation);
-            
-            
+
+
 
             // Create a Label with a Button for each event and add it to the StackPanel
             foreach (var evt in events)
@@ -94,9 +94,9 @@ namespace CharityApplication
         {
             EventsOrgFrame.Navigate(new Uri("AddEvent.xaml", UriKind.Relative));
 
-        }  
+        }
         private void EventSettings_Click(object sender, RoutedEventArgs e, Event selectedEvent/*int eventId*/)
-         {
+        {
             EventSettings eventSettingsPage = new EventSettings(selectedEvent); // Pass the selected event object
             NavigationService.Navigate(eventSettingsPage);
             //   selectedEventId = eventId;

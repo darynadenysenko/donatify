@@ -23,12 +23,17 @@
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <Label Content ="Events" Background="#B8B1AB" FontFamily="Font/#Julius Sans One" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,15" Grid.Row="1"/>
         <TextBox x:Name="SearchTextBox" Text="Search" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="2" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
-        <Image Source="./SearchSign.png" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,130,0"/>
-       
+        <Button Click="SearchButton_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#D7d7d7" Grid.Row="2" Margin="0,0,130,0"  BorderBrush="Transparent">
+            <Button.Content>
+                <Image Source="./SearchSign.png" 
+                       Height="40" Width="40"/>
+            </Button.Content>
+        </Button>
         <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
-        <StackPanel x:Name="eventsStackPanel" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0">
-            <!-- This StackPanel will contain the Labels with Buttons for each event -->
-        </StackPanel>
+        <StackPanel x:Name="eventsStackPanel" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0"/>
+        <!-- This StackPanel will contain the Labels with Buttons for each event -->
+        <TextBlock x:Name="NoEventsTextBlock" Text="No events found"  FontFamily="Font/#Julius Sans One" Foreground="Black" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Grid.Row="3"/>
+
         <Frame x:Name="EventsUserFrame" Grid.RowSpan="4" />
 
     </Grid>

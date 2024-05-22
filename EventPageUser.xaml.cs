@@ -20,14 +20,16 @@ namespace CharityApplication
     /// </summary>
     public partial class EventPageUser : Page
     {
+        private List<Event> allEvents;
+
         public EventPageUser()
         {
             InitializeComponent();
             LoadEvents();
-            
-            
+
+
         }
-        
+
 
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
@@ -35,69 +37,95 @@ namespace CharityApplication
             EventsUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
 
         }
-        
         private void LoadEvents()
         {
-
-            //var currentUser = UserSession.Instance.CurrentUser;
             Data dataAccess = new Data();
-            List<Event> events = dataAccess.GetAllEvents();
+            allEvents = dataAccess.GetAllEvents();
+            DisplayEvents(allEvents);
+        }
 
+
+        private void DisplayEvents(List<Event> events)
+        {
+            eventsStackPanel.Children.Clear();
             DateTime currentDate = DateTime.Now;
 
-            // Create a Label with a Button for each event and add it to the StackPanel
-            foreach (var evt in events)
+            if (events.Count == 0)
             {
-                if (evt.EndDate >= currentDate)
+                NoEventsTextBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NoEventsTextBlock.Visibility = Visibility.Collapsed;
+
+                foreach (var evt in events)
                 {
-                    StackPanel eventContainer = new StackPanel();
-                    eventContainer.Orientation = Orientation.Vertical;
-                    eventContainer.HorizontalAlignment = HorizontalAlignment.Stretch;
-                    eventContainer.VerticalAlignment = VerticalAlignment.Stretch;
+                    if (evt.EndDate >= currentDate)
+                    {
+                        StackPanel eventContainer = new StackPanel
+                        {
+                            Orientation = Orientation.Vertical,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            VerticalAlignment = VerticalAlignment.Stretch
+                        };
 
-                    // Create and configure the TextBlock
-                    TextBlock textBlock = new TextBlock();
-                    textBlock.Background = Brushes.White;
-                    textBlock.Margin = new Thickness(10, 0, 10, 0);
-                    textBlock.Height = 100;
-                    textBlock.Text = evt.Name + "\n\n" + evt.StartDate + "-" + evt.EndDate + "\n\n" + evt.Description + "\n\n" + "Current amount raised: "+evt.CurrentAmountRaised;
-                    textBlock.TextWrapping = TextWrapping.Wrap;
-                    textBlock.Width = 100; // Allow the TextBlock to stretch horizontally
-                    textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
-                    textBlock.Height = double.NaN; // Allow the TextBlock to stretch vertically
-                    textBlock.VerticalAlignment = VerticalAlignment.Stretch;
-                    textBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
-                    textBlock.TextAlignment = TextAlignment.Center;
+                        TextBlock textBlock = new TextBlock
+                        {
+                            Background = Brushes.White,
+                            Margin = new Thickness(10, 0, 10, 0),
+                            Text = $"{evt.Name}\n\n{DateOnly.FromDateTime(evt.StartDate)} - {DateOnly.FromDateTime(evt.EndDate)}\n\n{evt.Description}\n\nCurrent amount raised: {evt.CurrentAmountRaised}",
+                            TextWrapping = TextWrapping.Wrap,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            VerticalAlignment = VerticalAlignment.Stretch,
+                            FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One"),
+                            TextAlignment = TextAlignment.Center
+                        };
 
-                    // Create and configure the Button
-                    Button button = new Button();
-                    button.Content = "Donate";
-                    button.Click += (sender, e) => ShowDonatePage(evt); // Pass the event to the click event handler
-                    button.Background = Brushes.White;
-                    button.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
-                    button.FontSize = 18;
-                    button.Height = 33;
-                    button.Width = 100;
-                    button.BorderBrush = Brushes.Transparent;
-                    button.HorizontalContentAlignment = HorizontalAlignment.Center;
-                    button.VerticalContentAlignment = VerticalAlignment.Center;
+                        Button button = new Button
+                        {
+                            Content = "Donate",
+                            Background = Brushes.White,
+                            FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One"),
+                            FontSize = 18,
+                            Height = 33,
+                            Width = 100,
+                            BorderBrush = Brushes.Transparent,
+                            HorizontalContentAlignment = HorizontalAlignment.Center,
+                            VerticalContentAlignment = VerticalAlignment.Center
+                        };
+                        button.Click += (sender, e) => ShowDonatePage(evt);
 
-                    // Add the TextBlock and Button to the container
-                    eventContainer.Children.Add(textBlock);
-                    eventContainer.Children.Add(button);
+                        eventContainer.Children.Add(textBlock);
+                        eventContainer.Children.Add(button);
 
-                    // Add the container (containing TextBlock and Button) to the eventsStackPanel
-                    eventsStackPanel.Children.Add(eventContainer);
+                        eventsStackPanel.Children.Add(eventContainer);
+                    }
                 }
             }
         }
 
-    
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower();
+
+            if (string.IsNullOrWhiteSpace(searchText) || searchText == "search")
+            {
+                DisplayEvents(allEvents);
+            }
+            else
+            {
+                var filteredEvents = allEvents.Where(evt => evt.Name.ToLower().Contains(searchText) || evt.Description.ToLower().Contains(searchText)).ToList();
+                DisplayEvents(filteredEvents);
+            }
+        }
+
+
+
         private void ShowDonatePage(Event ev)
         {
             // Navigate to EventInfoAdmin page and pass event details
             DonateForEvent donatePage = new DonateForEvent(ev);
-            NavigationService.Navigate(donatePage);
+            EventsUserFrame.Navigate(donatePage);
         }
 
         private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -118,26 +146,26 @@ namespace CharityApplication
             }
         }
 
-        //private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    string searchText = SearchTextBox.Text.ToLower();
-        //    if(eventsStackPanel.Children.Count > 0)
-        //    {
-        //        foreach (UIElement child in eventsStackPanel.Children)
-        //        {
-        //            if (child is StackPanel eventContainer)
-        //            {
-        //                TextBlock textBlock = eventContainer.Children.OfType<TextBlock>().FirstOrDefault();
-        //                if (textBlock != null)
-        //                {
-        //                    string eventName = textBlock.Text.Split('\n')[0].ToLower();
+        /*private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower();
+            if(eventsStackPanel.Children.Count > 0)
+            {
+                foreach (UIElement child in eventsStackPanel.Children)
+                {
+                    if (child is StackPanel eventContainer)
+                    {
+                        TextBlock textBlock = eventContainer.Children.OfType<TextBlock>().FirstOrDefault();
+                        if (textBlock != null)
+                        {
+                            string eventName = textBlock.Text.Split('\n')[0].ToLower();
 
-        //                    eventContainer.Visibility = eventName.Contains(searchText) ? Visibility.Visible : Visibility.Collapsed;
-        //                }
-        //            }
-        //        }
-        //    }
-            
-        //}
+                            eventContainer.Visibility = eventName.Contains(searchText) ? Visibility.Visible : Visibility.Collapsed;
+                        }
+                    }
+                }
+            }
+
+        }*/
     }
 }
