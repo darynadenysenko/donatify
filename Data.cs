@@ -8,6 +8,8 @@ using System.Threading;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using System.Transactions;
+using System.Windows;
+using System.Data;
 
 namespace CharityApplication
 {
@@ -742,7 +744,7 @@ namespace CharityApplication
                 {
                     if (reader.Read())
                     {
-                        int orgID = reader.GetInt32("OrgID");
+                        //int orgID = reader.GetInt32("OrgID");
                         string typeName = GetTypeNameById(reader.GetInt32("TypeID")); // Assuming TypeID is stored in the Organization table
 
                         // Parse the type name to the corresponding enum value
@@ -750,14 +752,17 @@ namespace CharityApplication
 
                         return new Organisation
                         {
-                            OrganizationID = orgID,
+                            OrganizationID = reader.GetInt32("OrgID"),
                             Name = reader.GetString("Name"),
                             Phone = reader.GetString("Phone"),
                             Email = reader.GetString("Email"),
                             Password = reader.GetString("Password"),
                             Mission = reader.GetString("Mission"),
-                            Type = type
-                        };
+                            Type = type,
+                            ProfilePicture = reader.IsDBNull("ProfilePicture") ? null : reader.GetBytes("ProfilePicture")
+
+
+                    };
                     }
                     return null; // No organization with this email
                 }
@@ -948,6 +953,32 @@ namespace CharityApplication
                 return false;
             }
         }
+        public bool SaveProfilePictureToDatabase(int organizationId, byte[] imageData)
+        {
+
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "UPDATE organization SET ProfilePicture = @ProfilePicture WHERE OrgID = @ID";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ProfilePicture", imageData);
+                        command.Parameters.AddWithValue("@OrgID", organizationId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception as needed
+
+                return false;
+            }
+        }
+
 
     }
 }
