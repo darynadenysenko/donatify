@@ -38,7 +38,7 @@
         <DatePicker x:Name="endDatePicker" HorizontalAlignment="Center" Height="25" Background="#B8B1AB" Margin="200,0,0,0" Grid.Row="4"  VerticalAlignment="Center" Width="250"/>
 
         <Button Click="SubmitButton_Click" Content="Submit" HorizontalAlignment="Center" Height="31" Grid.Row="6" VerticalAlignment="Center" Width="181" FontFamily="Font/#Julius Sans One" FontSize="16" Foreground ="White" Background="#303030" BorderBrush="Transparent"/>
-        <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" />
+        <Button Content="&lt;" Click="GoBack_Click" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" />
 
         <Frame x:Name="changeEventFrame" Grid.RowSpan="7"/>
         

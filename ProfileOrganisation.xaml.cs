@@ -48,7 +48,17 @@ namespace CharityApplication
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            HomeOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
+            Data data = new Data();
+            string currentSession = data.GetCurrentSessionType();
+            if (currentSession == "Organisation")
+            {
+                HomeOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
+
+            }
+            else if(currentSession == "Admin")
+            {
+                HomeOrgFrame.Navigate(new Uri("ListOfOrganizationsAdmin.xaml", UriKind.Relative));
+            }
         }
         private void UploadPicture_Click(object sender, RoutedEventArgs e)
         {

@@ -103,7 +103,8 @@ namespace CharityApplication
                         Button button = new Button
                         {
                             Content = "Donate",
-                            Background = Brushes.LightBlue,
+                            Background = Brushes.Black,
+                            Foreground = Brushes.White,
                             FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One"),
                             FontSize = 18,
                             Height = 33,

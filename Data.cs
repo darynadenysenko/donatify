@@ -190,6 +190,10 @@ namespace CharityApplication
             {
                 sessionType = "Organisation";
             }
+            else
+            {
+                sessionType = "Donator";
+            }
             return sessionType;
             
         }
@@ -300,11 +304,18 @@ namespace CharityApplication
                                 int id = Convert.ToInt32(reader["EventID"]);
                                 string name = reader["Name"].ToString();
                                 string description = reader["Description"].ToString();
+                                DateTime startdate = Convert.ToDateTime(reader["StartDate"]);
+                                DateTime enddate = Convert.ToDateTime(reader["EndDate"]);
+                                decimal amount = Convert.ToDecimal(reader["CurrentAmountRaised"]);
+
                                 Event ev = new Event
                                 {
                                     Name = name,
                                     EventId = id,
-                                    Description = description
+                                    Description = description,
+                                    StartDate = startdate,
+                                    EndDate = enddate,
+                                    CurrentAmountRaised = amount
                                 };
 
                                 events.Add(ev);
@@ -766,7 +777,7 @@ namespace CharityApplication
                             Password = reader.GetString("Password"),
                             Mission = reader.GetString("Mission"),
                             Type = type,
-                            ProfilePicture = reader.IsDBNull("ProfilePicture") ? null : reader.GetBytes("ProfilePicture")
+                            //ProfilePicture = reader.IsDBNull("ProfilePicture") ? null : reader.GetBytes("ProfilePicture")
 
 
                     };

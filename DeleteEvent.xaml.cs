@@ -49,7 +49,7 @@ namespace CharityApplication
                 if (success)
                 {
                     MessageBox.Show("Event deleted successfully!");
-                    NavigationService.GoBack();
+                    DeleteEventFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
                 }
                 else
                 {
@@ -67,7 +67,8 @@ namespace CharityApplication
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            DeleteEventFrame.Navigate(new Uri("EventSettings.xaml", UriKind.Relative));
+            EventSettings settings = new EventSettings(selectedEvent);
+            DeleteEventFrame.Navigate(settings);
 
         }
     }

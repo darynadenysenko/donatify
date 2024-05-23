@@ -38,18 +38,29 @@ namespace CharityApplication
         private void EventSettings_Click(object sender, RoutedEventArgs e)
         {
             ChangeEventInfo changeEventInfoPage = new ChangeEventInfo(selectedEvent);
-            NavigationService.Navigate(changeEventInfoPage);
+            eventSettingsFrame.Navigate(changeEventInfoPage);
 
         }
         private void DeleteEvent_Click(object sender, RoutedEventArgs e)
         {
             DeleteEvent deleteEvent = new DeleteEvent(selectedEvent);
-            NavigationService.Navigate(deleteEvent);
+           eventSettingsFrame.Navigate(deleteEvent);
         }
        
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            eventSettingsFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
+            Data data = new Data();
+            string currentSession = data.GetCurrentSessionType();
+            if (currentSession == "Organisation")
+            {
+                eventSettingsFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
+
+            }
+            else if (currentSession == "Admin")
+            {
+                EventInfoAdmin eventInfoPage = new EventInfoAdmin(selectedEvent);
+                eventSettingsFrame.Navigate(eventInfoPage);
+            }
 
         }
     }

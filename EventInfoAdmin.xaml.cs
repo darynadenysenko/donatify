@@ -31,17 +31,22 @@ namespace CharityApplication
 
         private void PopulateEventDetails()
         {
-            // Populate the UI elements with event details
+            
             eventNameTextBlock.Text = selectedEvent.Name;
-            eventDatesTextBlock.Text = $"{selectedEvent.StartDate} - {selectedEvent.EndDate}";
+            eventDatesTextBlock.Text = $"{DateOnly.FromDateTime(selectedEvent.StartDate)} - {DateOnly.FromDateTime(selectedEvent.EndDate)}";
             eventDescriptionTextBlock.Content = selectedEvent.Description;
-            // Populate other details as needed
+            amountTextBlock.Text = $"{selectedEvent.CurrentAmountRaised} €";
+            
         }
         private void SettingsEventAdmin_Click(object sender, RoutedEventArgs e)
         {
-            // Navigate to EventSettings page and pass the selected event
+            
             EventSettings eventSettingsPage = new EventSettings(selectedEvent);
-            NavigationService.Navigate(eventSettingsPage);
+            EventInfoAdminFrame.Navigate(eventSettingsPage);
+        }
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            EventInfoAdminFrame.Navigate(new Uri("ListOfEventsAdmin.xaml", UriKind.Relative));
         }
 
     }

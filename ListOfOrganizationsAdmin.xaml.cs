@@ -24,19 +24,43 @@ namespace CharityApplication
         public ListOfOrganizationsAdmin()
         {
             InitializeComponent();
-            this.organisations = organisations;
-            PopulateOrganisations();
+            Data data = new Data();
+            this.organisations = data.FetchOrganisationsFromDatabase();
+            DisplayOrganisations(organisations);
         }
-        private void PopulateOrganisations()
+        private void DisplayOrganisations(List<Organisation> organisations)
         {
-            Data dataAccess = new Data();
-            organisations = dataAccess.FetchOrganisationsFromDatabase();
-            foreach (var org in organisations)
+            orgWrapPanel.Children.Clear();
+            if (organisations.Count == 0)
             {
-                Button button = new Button();
-                button.Content = org.Name;
-                button.Click += (sender, e) => ShowOrgProfile(org);
-                orgStackPanel.Children.Add(button);
+                NoOrgTextBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NoOrgTextBlock.Visibility = Visibility.Collapsed;
+
+
+                foreach (var org in organisations)
+                {
+                    Button button = new Button();
+                    button.Content = org.Name;
+                    button.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
+                    button.FontSize = 22;
+                    button.Padding = new Thickness(10,10,10,10);
+                    button.Margin = new Thickness(0, 5, 0, 0); 
+                    button.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B8B1AB")); 
+                    button.Foreground = Brushes.Black; 
+                    button.BorderThickness = new Thickness(1); 
+                    button.BorderBrush = Brushes.Gray; 
+                    button.HorizontalContentAlignment = HorizontalAlignment.Center; 
+                    button.VerticalContentAlignment = VerticalAlignment.Center; 
+                    button.HorizontalAlignment = HorizontalAlignment.Center; 
+                    button.Click += (sender, e) => ShowOrgProfile(org);
+                    button.Height = 70;
+                    button.Width = 1500; 
+                    orgWrapPanel.Children.Add(button);
+
+                }
             }
         }
         private void ShowOrgProfile(Organisation organisation)
@@ -45,7 +69,60 @@ namespace CharityApplication
             OrganisationSession.Instance.SetCurrentOrganisation(organisation);
 
             // Navigate to the ProfileUser page
-            NavigationService.Navigate(new Uri("ProfileOrganisation.xaml", UriKind.Relative));
+            ListOfOrganizationsFrame.Navigate(new Uri("ProfileOrganisation.xaml", UriKind.Relative));
+        }
+        private void TypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TypeComboBox.SelectedItem != null)
+            {
+                string selectedType = ((ComboBoxItem)TypeComboBox.SelectedItem).Content.ToString();
+                if (selectedType == "All types")
+                {
+                    DisplayOrganisations(organisations);
+                }
+                else
+                {
+                    Types type = (Types)Enum.Parse(typeof(Types), selectedType.Replace(" ", ""));
+                    var filteredOrganisations = organisations.Where(org => org.Type == type).ToList();
+                    DisplayOrganisations(filteredOrganisations);
+
+                }
+            }
+        }
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            ListOfOrganizationsFrame.Navigate(new Uri("MainPageAdmin.xaml", UriKind.Relative));
+        }
+        private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            // If the default text is present, clear it
+            if (SearchTextBox.Text == "Search")
+            {
+                SearchTextBox.Text = "";
+            }
+        }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower();
+
+            if (string.IsNullOrWhiteSpace(searchText) || searchText == "search")
+            {
+                DisplayOrganisations(organisations);
+            }
+            else
+            {
+                var filteredOrganisations = organisations.Where(org => org.Name.ToLower().Contains(searchText)).ToList();
+                DisplayOrganisations(filteredOrganisations);
+            }
+        }
+
+        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // If there's no text after losing focus, set the placeholder
+            if (string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            {
+                SearchTextBox.Text = "Search";
+            }
         }
     }
     

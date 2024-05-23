@@ -35,54 +35,71 @@ namespace CharityApplication
             List<Event> events = dataAccess.GetOrgEvents(currentOrganisation);
 
 
-
+            DateTime currentDate = DateTime.Now;
             // Create a Label with a Button for each event and add it to the StackPanel
             foreach (var evt in events)
             {
-                StackPanel eventContainer = new StackPanel();
-                eventContainer.Orientation = Orientation.Vertical;
-                eventContainer.HorizontalAlignment = HorizontalAlignment.Stretch;
-                eventContainer.VerticalAlignment = VerticalAlignment.Stretch;
+                if (evt.EndDate >= currentDate)
+                {
+                    // Create a border for the event
+                    Border eventBorder = new Border();
+                    eventBorder.Background = Brushes.White;
+                    eventBorder.BorderBrush = Brushes.LightGray;
+                    eventBorder.BorderThickness = new Thickness(1);
+                    eventBorder.CornerRadius = new CornerRadius(10);
+                    eventBorder.Padding = new Thickness(10);
+                    eventBorder.Margin = new Thickness(10);
+                    eventBorder.Width = 300; 
+                    eventBorder.Height = 250;
+                   
+                    StackPanel eventPanel = new StackPanel();
+                    eventPanel.Orientation = Orientation.Vertical;
 
-                // Create and configure the TextBlock
-                TextBlock textBlock = new TextBlock();
-                textBlock.Background = Brushes.White;
-                textBlock.Margin = new Thickness(10, 0, 10, 0);
-                textBlock.Height = 200;
-                textBlock.Text = evt.Name + "\n\n" + DateOnly.FromDateTime(evt.StartDate) + " - " + DateOnly.FromDateTime(evt.EndDate) + "\n\n" + evt.Description;
-                textBlock.TextWrapping = TextWrapping.Wrap;
-                textBlock.Width = 200; // Allow the TextBlock to stretch horizontally
-                textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
-                textBlock.Height = double.NaN; // Allow the TextBlock to stretch vertically
-                textBlock.VerticalAlignment = VerticalAlignment.Stretch;
-                textBlock.TextAlignment = TextAlignment.Center;
-                textBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
-                textBlock.FontSize = 18;
+                    // Create and configure the TextBlock for event information
+                    TextBlock textBlock = new TextBlock();
+                    textBlock.Text = $"Event: {evt.Name}\n\nDate: {DateOnly.FromDateTime(evt.StartDate)} - {DateOnly.FromDateTime(evt.EndDate)}\n\nCurrent amount: {evt.CurrentAmountRaised}€\n\nDescription: {evt.Description}";
+                    textBlock.TextWrapping = TextWrapping.Wrap;
+                    textBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
+                    textBlock.FontSize = 18;
+                    textBlock.TextAlignment = TextAlignment.Center;
+                    textBlock.Background = Brushes.White;
 
-                // Create and configure the Button
-                Button button = new Button();
-                button.Content = "Settings";
-                button.Click += (sender, e) => ShowEventInfo(evt); //EventSettings_Click(sender, e, evt); // Pass the event to the click event handler
-                button.Background = Brushes.White;
-                button.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
-                button.FontSize = 18;
-                button.Height = 33;
-                button.Width = 100;
-                button.BorderBrush = Brushes.Transparent;
+                    // Create a ScrollViewer for event information
+                    ScrollViewer scrollViewer = new ScrollViewer();
+                    scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                    scrollViewer.Content = textBlock;
+                    scrollViewer.Height = 180;
 
-                // Add the TextBlock and Button to the container
-                eventContainer.Children.Add(textBlock);
-                eventContainer.Children.Add(button);
+                    // Create and configure the Button for event settings
+                    Button button = new Button();
+                    button.Content = "Settings";
+                    button.Click += (sender, e) => ShowEventInfo(evt);
+                    button.Margin = new Thickness(0, 10, 0, 0);
+                    button.Background = Brushes.Black;
+                    button.Foreground = Brushes.White;
+                    button.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
+                    button.FontSize = 18;
+                    button.Height = 33;
+                    button.Width = 100;
+                    button.BorderBrush = Brushes.Transparent;
 
-                // Add the container (containing TextBlock and Button) to the eventsStackPanel
-                eventsStackPanel.Children.Add(eventContainer);
+                    // Add the ScrollViewer and Button to the eventPanel
+                    eventPanel.Children.Add(scrollViewer);
+                    eventPanel.Children.Add(button);
+
+                    // Set the StackPanel as the content of the eventBorder
+                    eventBorder.Child = eventPanel;
+
+                    // Add the eventBorder to the eventsWrapPanel
+                    eventsWrapPanel.Children.Add(eventBorder);
+                }
             }
         }
         private void ShowEventInfo(Event ev)
         {
             // Navigate to EventInfoAdmin page and pass event details
             EventSettings eventSettingsPage = new EventSettings(ev);
-            NavigationService.Navigate(eventSettingsPage);
+            EventsOrgFrame.Navigate(eventSettingsPage);
         }
 
         private void AddEvent_Click(object sender, RoutedEventArgs e)
@@ -93,7 +110,7 @@ namespace CharityApplication
         private void EventSettings_Click(object sender, RoutedEventArgs e, Event selectedEvent/*int eventId*/)
         {
             EventSettings eventSettingsPage = new EventSettings(selectedEvent); // Pass the selected event object
-            NavigationService.Navigate(eventSettingsPage);
+            EventsOrgFrame.Navigate(eventSettingsPage);
             //   selectedEventId = eventId;
             //    EventsOrgFrame.Navigate(new EventSettings(eventId));
 

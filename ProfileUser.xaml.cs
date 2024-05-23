@@ -43,12 +43,19 @@ namespace CharityApplication
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
+            Data data = new Data();
+            string currentSession = data.GetCurrentSessionType();
+            if (currentSession == "Donator")
+            {
+                HomeUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+            }
+            else
+            {
+                HomeUserFrame.Navigate(new Uri("ListOfUsersAdmin.xaml", UriKind.Relative));
+            }
 
-            HomeUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
-            //if (NavigationService.CanGoBack)
-            //{
-            //    NavigationService.GoBack();
-            //}
+            
+            
         }
         private void DonationHistory_Click(object sender, RoutedEventArgs e)
         {

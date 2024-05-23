@@ -36,9 +36,9 @@
         <Button Content="Add Event" Click="AddEvent_Click" HorizontalAlignment="Center" Height="31" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center" Width="181" FontFamily="Font/#Julius Sans One" FontSize="16" Foreground ="White" Background="#303030" BorderBrush="Transparent"/>
         
         <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" Grid.Column="2" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
-        <StackPanel x:Name="eventsStackPanel" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0">
-            <!-- This StackPanel will contain the Labels with Buttons for each event -->
-        </StackPanel>
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="10">
+            <WrapPanel x:Name="eventsWrapPanel" />
+        </ScrollViewer>
 
         <Frame x:Name="EventsOrgFrame" Grid.RowSpan="4" />
 

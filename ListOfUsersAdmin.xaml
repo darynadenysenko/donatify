@@ -24,13 +24,19 @@
 
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <Label Content="Users" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#B8B1AB" BorderBrush="Transparent" HorizontalAlignment="Stretch" FontFamily="Font/#Julius Sans One" FontSize="25"  Margin="0,0,0,0" Grid.Row="1"/>
-        <TextBox HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="2" TextWrapping="Wrap" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
+        <TextBox HorizontalAlignment="Center" x:Name="SearchTextBox" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" Height="25" Margin="130,0,0,0" Grid.Row="2" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="200"/>
+        <Button Click="SearchButton_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#D7d7d7" Grid.Row="2" Margin="0,0,130,0"  BorderBrush="Transparent">
+            <Button.Content>
+                <Image Source="./SearchSign.png" Height="40" Width="40"/>
+            </Button.Content>
+        </Button>
+        <ScrollViewer Grid.Row="3" Margin="10" VerticalScrollBarVisibility="Auto">
+            <WrapPanel  x:Name="usersWrapPanel" Grid.Row="3" Orientation="Vertical"/>
+        </ScrollViewer>
 
-        <Image Source="./SearchSign.png" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,130,0"/>
-        <StackPanel  x:Name="donatorsStackPanel" Grid.Row="3" Orientation="Vertical">
-            
-        </StackPanel>
-       
+        <TextBlock x:Name="NoUserTextBlock" Text="No donators found"  FontFamily="Font/#Julius Sans One" Foreground="Black" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Grid.Row="3"/>
+
+        <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
 
         <Frame x:Name="ListOfUsersFrame" Grid.RowSpan="6"/>
     </Grid>
