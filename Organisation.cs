@@ -14,6 +14,7 @@ namespace CharityApplication
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Mission { get; set; }
+        public byte[] ProfilePicture { get; set; }
         public Types Type { get; set; }
        // public  decimal Balance { get; set; }
         public List<Event> Events { get; set; }

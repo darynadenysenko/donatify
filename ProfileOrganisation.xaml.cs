@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using MySqlConnector;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +23,7 @@ namespace CharityApplication
     /// </summary>
     public partial class ProfileOrganisation : Page
     {
+        
         public ProfileOrganisation()
         {
             InitializeComponent();
@@ -46,5 +50,41 @@ namespace CharityApplication
         {
             HomeOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
         }
+        private void UploadPicture_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string selectedFileName = openFileDialog.FileName;
+                BitmapImage bitmap = new BitmapImage(new Uri(selectedFileName));
+                ProfileImage.Source = bitmap;
+
+                byte[] imageData;
+                using (FileStream fs = new FileStream(selectedFileName, FileMode.Open, FileAccess.Read))
+                {
+                    imageData = new byte[fs.Length];
+                    fs.Read(imageData, 0, (int)fs.Length);
+                }
+                Data dataAccess = new Data();
+                var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
+                int organizationId = currentOrganisation.OrganizationID;
+                bool success=dataAccess.SaveProfilePictureToDatabase(organizationId, imageData);
+                if (success)
+                {
+                    MessageBox.Show("Profile picture updated successfully!");
+                    ProfileUploadButton.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    MessageBox.Show("Failed to upload profile picture!");
+                }
+            }
+        }
+        
+
     }
 }
+    
+
