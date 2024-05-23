@@ -30,7 +30,9 @@
             </Button.Content>
         </Button>
         <Button Content="&lt;" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Right" Height="35" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Click="GoBack_Click"/>
-        <StackPanel x:Name="eventsStackPanel" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0"/>
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="10">
+            <WrapPanel x:Name="eventsWrapPanel" />
+        </ScrollViewer>
         <!-- This StackPanel will contain the Labels with Buttons for each event -->
         <TextBlock x:Name="NoEventsTextBlock" Text="No events found"  FontFamily="Font/#Julius Sans One" Foreground="Black" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Grid.Row="3"/>
 

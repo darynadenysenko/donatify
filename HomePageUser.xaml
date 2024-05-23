@@ -17,28 +17,50 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        
 
         <!-- Top row content -->
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <Button Content="P" FontFamily="Font/#Julius Sans One" FontSize="35" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="100" Width="100" Click="ProfileUserButton_Click" Grid.Row="0" Grid.Column="2"/>
 
         <!-- Second row content -->
-        <TextBox HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="1" Grid.Column="1" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
-        <Image Source="./SearchSign.png" Height="40" Width="40" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="0,0,130,0"/>
+        <TextBox HorizontalAlignment="Center" x:Name="SearchTextBox" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" Height="25" Margin="0" Grid.Row="1" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
+        <Button Click="SearchButton_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#D7d7d7" Grid.Row="1" Margin="0,0,130,0"  BorderBrush="Transparent">
+            <Button.Content>
+                <Image Source="./SearchSign.png" 
+               Height="40" Width="40"/>
+            </Button.Content>
+        </Button>
+        <ComboBox x:Name="TypeComboBox"   FontFamily="Font/#Julius Sans One" FontSize="16" SelectionChanged="TypeComboBox_SelectionChanged" Text="Types" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Margin="0,0,20,0">
+            
+            <ComboBoxItem Content="All types"/>
+            <ComboBoxItem Content="Health Care"/>
+            <ComboBoxItem Content="Education"/>
+            <ComboBoxItem Content="Environmental Conservation"/>
+            <ComboBoxItem Content="Animal Welfare"/>
+            <ComboBoxItem Content="Arts And Culture"/>
+            <ComboBoxItem Content="Human Rights"/>
+            <ComboBoxItem Content="Emergency Relief"/>
+            <ComboBoxItem Content="Community Development"/>
+            <ComboBoxItem Content="Poverty Alleviation"/>
+            <ComboBoxItem Content="Disability Rights"/>
+            <ComboBoxItem Content="Hunger Relief"/>
+            <ComboBoxItem Content="Housing And Homelessness"/>
+            <ComboBoxItem Content="Elderly Care"/>
+            <ComboBoxItem Content="Youth And Children"/>
+            <ComboBoxItem Content="LGBTQ Rights"/>
+            <ComboBoxItem Content="Womens Rights"/>
+            <ComboBoxItem Content="Economic Development"/>
+        </ComboBox>
 
         <!-- Third row content -->
-        <Button Content="Charity Events" Click="EventsUser_Click" Background="White" Grid.ColumnSpan="3" BorderBrush="Transparent" HorizontalAlignment="Stretch" FontFamily="Font/#Julius Sans One" FontSize="35"  Margin="0,10,0,15" Grid.Row="2"/>
+        <Button Content="Charity Events" Click="EventsUser_Click" Background="White" BorderBrush="Transparent" HorizontalAlignment="Stretch" FontFamily="Font/#Julius Sans One" FontSize="35"  Margin="0,10,0,15" Grid.Row="2"/>
 
         <!-- Fourth row content -->
-        <StackPanel  x:Name="orgStackPanel" Grid.Row="3" Orientation="Vertical">
-
-        </StackPanel>
-
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="orgWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,0"/>
+        </ScrollViewer>
+        <TextBlock x:Name="NoOrgTextBlock" Text="No organisations found"  FontFamily="Font/#Julius Sans One" Foreground="Black" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Grid.Row="3"/>
 
 
         <!-- Frame for dynamic content -->

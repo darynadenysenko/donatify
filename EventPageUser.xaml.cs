@@ -47,7 +47,7 @@ namespace CharityApplication
 
         private void DisplayEvents(List<Event> events)
         {
-            eventsStackPanel.Children.Clear();
+            eventsWrapPanel.Children.Clear();
             DateTime currentDate = DateTime.Now;
 
             if (events.Count == 0)
@@ -62,47 +62,72 @@ namespace CharityApplication
                 {
                     if (evt.EndDate >= currentDate)
                     {
-                        StackPanel eventContainer = new StackPanel
+                        Border eventContainer = new Border
+                        {
+                            Background = Brushes.White,
+                            BorderBrush = Brushes.LightGray,
+                            BorderThickness = new Thickness(1),
+                            CornerRadius = new CornerRadius(10),
+                            Padding = new Thickness(10),
+                            Margin = new Thickness(10),
+                            Width = 300,  // Adjusted width
+                            Height = 250  // Adjusted height to make the scroll more obvious
+                        };
+
+                        StackPanel stackPanel = new StackPanel
                         {
                             Orientation = Orientation.Vertical,
                             HorizontalAlignment = HorizontalAlignment.Stretch,
                             VerticalAlignment = VerticalAlignment.Stretch
                         };
 
-                        TextBlock textBlock = new TextBlock
+                        // Create a ScrollViewer to allow scrolling
+                        ScrollViewer scrollViewer = new ScrollViewer
                         {
-                            Background = Brushes.White,
-                            Margin = new Thickness(10, 0, 10, 0),
-                            Text = $"{evt.Name}\n\n{DateOnly.FromDateTime(evt.StartDate)} - {DateOnly.FromDateTime(evt.EndDate)}\n\n{evt.Description}\n\nCurrent amount raised: {evt.CurrentAmountRaised}",
-                            TextWrapping = TextWrapping.Wrap,
-                            HorizontalAlignment = HorizontalAlignment.Stretch,
-                            VerticalAlignment = VerticalAlignment.Stretch,
-                            FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One"),
-                            TextAlignment = TextAlignment.Center
+                            VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
+                            Height = 180,  // Set height to allow space for scrolling
+                            Content = new TextBlock
+                            {
+                                Margin = new Thickness(10, 0, 10, 0),
+                                Text = $"{evt.Name}\n\n{DateOnly.FromDateTime(evt.StartDate)} - {DateOnly.FromDateTime(evt.EndDate)}\n\n{evt.Description}\n\nCurrent amount raised: {evt.CurrentAmountRaised}",
+                                TextWrapping = TextWrapping.Wrap,
+                                HorizontalAlignment = HorizontalAlignment.Stretch,
+                                VerticalAlignment = VerticalAlignment.Top,
+                                FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One"),
+                                FontSize = 18,  // Adjusted font size for better fitting
+                                TextAlignment = TextAlignment.Center
+                            }
                         };
 
                         Button button = new Button
                         {
                             Content = "Donate",
-                            Background = Brushes.White,
+                            Background = Brushes.LightBlue,
                             FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One"),
                             FontSize = 18,
                             Height = 33,
                             Width = 100,
                             BorderBrush = Brushes.Transparent,
-                            HorizontalContentAlignment = HorizontalAlignment.Center,
-                            VerticalContentAlignment = VerticalAlignment.Center
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            VerticalAlignment = VerticalAlignment.Center,
+                            Margin = new Thickness(0, 10, 0, 0)
                         };
                         button.Click += (sender, e) => ShowDonatePage(evt);
 
-                        eventContainer.Children.Add(textBlock);
-                        eventContainer.Children.Add(button);
+                        stackPanel.Children.Add(scrollViewer);
+                        stackPanel.Children.Add(button);
 
-                        eventsStackPanel.Children.Add(eventContainer);
+                        eventContainer.Child = stackPanel;
+
+                        eventsWrapPanel.Children.Add(eventContainer);
                     }
                 }
             }
         }
+
+
+
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {

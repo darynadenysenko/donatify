@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,30 +25,55 @@ namespace CharityApplication
         {
             InitializeComponent();
         }
+
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             var currentUser = UserSession.Instance.CurrentUser;
-            currentUser.Name = NameTextBox.Text;
-            currentUser.LastName = LastNameTextBox.Text;
-            currentUser.Email = EmailTextBox.Text;
+            bool isUpdated = false;
 
-            Data dataAccess = new Data();
-            bool success = dataAccess.UpdateUserInfo(currentUser);
-
-            if (success)
+            if (!string.IsNullOrWhiteSpace(NameTextBox.Text) && NameTextBox.Text != currentUser.Name)
             {
-                MessageBox.Show("User information updated successfully!");
-                ChangeInfoUserFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
+                currentUser.Name = NameTextBox.Text;
+                isUpdated = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(LastNameTextBox.Text) && LastNameTextBox.Text != currentUser.LastName)
+            {
+                currentUser.LastName = LastNameTextBox.Text;
+                isUpdated = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(EmailTextBox.Text) && EmailTextBox.Text != currentUser.Email)
+            {
+                currentUser.Email = EmailTextBox.Text;
+                isUpdated = true;
+            }
+
+            if (isUpdated)
+            {
+                Data dataAccess = new Data();
+                bool success = dataAccess.UpdateUserInfo(currentUser);
+
+                if (success)
+                {
+                    MessageBox.Show("User information updated successfully!");
+                    ChangeInfoUserFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update user information. Please try again.");
+                }
             }
             else
             {
-                MessageBox.Show("Failed to update user information. Please try again.");
+                MessageBox.Show("No changes detected to update.");
             }
         }
+
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             ChangeInfoUserFrame.Navigate(new Uri("ProfileSettingsUser.xaml", UriKind.Relative));
-
         }
     }
 }
+  

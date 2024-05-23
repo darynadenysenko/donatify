@@ -226,13 +226,17 @@ namespace CharityApplication
 
             return donators;
         }
+    
         public List<Organisation> FetchOrganisationsFromDatabase()
         {
             List<Organisation> organisations = new List<Organisation>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT * FROM organization";
+                string query = @"
+            SELECT o.OrgID, o.Name, o.Email, o.Phone, o.Mission, t.Name AS TypeName
+            FROM organization o
+            JOIN types t ON o.TypeID = t.TypeID";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
@@ -248,14 +252,16 @@ namespace CharityApplication
                                 string email = reader["Email"].ToString();
                                 string phone = reader["Phone"].ToString();
                                 string mission = reader["Mission"].ToString();
+                                string typeName = reader["TypeName"].ToString();
 
                                 Organisation organisation = new Organisation
                                 {
-                                    Name = name,
                                     OrganizationID = id,
+                                    Name = name,
                                     Email = email,
                                     Phone = phone,
-                                    Mission = mission
+                                    Mission = mission,
+                                    Type = (Types)Enum.Parse(typeof(Types), typeName)
                                 };
 
                                 organisations.Add(organisation);
@@ -264,7 +270,7 @@ namespace CharityApplication
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error fetching donators: " + ex.Message);
+                        Console.WriteLine("Error fetching organisations: " + ex.Message);
                     }
                 }
             }
@@ -509,7 +515,7 @@ namespace CharityApplication
                     connection.Open();
 
                     // Define the SQL query
-                    string query = $"SELECT EventID, Name, StartDate, EndDate, Description FROM event WHERE OrganizerID = {organisation.OrganizationID}";
+                    string query = $"SELECT EventID, Name, StartDate, EndDate, Description, CurrentAmountRaised FROM event WHERE OrganizerID = {organisation.OrganizationID}";
 
                     // Create a command object
                     using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -526,7 +532,8 @@ namespace CharityApplication
                                     Name = reader.GetString(reader.GetOrdinal("Name")),
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
-                                    Description = reader.GetString(reader.GetOrdinal("Description"))
+                                    Description = reader.GetString(reader.GetOrdinal("Description")),
+                                    CurrentAmountRaised = reader.GetDecimal(reader.GetOrdinal("CurrentAmountRaised"))
                                 };
 
                                 events.Add(ev);
@@ -823,42 +830,7 @@ namespace CharityApplication
                 }
             }
         }
-        //public Event GetEventById(int eventid)
-        //{
-        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
-        //    {
-        //        MySqlCommand command = new MySqlCommand("SELECT * WHERE EventID = @EventID", connection);
-        //        command.Parameters.AddWithValue("@EventID", eventid);
-        //        try
-        //        {
-        //            connection.Open();
-        //            using (MySqlDataReader reader = command.ExecuteReader())
-        //            {
-        //                if (reader.Read())
-        //                {
-        //                    return new Event
-        //                    {
-        //                        EventId = reader.GetInt32("EventID"),
-        //                        Name = reader.GetString("Name"),
-        //                        Description = reader.GetString("Description"),
-        //                        StartDate= reader.GetDateTime("StartDate"),
-        //                        EndDate=reader.GetDateTime("EndDate")
-
-        //                    };
-        //                }
-        //                else
-        //                {
-        //                    return null; // No matching 
-        //                }
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine("Failed to retrieve event: " + ex.Message);
-        //            return null;
-        //        }
-        //    }
-        //}
+  
         public Organisation GetOrgById(int orgid)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))

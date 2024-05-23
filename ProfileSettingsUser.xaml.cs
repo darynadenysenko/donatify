@@ -43,7 +43,7 @@ namespace CharityApplication
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            ProfileSettingsUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+            ProfileSettingsUserFrame.Navigate(new Uri("ProfileUser.xaml", UriKind.Relative));
 
         }
     }

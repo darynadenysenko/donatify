@@ -21,12 +21,7 @@ namespace CharityApplication
     /// </summary>
     public partial class EventPageOrg : Page
     {
-        //private int selectedEventId;
-
-        /* public int SelectedEventId
-         {
-             get { return selectedEventId; }
-         }*/
+        
         public EventPageOrg()
         {
             InitializeComponent();
