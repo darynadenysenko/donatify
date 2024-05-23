@@ -47,7 +47,14 @@ namespace CharityApplication
             {
                 currentUser.Email = EmailTextBox.Text;
                 isUpdated = true;
+                if (!IsValidEmail(EmailTextBox.Text))
+                {
+                    MessageBox.Show("Invalid email address format. Please enter a valid email address.");
+                    return;
+                }
             }
+            
+
 
             if (isUpdated)
             {
@@ -68,6 +75,11 @@ namespace CharityApplication
             {
                 MessageBox.Show("No changes detected to update.");
             }
+        }
+        private bool IsValidEmail(string email)
+        {
+
+            return email.Contains("@") && email.Split('@')[1].Contains(".");
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)

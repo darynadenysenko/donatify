@@ -33,25 +33,32 @@ namespace CharityApplication
         private void DonateButton_Click(object sender, RoutedEventArgs e)
         {
             // Perform data validation
-            /*if (!decimal.TryParse(DonationAmount.Text, out decimal amount))
+           
+            if (!decimal.TryParse(DonationAmount.Text, out decimal amount))
             {
                 MessageBox.Show("Invalid donation amount. Please enter a valid number.");
                 return;
-            }*/
+            }
 
-            /*if (!int.TryParse(CardNumber.Text, out int cardNumber))
+            if (!int.TryParse(CardNumber.Text, out int cardNumber) || CardNumber.Text.Length != 16)
             {
-                MessageBox.Show("Invalid card number. Please enter a valid integer.");
+                MessageBox.Show("Invalid card number. Please enter a valid number.");
                 return;
-            }*/
+            }
 
             // Proceed with donation
-            decimal amount = decimal.Parse(DonationAmount.Text);
+            
             int eventId = selectedEvent.EventId;
             int donatorId = UserSession.Instance.CurrentUser.UserID;
             int receiverId = selectedEvent.OrgId;
             DateTime date = DateTime.Now;
             Data dataAccess = new Data();
+
+            if (string.IsNullOrWhiteSpace(cardNumber.ToString()) || string.IsNullOrWhiteSpace(amount.ToString()))
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
 
             try
             {

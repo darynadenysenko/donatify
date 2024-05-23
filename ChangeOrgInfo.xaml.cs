@@ -36,17 +36,29 @@ namespace CharityApplication
             if (!string.IsNullOrWhiteSpace(Email.Text))
             {
                 currentOrganisation.Email = Email.Text;
+                if (!IsValidEmail(Email.Text))
+                {
+                    MessageBox.Show("Invalid email address format. Please enter a valid email address.");
+                    return;
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(Phone.Text))
             {
                 currentOrganisation.Phone = Phone.Text;
+                if (Phone.Text.Length < 10)
+                {
+                    MessageBox.Show("Invalid phone number. Please enter a valid phone number.");
+                    return;
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(Mission.Text))
             {
                 currentOrganisation.Mission = Mission.Text;
             }
+            
+
             Data dataAccess = new Data();
             bool success = dataAccess.UpdateOrganisationInfo(currentOrganisation);
 
@@ -59,6 +71,11 @@ namespace CharityApplication
             {
                 MessageBox.Show("Failed to update organization information. Please try again.");
             }
+        }
+        private bool IsValidEmail(string email)
+        {
+
+            return email.Contains("@") && email.Split('@')[1].Contains(".");
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {

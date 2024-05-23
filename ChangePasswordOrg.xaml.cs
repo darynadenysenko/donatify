@@ -34,6 +34,11 @@ namespace CharityApplication
             int OrgId = OrganisationSession.Instance.CurrentOrganisation.OrganizationID;
 
             string currentPassword = OrganisationSession.Instance.CurrentOrganisation.Password;
+            if (!IsValidPassword(newPassword))
+            {
+                MessageBox.Show("Password must be at least 8 characters long and contain both letters and numbers.");
+                return;
+            }
 
             if (oldPassword == currentPassword)
             {
@@ -64,6 +69,12 @@ namespace CharityApplication
                 MessageBox.Show("Old password is incorrect.");
             }
 
+        }
+        private bool IsValidPassword(string password)
+        {
+            // Regular expression pattern to validate password (at least 8 characters, contains letters and numbers)
+            string pattern = @"^(?=.*[A-Za-z])(?=.*\d).{8,}$";
+            return System.Text.RegularExpressions.Regex.IsMatch(password, pattern);
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
