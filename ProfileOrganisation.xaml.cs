@@ -30,12 +30,13 @@ namespace CharityApplication
             var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
             if (currentOrganisation != null)
             {
+                Data data = new Data();
                 userName.Content = currentOrganisation.Name;
                 Email.Content= currentOrganisation.Email;
                 PhoneNumber.Content = currentOrganisation.Phone;
                 Type.Content = currentOrganisation.Type;
                 Mission.Content = currentOrganisation.Mission;
-
+                BalanceOrg.Content = Convert.ToString(data.GetTotalOrgBalance(currentOrganisation));
             }
             else
             {
@@ -88,7 +89,7 @@ namespace CharityApplication
                 }
                 else
                 {
-                    MessageBox.Show("Failed to upload profile picture!");
+                    MessageBox.Show("Failed to upload profile picture!"+ " Selected File: " + selectedFileName);
                 }
             }
         }
