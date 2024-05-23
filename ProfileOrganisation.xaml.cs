@@ -88,7 +88,7 @@ namespace CharityApplication
                 }
                 else
                 {
-                    MessageBox.Show("Failed to upload profile picture!");
+                    MessageBox.Show("Failed to upload profile picture!"+ " Selected File: " + selectedFileName);
                 }
             }
         }

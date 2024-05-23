@@ -768,19 +768,29 @@ namespace CharityApplication
                         // Parse the type name to the corresponding enum value
                         Types type = (Types)Enum.Parse(typeof(Types), typeName);
 
-                        return new Organisation
+                        Organisation organization = new Organisation
                         {
-                            OrganizationID = reader.GetInt32("OrgID"),
-                            Name = reader.GetString("Name"),
-                            Phone = reader.GetString("Phone"),
-                            Email = reader.GetString("Email"),
-                            Password = reader.GetString("Password"),
-                            Mission = reader.GetString("Mission"),
-                            Type = type,
-                            //ProfilePicture = reader.IsDBNull("ProfilePicture") ? null : reader.GetBytes("ProfilePicture")
+                            OrganizationID = reader.GetInt32(reader.GetOrdinal("OrgID")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                            Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
+                            Password = reader.GetString(reader.GetOrdinal("Password")),
+                            Mission = reader.GetString(reader.GetOrdinal("Mission")),
+                            Type = type
+                        };
+
+                        // Check if ProfilePicture column is null
+                        if (!reader.IsDBNull(reader.GetOrdinal("ProfilePicture")))
+                        {
+                            long byteCount = reader.GetBytes(reader.GetOrdinal("ProfilePicture"), 0, null, 0, 0);
+                            byte[] buffer = new byte[byteCount];
+                            reader.GetBytes(reader.GetOrdinal("ProfilePicture"), 0, buffer, 0, (int)byteCount);
+                            organization.ProfilePicture = buffer;
+                        }
+
+                        return organization;
 
 
-                    };
                     }
                     return null; // No organization with this email
                 }
@@ -944,7 +954,7 @@ namespace CharityApplication
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "UPDATE organization SET ProfilePicture = @ProfilePicture WHERE OrgID = @ID";
+                    string query = "UPDATE organization SET ProfilePicture = @ProfilePicture WHERE OrgID = @OrgID";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@ProfilePicture", imageData);
@@ -957,7 +967,7 @@ namespace CharityApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-
+                Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
         }
