@@ -565,6 +565,38 @@ namespace CharityApplication
             }
             return events;
         }
+        public decimal GetTotalOrgBalance(Organisation organisation)
+        {
+            decimal totalAmountRaised = 0;
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Define the SQL query to calculate the total amount raised for the organization
+                    string query = $"SELECT SUM(CurrentAmountRaised) AS TotalAmountRaised FROM event WHERE OrganizerID = {organisation.OrganizationID}";
+
+                    // Create a command object
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Execute the query and read the result
+                        object result = command.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            totalAmountRaised = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return 0; // Return 0 in case of an error
+            }
+            return totalAmountRaised;
+        }
         public List<Donation> GetUserDonations(Donator donator)
         {
             List<Donation> donations = new List<Donation>();
