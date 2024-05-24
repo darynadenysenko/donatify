@@ -528,7 +528,7 @@ namespace CharityApplication
                     connection.Open();
 
                     // Define the SQL query
-                    string query = $"SELECT EventID, Name, StartDate, EndDate, Description, CurrentAmountRaised FROM event WHERE OrganizerID = {organisation.OrganizationID}";
+                    string query = $"SELECT EventID, Name, StartDate, EndDate, Description, CurrentAmountRaised, OrganizerID FROM event WHERE OrganizerID = {organisation.OrganizationID}";
 
                     // Create a command object
                     using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -541,6 +541,7 @@ namespace CharityApplication
                             {
                                 Event ev = new Event
                                 {
+                                    OrgId= reader.GetInt32(reader.GetOrdinal("OrganizerID")),
                                     EventId = reader.GetInt32(reader.GetOrdinal("EventID")),
                                     Name = reader.GetString(reader.GetOrdinal("Name")),
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
