@@ -63,7 +63,7 @@ namespace CharityApplication
             Organisation newOrganisation = new Organisation
             {
                 Name = name,
-                Type = type, // Modified this line
+                Type = type,
                 Mission = mission,
                 Phone = phone,
                 Email = email,

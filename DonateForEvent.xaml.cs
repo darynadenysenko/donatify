@@ -40,14 +40,14 @@ namespace CharityApplication
                 return;
             }
 
-            if (!int.TryParse(CardNumber.Text, out int cardNumber) || CardNumber.Text.Length != 16)
+            if (CardNumber.Text.Length != 16 || !long.TryParse(CardNumber.Text, out long cardNumber))
             {
                 MessageBox.Show("Invalid card number. Please enter a valid number.");
                 return;
             }
 
             // Proceed with donation
-            
+
             int eventId = selectedEvent.EventId;
             int donatorId = UserSession.Instance.CurrentUser.UserID;
             int receiverId = selectedEvent.OrgId;
@@ -73,20 +73,20 @@ namespace CharityApplication
                     if (donationSuccess)
                     {
                         MessageBox.Show("You donated successfully!");
-                        NavigationService.GoBack();
+                        DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
                     }
                     else
                     {
                         MessageBox.Show("Failed to store donation data. Please try again.");
                         // Rollback donation amount update
-                        
-                        NavigationService?.GoBack();
+
+                        DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
                     }
                 }
                 else
                 {
                     MessageBox.Show("Failed to update donation amount for the event. Please try again.");
-                    NavigationService?.GoBack();
+                    DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
                 }
             }
             catch (MySqlException ex)

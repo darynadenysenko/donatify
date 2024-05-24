@@ -21,10 +21,13 @@ namespace CharityApplication
     public partial class ViewEventsUser : Page
     {
         private List<Event> events;
+        private Organisation selectedOrganisation;
         public ViewEventsUser(Organisation organisation)
         {
             InitializeComponent();
+            selectedOrganisation = organisation;
             LoadEvents(organisation);
+            
             
         }
 
@@ -100,7 +103,9 @@ namespace CharityApplication
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            EventsFrame.Navigate(new Uri("ViewOrganisationUser.xaml", UriKind.Relative));
+
+            ViewOrganisationUser view = new ViewOrganisationUser(selectedOrganisation);
+            EventsFrame.Navigate(view);
         }
 
     }
