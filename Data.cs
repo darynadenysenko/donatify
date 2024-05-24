@@ -531,7 +531,7 @@ namespace CharityApplication
                     connection.Open();
 
                     // Define the SQL query
-                    string query = $"SELECT EventID, Name, StartDate, EndDate, Description, CurrentAmountRaised FROM event WHERE OrganizerID = {organisation.OrganizationID}";
+                    string query = $"SELECT EventID, Name, StartDate, EndDate, Description, CurrentAmountRaised, OrganizerID FROM event WHERE OrganizerID = {organisation.OrganizationID}";
 
                     // Create a command object
                     using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -544,6 +544,7 @@ namespace CharityApplication
                             {
                                 Event ev = new Event
                                 {
+                                    OrgId= reader.GetInt32(reader.GetOrdinal("OrganizerID")),
                                     EventId = reader.GetInt32(reader.GetOrdinal("EventID")),
                                     Name = reader.GetString(reader.GetOrdinal("Name")),
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
@@ -1006,7 +1007,42 @@ namespace CharityApplication
                 return false;
             }
         }
-
+        public byte[] GetProfilePicture(Organisation organisation)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT ProfilePicture FROM organization WHERE OrgID = @OrgID", connection);
+                command.Parameters.AddWithValue("@OrgID", organisation.OrganizationID);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (!reader.IsDBNull(reader.GetOrdinal("ProfilePicture")))
+                            {
+                                return (byte[])reader["ProfilePicture"];
+                            }
+                            else
+                            {
+                                return null; // No picture found
+                            }
+                        }
+                        else
+                        {
+                            return null; // No matching organization found
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to retrieve profile picture: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+            
 
     }
 }

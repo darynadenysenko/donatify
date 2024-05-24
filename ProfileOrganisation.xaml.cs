@@ -37,11 +37,39 @@ namespace CharityApplication
                 Type.Content = currentOrganisation.Type;
                 Mission.Content = currentOrganisation.Mission;
                 BalanceOrg.Content = Convert.ToString(data.GetTotalOrgBalance(currentOrganisation));
+
+                byte[] imageData = data.GetProfilePicture(currentOrganisation);
+                if (imageData != null)
+                {
+                    ProfileUploadButton.Visibility = Visibility.Collapsed;
+                    ProfileImage.Source = LoadImage(imageData);
+                }
+                
+                
             }
             else
             {
                 userName.Content = "No user logged in";
             }
+        }
+        public BitmapImage LoadImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+                return null;
+
+            BitmapImage image = new BitmapImage();
+            using (MemoryStream memStream = new MemoryStream(imageData))
+            {
+                memStream.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = memStream;
+                image.EndInit();
+            }
+            image.Freeze();
+            return image;
         }
         private void ProfileSettingsOrg_Click(object sender, RoutedEventArgs e)
         {
