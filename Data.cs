@@ -1003,7 +1003,42 @@ namespace CharityApplication
                 return false;
             }
         }
-
+        public byte[] GetProfilePicture(Organisation organisation)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand("SELECT ProfilePicture FROM organization WHERE OrgID = @OrgID", connection);
+                command.Parameters.AddWithValue("@OrgID", organisation.OrganizationID);
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (!reader.IsDBNull(reader.GetOrdinal("ProfilePicture")))
+                            {
+                                return (byte[])reader["ProfilePicture"];
+                            }
+                            else
+                            {
+                                return null; // No picture found
+                            }
+                        }
+                        else
+                        {
+                            return null; // No matching organization found
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to retrieve profile picture: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+            
 
     }
 }
