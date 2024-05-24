@@ -30,7 +30,17 @@ namespace CharityApplication
             var currentOrganisation = OrganisationSession.Instance.CurrentOrganisation;
 
             int orgId = currentOrganisation.OrganizationID;
-            string currentPassword = currentOrganisation.Password;
+            string currentPassword = "";
+            Data data = new Data();
+            string sessionType = data.GetCurrentSessionType();
+            if (sessionType == "Admin")
+            {
+                currentPassword = AdminSession.Instance.CurrentAdmin.Password;
+            }
+            else if (sessionType == "Organisation")
+            {
+                currentPassword = OrganisationSession.Instance.CurrentOrganisation.Password;
+            }
 
             if (password == currentPassword)
             {
@@ -44,11 +54,18 @@ namespace CharityApplication
                     if (organisationDeleted)
                     {
                         MessageBox.Show("Account deleted successfully!");
+                        if (sessionType == "Organisation")
+                        {
+                            // Navigate to the main window after account deletion
+                            MainWindow mainWindow = new MainWindow();
+                            mainWindow.Show();
+                            Window.GetWindow(this).Close();
+                        }
+                        else if (sessionType == "Admin")
+                        {
+                            DeleteAccountOrgFrame.Navigate(new Uri("ListOfOrganizationsAdmin.xaml", UriKind.Relative));
+                        }
 
-                        // Navigate to the main window after account deletion
-                        MainWindow mainWindow = new MainWindow();
-                        mainWindow.Show();
-                        Window.GetWindow(this).Close();
                     }
                     else
                     {

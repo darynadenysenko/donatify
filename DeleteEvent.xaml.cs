@@ -38,7 +38,7 @@ namespace CharityApplication
             {
                 currentPassword = AdminSession.Instance.CurrentAdmin.Password;
             }
-            else
+            else if (sessionType == "Organisation")
             {
                 currentPassword = OrganisationSession.Instance.CurrentOrganisation.Password;
             }
@@ -49,7 +49,15 @@ namespace CharityApplication
                 if (success)
                 {
                     MessageBox.Show("Event deleted successfully!");
-                    DeleteEventFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
+                    if (sessionType == "Organisation")
+                    {
+                        DeleteEventFrame.Navigate(new Uri("EventPageOrg.xaml", UriKind.Relative));
+                    }
+                    else if (sessionType == "Admin")
+                    {
+                        DeleteEventFrame.Navigate(new Uri("ListOfEventsAdmin.xaml", UriKind.Relative));
+                    }
+                    
                 }
                 else
                 {

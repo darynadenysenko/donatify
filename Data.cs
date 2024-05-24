@@ -217,7 +217,10 @@ namespace CharityApplication
                             {
                                 int id = Convert.ToInt32(reader["UserID"]);
                                 string name = reader["Name"].ToString();
-                                Donator donator = new Donator(name, id);
+                                string lastName = reader["LastName"].ToString();
+                                string email = reader["Email"].ToString();
+                                string password = reader["Password"].ToString();
+                                Donator donator = new Donator(id, name, lastName,email,password);
                                
                                 donators.Add(donator);
                             }

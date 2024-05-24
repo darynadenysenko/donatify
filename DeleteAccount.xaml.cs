@@ -29,8 +29,17 @@ namespace CharityApplication
         {
             string password = Password.Password;
             int userId = UserSession.Instance.CurrentUser.UserID;
-            string currentPassword = UserSession.Instance.CurrentUser.Password;
-
+            Data data = new Data();
+            string currentPassword = "";
+            string sessionType = data.GetCurrentSessionType();
+            if (sessionType == "Admin")
+            {
+                currentPassword = AdminSession.Instance.CurrentAdmin.Password;
+            }
+            else if (sessionType == "Organisation")
+            {
+                currentPassword = OrganisationSession.Instance.CurrentOrganisation.Password;
+            }
             if (password == currentPassword)
             {
                 Data dataAccess = new Data();
@@ -38,13 +47,21 @@ namespace CharityApplication
 
                 if (success)
                 {
+
                     MessageBox.Show("Account deleted successfully!");
                    
-
+                    if (sessionType == "Donator")
+                    {
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        Window.GetWindow(this).Close();
+                    }
+                    else if (sessionType == "Admin")
+                    {
+                        DeleteAccountFrame.Navigate(new Uri("ListOfUsersAdmin.xaml",UriKind.Relative));
+                    }
                     
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    Window.GetWindow(this).Close();
+                    
                 }
                 else
                 {
