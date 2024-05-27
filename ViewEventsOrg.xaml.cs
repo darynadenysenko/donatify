@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,36 +17,25 @@ using System.Windows.Shapes;
 namespace CharityApplication
 {
     /// <summary>
-    /// Interaction logic for EventPageUser.xaml
+    /// Interaction logic for ViewEventsOrg.xaml
     /// </summary>
-    public partial class EventPageUser : Page
+    public partial class ViewEventsOrg : Page
     {
-        private List<Event> allEvents;
-
-        public EventPageUser()
+        private List<Event> events;
+        private Organisation selectedOrganisation;
+        public ViewEventsOrg(Organisation organisation)
         {
             InitializeComponent();
-            LoadEvents();
-
-
+            selectedOrganisation = organisation;
+            LoadEvents(organisation);
         }
-
-
-
-        private void GoBack_Click(object sender, RoutedEventArgs e)
-        {
-            EventsUserFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
-
-        }
-        private void LoadEvents()
+        private void LoadEvents(Organisation organisation)
         {
             Data dataAccess = new Data();
-            allEvents = dataAccess.GetAllEvents();
-            DisplayEvents(allEvents);
+            events = dataAccess.GetOrgEvents(organisation);
+            PopulateEvents(events);
         }
-
-
-        private void DisplayEvents(List<Event> events)
+        private void PopulateEvents(List<Event> events)
         {
             eventsWrapPanel.Children.Clear();
             DateTime currentDate = DateTime.Now;
@@ -71,7 +61,7 @@ namespace CharityApplication
                             Padding = new Thickness(10),
                             Margin = new Thickness(10),
                             Width = 300,  // Adjusted width
-                            Height = 250  // Adjusted height to make the scroll more obvious
+                            Height = 200  // Adjusted height to make the scroll more obvious
                         };
 
                         StackPanel stackPanel = new StackPanel
@@ -100,24 +90,10 @@ namespace CharityApplication
                             }
                         };
 
-                        Button button = new Button
-                        {
-                            Content = "Donate",
-                            Background = Brushes.Black,
-                            Foreground = Brushes.White,
-                            FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One"),
-                            FontSize = 18,
-                            Height = 33,
-                            Width = 100,
-                            BorderBrush = Brushes.Transparent,
-                            HorizontalAlignment = HorizontalAlignment.Center,
-                            VerticalAlignment = VerticalAlignment.Center,
-                            Margin = new Thickness(0, 10, 0, 0)
-                        };
-                        button.Click += (sender, e) => ShowDonatePage(evt);
+                        
 
                         stackPanel.Children.Add(scrollViewer);
-                        stackPanel.Children.Add(button);
+                        
 
                         eventContainer.Child = stackPanel;
 
@@ -127,51 +103,11 @@ namespace CharityApplication
             }
         }
 
-
-
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            string searchText = SearchTextBox.Text.ToLower();
 
-            if (string.IsNullOrWhiteSpace(searchText) || searchText == "search")
-            {
-                DisplayEvents(allEvents);
-            }
-            else
-            {
-                var filteredEvents = allEvents.Where(evt => evt.Name.ToLower().Contains(searchText) || evt.Description.ToLower().Contains(searchText)).ToList();
-                DisplayEvents(filteredEvents);
-            }
+            ViewOrganisationUser view = new ViewOrganisationUser(selectedOrganisation);
+            EventsFrame.Navigate(view);
         }
-
-
-
-        private void ShowDonatePage(Event ev)
-        {
-            // Navigate to EventInfoAdmin page and pass event details
-            DonateForEvent donatePage = new DonateForEvent(ev);
-            EventsUserFrame.Navigate(donatePage);
-        }
-
-        private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            // If the default text is present, clear it
-            if (SearchTextBox.Text == "Search")
-            {
-                SearchTextBox.Text = "";
-            }
-        }
-
-        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            // If there's no text after losing focus, set the placeholder
-            if (string.IsNullOrWhiteSpace(SearchTextBox.Text))
-            {
-                SearchTextBox.Text = "Search";
-            }
-        }
-
-     
     }
 }

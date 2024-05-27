@@ -72,6 +72,11 @@ namespace CharityApplication
 
            
             Data dataAccess = new Data();
+            if (dataAccess.DoesOrgEmailExist(email))
+            {
+                MessageBox.Show("An account with this email already exists. Please use a different email.");
+                return;
+            }
             bool success = dataAccess.InsertOrganisation(newOrganisation);
 
             if (success)

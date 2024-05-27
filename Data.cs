@@ -235,7 +235,35 @@ namespace CharityApplication
 
             return donators;
         }
-    
+        public bool DoesEmailExist(string email)
+        {
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COUNT(*) FROM Donator WHERE Email = @Email";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+        public bool DoesOrgEmailExist(string email)
+        {
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COUNT(*) FROM Organization WHERE Email = @Email";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
         public List<Organisation> FetchOrganisationsFromDatabase()
         {
             List<Organisation> organisations = new List<Organisation>();

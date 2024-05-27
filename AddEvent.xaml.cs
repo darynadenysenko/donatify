@@ -49,9 +49,33 @@ namespace CharityApplication
         }
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedStartDate == DateTime.MinValue || selectedEndDate == DateTime.MaxValue)
+            if (string.IsNullOrWhiteSpace(Name.Text))
             {
-                MessageBox.Show("Please select valid start and end dates.");
+                MessageBox.Show("Please enter an event name.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Description.Text))
+            {
+                MessageBox.Show("Please enter an event description.");
+                return;
+            }
+
+            if (selectedStartDate == DateTime.MinValue)
+            {
+                MessageBox.Show("Please select a valid start date.");
+                return;
+            }
+
+            if (selectedEndDate == DateTime.MaxValue)
+            {
+                MessageBox.Show("Please select a valid end date.");
+                return;
+            }
+
+            if (selectedEndDate < selectedStartDate)
+            {
+                MessageBox.Show("End date cannot be before start date.");
                 return;
             }
             Data dataAccess = new Data();

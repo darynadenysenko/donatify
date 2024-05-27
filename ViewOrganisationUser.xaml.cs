@@ -40,12 +40,31 @@ namespace CharityApplication
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            ViewOrgFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+            Data data = new Data();
+            string currentSession = data.GetCurrentSessionType();
+            if (currentSession == "Donator" )
+            {
+                ViewOrgFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
+            }
+            else if (currentSession == "Organisation")
+            {
+                ViewOrgFrame.Navigate(new Uri("HomePageOrganisation.xaml", UriKind.Relative));
+            }
+           
         }
         private void ViewEvents_Click(object sender, RoutedEventArgs e)
         {
-            
-            ViewOrgFrame.Navigate(new ViewEventsUser(organisation)); // Assuming you have an EventsPage to navigate to
+            Data data = new Data();
+            string currentSession = data.GetCurrentSessionType();
+            if (currentSession == "Donator")
+            {
+                ViewOrgFrame.Navigate(new ViewEventsUser(organisation));
+            }
+            else if (currentSession == "Organisation")
+            {
+                ViewOrgFrame.Navigate(new ViewEventsOrg(organisation));
+            }
+           
         }
     }
 }

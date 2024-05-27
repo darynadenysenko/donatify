@@ -61,6 +61,13 @@ namespace CharityApplication
 
             // Insert the new Donator into the database
             Data dataAccess = new Data();
+
+            // Check if the email already exists
+            if (dataAccess.DoesEmailExist(email))
+            {
+                MessageBox.Show("An account with this email already exists. Please use a different email.");
+                return;
+            }
             bool success = dataAccess.InsertDonator(newDonator);
 
             if (success)

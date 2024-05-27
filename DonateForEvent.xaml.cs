@@ -73,20 +73,20 @@ namespace CharityApplication
                     if (donationSuccess)
                     {
                         MessageBox.Show("You donated successfully!");
-                        DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
+                        DonateFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
                     }
                     else
                     {
                         MessageBox.Show("Failed to store donation data. Please try again.");
                         // Rollback donation amount update
 
-                        DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
+                        DonateFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
                     }
                 }
                 else
                 {
                     MessageBox.Show("Failed to update donation amount for the event. Please try again.");
-                    DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
+                    DonateFrame.Navigate(new Uri("HometPageUser.xaml", UriKind.Relative));
                 }
             }
             catch (MySqlException ex)
@@ -100,7 +100,7 @@ namespace CharityApplication
        
     private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            DonateFrame.Navigate(new Uri("EventPageUser.xaml", UriKind.Relative));
+            DonateFrame.Navigate(new Uri("HomePageUser.xaml", UriKind.Relative));
         }
     }
 }

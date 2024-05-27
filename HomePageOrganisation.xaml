@@ -17,29 +17,49 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        
 
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <Button Content="P" FontFamily="Font/#Julius Sans One" FontSize="35" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="100" Width="100" Click="ProfileOrgButton_Click" Grid.Row="0" Grid.Column="2"/>
 
-        
-        <TextBox HorizontalAlignment="Center" Height="25" Margin="0" Grid.Row="1" Grid.Column="1" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="87"/>
-        <Image Source="./SearchSign.png" Height="40" Width="40" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="0,0,130,0"/>
 
-        <Button Content="Charity Events" Click="EventsOrg_Click" Background="White" Grid.ColumnSpan="3" BorderBrush="Transparent" HorizontalAlignment="Stretch" FontFamily="Font/#Julius Sans One" FontSize="35"  Margin="0,10,0,15" Grid.Row="2"/>
+        <Label Content="Types"  FontFamily="Font/#Julius Sans One" Height="30"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,45,0" FontSize="16" Background="#D7d7d7" Grid.Row="1"/>
+        <TextBox HorizontalAlignment="Center" x:Name="SearchTextBox" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" Height="25" Margin="130,0,0,0" Grid.Row="1" Text="Search" FontFamily="Font/#Julius Sans One" FontSize="22" Background="#D7D7D7" BorderBrush="Transparent" VerticalAlignment="Center" Width="200"/>
+        <Button Click="SearchButton_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#D7d7d7" Grid.Row="1" Margin="0,0,130,0"  BorderBrush="Transparent">
+            <Button.Content>
+                <Image Source="./SearchSign.png" 
+       Height="40" Width="40"/>
+            </Button.Content>
+        </Button>
+        <ComboBox x:Name="TypeComboBox"   FontFamily="Font/#Julius Sans One" FontSize="14" SelectionChanged="TypeComboBox_SelectionChanged" Text="Types" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Margin="0,0,20,10">
 
-     
+            <ComboBoxItem Content="All types"/>
+            <ComboBoxItem Content="Health Care"/>
+            <ComboBoxItem Content="Education"/>
+            <ComboBoxItem Content="Environmental Conservation"/>
+            <ComboBoxItem Content="Animal Welfare"/>
+            <ComboBoxItem Content="Arts And Culture"/>
+            <ComboBoxItem Content="Human Rights"/>
+            <ComboBoxItem Content="Emergency Relief"/>
+            <ComboBoxItem Content="Community Development"/>
+            <ComboBoxItem Content="Poverty Alleviation"/>
+            <ComboBoxItem Content="Disability Rights"/>
+            <ComboBoxItem Content="Hunger Relief"/>
+            <ComboBoxItem Content="Housing And Homelessness"/>
+            <ComboBoxItem Content="Elderly Care"/>
+            <ComboBoxItem Content="Youth And Children"/>
+            <ComboBoxItem Content="LGBTQ Rights"/>
+            <ComboBoxItem Content="Womens Rights"/>
+            <ComboBoxItem Content="Economic Development"/>
+        </ComboBox>
 
+        <Button Content="Charity Events" Click="EventsOrg_Click" Background="White"  BorderBrush="Transparent" HorizontalAlignment="Stretch" FontFamily="Font/#Julius Sans One" FontSize="35"  Margin="0,10,0,15" Grid.Row="2"/>
 
-        <Label Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" />
-        <Label Background="#B8B1AB" HorizontalAlignment="Stretch"  Margin="10,0,10,0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch"  />
-        <Label Background="#B8B1AB" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Stretch" />
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="orgWrapPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,0"/>
+        </ScrollViewer>
+        <TextBlock x:Name="NoOrgTextBlock" Text="No organisations found"  FontFamily="Font/#Julius Sans One" Foreground="Black" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Grid.Row="3"/>
 
-       
         <Frame x:Name="HomeOrgFrame" Grid.RowSpan="6" Grid.ColumnSpan="3"/>
 
     </Grid>
