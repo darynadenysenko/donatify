@@ -46,5 +46,6 @@ namespace CharityApplication
             ProfileSettingsUserFrame.Navigate(new Uri("ProfileUser.xaml", UriKind.Relative));
 
         }
+
     }
 }
