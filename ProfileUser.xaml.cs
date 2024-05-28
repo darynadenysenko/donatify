@@ -62,6 +62,20 @@ namespace CharityApplication
             HomeUserFrame.Navigate(new Uri("DonationHistory.xaml", UriKind.Relative));
         }
 
+        private void LogOut_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            UserSession.Instance.ClearCurrentUser();
+
+            MessageBox.Show("You have been logged out.");
+
+            // Redirect to login window
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            // Close the current window
+            Window.GetWindow(this).Close();
+
+        }
 
     }
 }

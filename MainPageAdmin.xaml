@@ -28,8 +28,9 @@
             <Button Content="List of Organizations" Click="ListOfOrganizations_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0" Width="200" Height="200" />
             <Button Content="List of Users" Click="ListOfUsers_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Width="200" Height="200" />
             <Button Content="List of Events" Click="ListOfEvents_Click" FontFamily="Font/#Julius Sans One" FontSize="16" Background="#B8B1AB" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,10,0" Width="200" Height="200" />
+           
         </Grid>
-        
+        <Button Content="Logout" Click="LogOut_ButtonClick" Height="30" Width="150" Background="#B8B1AB" FontFamily="Font/#Julius Sans One" FontSize="25" HorizontalAlignment="Stretch" Margin="0,10,0,10" Grid.Row="2" VerticalAlignment="Stretch"></Button>
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="300" Margin="10,20,0,0" Grid.Row="0" Grid.Column="0"/>
         
 

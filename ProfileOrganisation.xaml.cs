@@ -121,7 +121,21 @@ namespace CharityApplication
                 }
             }
         }
-        
+        private void LogOut_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            OrganisationSession.Instance.ClearCurrentOrganisation();
+
+            MessageBox.Show("You have been logged out.");
+
+            // Redirect to login window
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            // Close the current window
+            Window.GetWindow(this).Close();
+
+        }
+
 
     }
 }
