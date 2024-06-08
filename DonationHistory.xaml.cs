@@ -78,50 +78,7 @@ namespace CharityApplication
             }
         }
     
-   /*     private void LoadEvents()
-        {
-            var currentUser=UserSession.Instance.CurrentUser;
-            
-            Data dataAccess = new Data();
-            List<Donation> donations = dataAccess.GetUserDonations(currentUser);
-            
-
-
-            // Create a Label with a Button for each event and add it to the StackPanel
-            foreach (var donation in donations)
-            {
-                Organisation org = dataAccess.GetOrgById(donation.OrgId);
-                string orgName = org.Name;
-
-                StackPanel donationContainer = new StackPanel();
-                donationContainer.Orientation = Orientation.Vertical;
-                donationContainer.HorizontalAlignment = HorizontalAlignment.Stretch;
-                donationContainer.VerticalAlignment = VerticalAlignment.Stretch;
-
-                // Create and configure the TextBlock
-                TextBlock textBlock = new TextBlock();
-                textBlock.Background = Brushes.White;
-                textBlock.Margin = new Thickness(10, 0, 10, 0);
-                textBlock.Height = 100;
-                textBlock.Text = donation.Amount + "€ amount\n\nDate: " + donation.Date + "\n\nTo: " + orgName;
-                textBlock.TextWrapping = TextWrapping.Wrap;
-                textBlock.Width = 100; // Allow the TextBlock to stretch horizontally
-                textBlock.HorizontalAlignment = HorizontalAlignment.Stretch; // Allow the TextBlock to stretch horizontally
-                textBlock.Height = double.NaN; // Allow the TextBlock to stretch vertically
-                textBlock.VerticalAlignment = VerticalAlignment.Stretch;
-                textBlock.FontFamily = new FontFamily(new Uri("pack://application:,,,/CharityApplication;component/"), "./Font/#Julius Sans One");
-                textBlock.TextAlignment = TextAlignment.Center;
-
-
-
-
-                // Add the TextBlock and Button to the container
-                donationContainer.Children.Add(textBlock);
-                
-
-                // Add the container (containing TextBlock and Button) to the eventsStackPanel
-                donationsWrapPanel.Children.Add(donationContainer);
-            }
-        }*/
+ 
+        
     }
 }

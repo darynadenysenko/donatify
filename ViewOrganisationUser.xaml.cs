@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -31,11 +33,37 @@ namespace CharityApplication
 
         private void DisplayOrganisationDetails()
         {
+            Data data = new Data();
             userName.Content = organisation.Name;
             Email.Content = organisation.Email;
             PhoneNumber.Content = organisation.Phone;
             Type.Content = organisation.Type.ToString();
             Mission.Content = organisation.Mission;
+            byte[] imageData = data.GetProfilePicture(organisation);
+            if (imageData != null)
+            {
+               
+                ProfileImage.Source = LoadImage(imageData);
+            }
+        }
+        public BitmapImage LoadImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0)
+                return null;
+
+            BitmapImage image = new BitmapImage();
+            using (MemoryStream memStream = new MemoryStream(imageData))
+            {
+                memStream.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = memStream;
+                image.EndInit();
+            }
+            image.Freeze();
+            return image;
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)

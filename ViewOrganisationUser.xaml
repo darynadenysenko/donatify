@@ -24,7 +24,7 @@
             <ColumnDefinition Width="*" />
 
         </Grid.ColumnDefinitions>
-
+        <Image x:Name="ProfileImage" HorizontalAlignment="Right"  Margin="0,0,10,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch"/>
 
         <Image Source="./Screenshot 2024-04-22 173611.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="80" Width="240" Margin="10,20,0,0" Grid.Row="0"/>
         <Label Content="Name"  x:Name="userName" FontFamily="Font/#Julius Sans One" FontSize="30" HorizontalAlignment="Stretch"  Margin="20,0,0,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" />
